@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <header-screen></header-screen>
+    <home-screen v-if="page === 'home'"></home-screen>
+    <training-screen v-if="page === 'training'"></training-screen>
+    <support-screen v-if="page === 'support'"></support-screen>
+    <course-screen v-if="page === 'course'"></course-screen>
+    <footer-screen></footer-screen>
+  </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import HomeScreen from "./components/client/HomeScreen.vue";
+  import HeaderScreen from "./components/client/HeaderScreen.vue";
+  import FooterScreen from "./components/client/FooterScreen.vue";
+  import TrainingScreen from "./components/client/TrainingScreen.vue";
+  import SupportScreen from "./components/client/SupportScreen.vue";
+  import CourseScreen from "./components/client/CourseScreen.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HomeScreen,
+    TrainingScreen,
+    CourseScreen,
+    SupportScreen,
+    HeaderScreen,
+    FooterScreen
+  },
+  data(){
+    return{
+      page: "home",
+    };
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
