@@ -1,5 +1,5 @@
 <template>
-  <header class="header flex justify-between m-6">
+  <header class="header flex justify-between p-5">
     <div class="header__left flex">
       <div class="header__logo">
         <img src="../../assets/images/client/logo.png" alt="">
