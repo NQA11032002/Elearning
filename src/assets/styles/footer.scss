@@ -1,0 +1,33 @@
+.footer{
+  background-image: url("../../assets/images/client/footer-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+
+  .footer__container{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 220px;
+    padding: 30px 0px;
+    grid-template-columns: 30% 25% 25% 20%;
+    column-gap: 20px;
+    width: 70%;
+
+    ul{
+      grid-template-rows: auto;
+      li
+      {
+        .footer__logo{
+          height: 100%;
+          object-fit: cover;
+        }
+        h5{
+          color: var(--color-title);
+          font-size: 18px;
+        }
+      }
+    }
+
+  }
+}
