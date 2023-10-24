@@ -3,25 +3,22 @@
         <div class="LoginForm_container" id="container">
             <div class="form-container log-in-container">
                 <form action="#">
-                    <h1>Login</h1>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="icon-fb fa-brands fa-facebook"></i></a>
-                        <a href="#" class="social"><i class="icon-git fa-brands fa-github"></i></a>
-                    </div>
-                    <span>or use your account</span>
+                    <h1>Create Account</h1>
+                    <span>Create your new account</span>
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Password" />
-                    <a href="#">Forgot your password?</a>
-                    <button>Log In</button>
+                    <input type="password" placeholder="Repeat your password" />
+                    <a href="#"></a>
+                    <button>Register</button>
                 </form>
             </div>
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-right">
-                        <h1>Login Form</h1>
-                        <p>Welcome to our website! Enjoy your time</p>
+                        <h1>Register Form</h1>
+                        <p>Have already an account? Login now!</p>
                         <a href="#">
-                            <button>No account yet? Register</button>
+                            <button>Login</button>
                         </a>
                     </div>
                 </div>

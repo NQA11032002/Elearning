@@ -1,13 +1,13 @@
 <template>
   <div>
-    <header-screen v-if="page!='login'"></header-screen>
+    <header-screen v-if="page!='login' && page!='register'"></header-screen>
     <home-screen v-if="page === 'home'"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
     <support-screen v-if="page === 'support'"></support-screen>
     <course-screen v-if="page === 'course'"></course-screen>
     <login-screen v-if="page === 'login'"></login-screen>
     <register-screen v-if="page === 'register'"></register-screen>
-    <footer-screen v-if="page!='login'"></footer-screen>
+    <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
   </div>
 
 </template>
@@ -37,7 +37,7 @@ export default {
   },
   data(){
     return{
-      page: "home",
+      page: "register",
     };
   }
 }
