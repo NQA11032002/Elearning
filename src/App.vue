@@ -30,7 +30,11 @@ export default {
   },
   data(){
     return{
+<<<<<<< HEAD
       page: "home",
+=======
+      page: "login",
+>>>>>>> 45225e56 (commit 1 - login)
     };
   }
 }
