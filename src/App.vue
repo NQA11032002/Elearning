@@ -1,11 +1,13 @@
 <template>
   <div>
-    <header-screen></header-screen>
+    <header-screen v-if="page!='login'"></header-screen>
     <home-screen v-if="page === 'home'"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
     <support-screen v-if="page === 'support'"></support-screen>
     <course-screen v-if="page === 'course'"></course-screen>
-    <footer-screen></footer-screen>
+    <login-screen v-if="page === 'login'"></login-screen>
+    <register-screen v-if="page === 'register'"></register-screen>
+    <footer-screen v-if="page!='login'"></footer-screen>
   </div>
 
 </template>
@@ -17,6 +19,9 @@
   import TrainingScreen from "./components/client/TrainingScreen.vue";
   import SupportScreen from "./components/client/SupportScreen.vue";
   import CourseScreen from "./components/client/CourseScreen.vue";
+  import LoginScreen from "./components/client/LoginScreen.vue";
+  import RegisterScreen from "./components/client/RegisterScreen.vue";
+  
 
 export default {
   name: 'App',
@@ -26,7 +31,9 @@ export default {
     CourseScreen,
     SupportScreen,
     HeaderScreen,
-    FooterScreen
+    FooterScreen,
+    LoginScreen,
+    RegisterScreen
   },
   data(){
     return{
