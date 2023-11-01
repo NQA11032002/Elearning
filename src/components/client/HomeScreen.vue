@@ -373,7 +373,10 @@
 </template>
 
 <script>
+import "../../assets/styles/home.scss"
+
 export default {
+  
   data() {
     return {};
   },

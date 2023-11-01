@@ -26,3 +26,18 @@
         </div>
     </body>
 </template>
+
+
+<script>
+  import "../../assets/styles/login.scss";
+  
+export default {
+  
+  data() {
+    return {};
+  },
+  watch: {},
+  name: "App",
+  components: {},
+};
+</script>

@@ -9,7 +9,6 @@
     <register-screen v-if="page === 'register'"></register-screen>
     <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
   </div>
-
 </template>
 
 <script>
@@ -37,7 +36,7 @@ export default {
   },
   data(){
     return{
-      page: "register",
+      page: "course",
     };
   }
 }
