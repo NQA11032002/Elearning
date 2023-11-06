@@ -238,74 +238,18 @@
 
         <div class="title__container flex">
           <img src="../../assets/images/client/card/icon_creative.png" alt="" />
-          <h1 class="title font-semibold">Xu hướng 24h qua</h1>
+          <h1 class="title font-semibold">Khóa học khác</h1>
         </div>
 
         <div class="courses flex">
           <i class="fa-solid fa-chevron-left"></i>
           <div class="cards mt-6 mb-10 flex">
-            <div class="card">
-              <img src="../../assets/images/client/courses/1.png" alt="" />
+            <div class="card" v-for="course in courses" :key="course.id">
+              <img :src="course.urlImage" alt="Course Image" />
 
               <div class="card__content">
                 <p class="card__title font-semibold">
-                  Khóa học ReactJS cơ bản đến nâng cao dành cho người mới bắt
-                  đầu
-                </p>
-
-                <div class="card__info flex justify-between">
-                  <div class="flex">
-                    <img
-                      class="ml-auto mr-auto mt-5 mb-5"
-                      src="../../assets/images/client/avatars/1.png"
-                      alt=""
-                    />
-                    <p>Phùng Thái Học</p>
-                  </div>
-
-                  <img
-                    src="../../assets/images/client/courses/hot.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <img src="../../assets/images/client/courses/1.png" alt="" />
-
-              <div class="card__content">
-                <p class="card__title font-semibold">
-                  Khóa học ReactJS cơ bản đến nâng cao dành cho người mới bắt
-                  đầu
-                </p>
-
-                <div class="card__info flex justify-between">
-                  <div class="flex">
-                    <img
-                      class="ml-auto mr-auto mt-5 mb-5"
-                      src="../../assets/images/client/avatars/1.png"
-                      alt=""
-                    />
-                    <p>Phùng Thái Học</p>
-                  </div>
-
-                  <img
-                    src="../../assets/images/client/courses/hot.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="card">
-              <img src="../../assets/images/client/courses/1.png" alt="" />
-
-              <div class="card__content">
-                <p class="card__title font-semibold">
-                  Khóa học ReactJS cơ bản đến nâng cao dành cho người mới bắt
-                  đầu
+                  {{ course.title }}
                 </p>
 
                 <div class="card__info flex justify-between">
@@ -374,11 +318,39 @@
 
 <script>
 import "../../assets/styles/home.scss"
-
+import axios from "axios";
+import { ref } from "vue";
 export default {
   
-  data() {
-    return {};
+  setup(){
+    const courses = ref([]);
+
+    const page = 0;
+    const records = 4;
+
+    const getAllCourses = async () => {
+      try
+      {
+        const res = await axios.get("http://localhost:8080/api/course", {
+          params: {
+            page: page,
+            records: records
+          }
+        });
+
+        courses.value = res.data.data;
+        console.log(courses)
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getAllCourses();
+
+    return {
+      courses
+    }
   },
   watch: {},
   name: "App",
