@@ -10,7 +10,6 @@
     <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
   </div>
 </template>
-
 <script>
   import HomeScreen from "./components/client/HomeScreen.vue";
   import HeaderScreen from "./components/client/HeaderScreen.vue";
@@ -20,7 +19,7 @@
   import CourseScreen from "./components/client/CourseScreen.vue";
   import LoginScreen from "./components/client/LoginScreen.vue";
   import RegisterScreen from "./components/client/RegisterScreen.vue";
-  
+
 
 export default {
   name: 'App',
@@ -33,7 +32,7 @@ export default {
     FooterScreen,
     LoginScreen,
     RegisterScreen
-  },
+},
   data(){
     return{
       page: "home",
