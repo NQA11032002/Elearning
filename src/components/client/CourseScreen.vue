@@ -159,60 +159,27 @@
         </label>
 
         <div class="cards grid mt-5">
-          <a href="" class="course flex flex-col">
-            <img class="image object-cover flex-shrink-0" src="../../assets/images/client/courses/1.png" alt="">
+          <a href="" class="course flex flex-col" v-for="course in courses" :key="course.id">
+            <img class="image object-cover flex-shrink-0" :src="course.urlImage" alt="">
 
-            <div class="card p-3">
-              <p class="title font-semibold flex-1">Khóa học ReactJS cơ bản đến nâng cao dành cho người mới bắt đầu</p>
+            <div class="card p-3 flex flex-col">
+              <p class="title font-semibold flex-shrink-0 mt-auto">{{ course.title }}</p>
 
-              <div class="card__info flex mt-5 justify-between flex-shrink-0">
+              <div class="card__info flex justify-between flex-1">
                 <div class="card__info--left flex">
                   <img class="avatar flex-shrink-0" src="../../assets/images/client/avatars/1.png" alt="">
                   <p class="name flex-1 ml-2">Võ Duy Thanh</p>
                 </div>
 
                 <p class="card__info--right cursor-default text-center font-semibold course__hot">Hot</p>
-              </div>
-            </div>
-          </a>
-
-          <a href="" class="course flex flex-col">
-            <img class="image object-cover flex-shrink-0" src="../../assets/images/client/courses/1.png" alt="">
-
-            <div class="card p-3">
-              <p class="title font-semibold flex-1">Khóa học ReactJS cơ bản đến nâng cao dành cho người mới bắt đầu</p>
-
-              <div class="card__info flex mt-5 justify-between flex-shrink-0">
-                <div class="card__info--left flex">
-                  <img class="avatar flex-shrink-0" src="../../assets/images/client/avatars/1.png" alt="">
-                  <p class="name flex-1 ml-2">Võ Duy Thanh</p>
-                </div>
-
-                <p class="card__info--right cursor-default text-center font-semibold course__hot">Hot</p>
-              </div>
-            </div>
-          </a>
-
-          <a href="" class="course flex flex-col">
-            <img class="image object-cover flex-shrink-0" src="../../assets/images/client/courses/1.png" alt="">
-
-            <div class="card p-3">
-              <p class="title font-semibold flex-1">Khóa học ReactJS cơ bản đến nâng cao dành cho người mới bắt đầu</p>
-
-              <div class="card__info flex mt-5 justify-between flex-shrink-0">
-                <div class="card__info--left flex">
-                  <img class="avatar flex-shrink-0" src="../../assets/images/client/avatars/1.png" alt="">
-                  <p class="name flex-1 ml-2">Võ Duy Thanh</p>
-                </div>
-
-                <p class="card__info--right cursor-default text-center font-semibold course__new">New</p>
               </div>
             </div>
           </a>
         </div>
 
         <div class="more__courses flex justify-center mt-10">
-          <button>Xem thêm</button>
+          <button @click="changePage" class="btn-showMore" :class="!isActive.value ? 'active' : 'hidden'">Xem thêm</button>
+          <button @click="collapsePage" class="btn-collapse ml-3" :class="isActive.value ? 'active' : 'hidden'">Thu gọn</button>
         </div>
       </div>
     </div>
@@ -221,8 +188,53 @@
 
 <script>
 import "../../assets/styles/course.scss";
+import { ref } from "vue";
 
 export default {
+  props: ["courses", "totalPage"],
+  setup(props, { emit }) {
+   // Lấy giá trị courses từ props
+    const page = ref(0);
+    var isActive = ref(false);
+
+    const changePage = () => {
+
+      if(page.value < props.totalPage - 1)
+      {
+        page.value++;
+
+        emit("pageChanged", page.value);
+      }
+
+      if(page.value + 1 == props.totalPage)
+      {
+        isActive.value = ref(true);
+      }
+
+      // Phát ra sự kiện để thông báo giá trị mới của page cho component cha
+    }
+
+    const collapsePage = () => {
+      if(page.value > 0)
+      {
+        page.value--
+
+        emit("pageChanged", page.value);
+      }
+      
+      if(page.value == 0)
+      {
+        isActive.value = ref(false);
+      }
+    }
+
+    return {
+      isActive,
+      page,
+      changePage,
+      collapsePage
+    };
+  },
 
   data() {
     return {};

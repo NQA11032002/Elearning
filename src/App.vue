@@ -1,10 +1,10 @@
 <template>
   <div>
     <header-screen v-if="page!='login' && page!='register'"></header-screen>
-    <home-screen v-if="page === 'home'"></home-screen>
+    <home-screen v-if="page === 'home'" :courses="courses"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
     <support-screen v-if="page === 'support'"></support-screen>
-    <course-screen v-if="page === 'course'"></course-screen>
+    <course-screen v-if="page === 'course'" :courses="courses" :totalPage="totalPage" @pageChanged="onPageChanged"></course-screen>
     <login-screen v-if="page === 'login'"></login-screen>
     <register-screen v-if="page === 'register'"></register-screen>
     <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
@@ -20,9 +20,53 @@
   import CourseScreen from "./components/client/CourseScreen.vue";
   import LoginScreen from "./components/client/LoginScreen.vue";
   import RegisterScreen from "./components/client/RegisterScreen.vue";
-  
+  import { ref } from "vue";
+  import axios from "axios";
+
 
 export default {
+  created () {
+  },
+  setup(props, { emit }){
+    const courses = ref([]);
+    const page = ref(0);
+    const records = 6;
+    const totalPage = ref(0);
+    
+    const getAllCourses = async () => {
+      try
+      {
+        const res = await axios.get("http://localhost:8080/api/course", {
+          params: {
+            page: page.value,
+            records: records
+          }
+        });
+
+        courses.value = res.data.data;
+        totalPage.value = res.data.totalPage;
+        
+        // Phát ra sự kiện để thông báo danh sách khóa học mới cho component con
+        emit("coursesChanged", courses.value);
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const onPageChanged  = (newPage) => {
+      page.value = newPage;
+      getAllCourses();
+    }
+
+    getAllCourses();
+
+    return {
+      totalPage,
+      courses,
+      onPageChanged 
+    }
+  },
   name: 'App',
   components: {
     HomeScreen,
@@ -36,7 +80,7 @@ export default {
   },
   data(){
     return{
-      page: "home",
+      page: "course",
     };
   }
 }

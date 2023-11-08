@@ -106,16 +106,20 @@
 
         .course
         {
+          height: 320px;
           .image
           {
             max-height: 200px;
+            height: 100%;
           }
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
           .card
           {
+            height: 100%;
             .title
             {
+              font-size: 14px;
               flex: 1;
               display: -webkit-box;
               -webkit-line-clamp: 2;
@@ -183,6 +187,29 @@
         {
           background-color: var(--color-navigate);
           color: var(--color-white);
+        }
+
+        .btn-collapse
+        {
+          display: none;
+          background-color: var(--color-navigate);
+          color: var(--color-white);
+        }
+
+        .btn-collapse.active, .btn-showMore.active
+        {
+          display: block;
+        }
+
+        .btn-collapse:hover
+        {
+          background-color: transparent;
+          color: var(--color-navigate);
+        }
+
+        .btn-showMore.hidden, .btn-collapse.hidden
+        {
+          display: none;
         }
       }
     }

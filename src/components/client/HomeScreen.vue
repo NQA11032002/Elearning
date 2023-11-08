@@ -318,40 +318,10 @@
 
 <script>
 import "../../assets/styles/home.scss"
-import axios from "axios";
-import { ref } from "vue";
+
 export default {
-  
-  setup(){
-    const courses = ref([]);
+  props: ['courses'],
 
-    const page = 0;
-    const records = 4;
-
-    const getAllCourses = async () => {
-      try
-      {
-        const res = await axios.get("http://localhost:8080/api/course", {
-          params: {
-            page: page,
-            records: records
-          }
-        });
-
-        courses.value = res.data.data;
-        console.log(courses)
-
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    getAllCourses();
-
-    return {
-      courses
-    }
-  },
   watch: {},
   name: "App",
   components: {},
