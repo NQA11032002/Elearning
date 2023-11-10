@@ -4,7 +4,7 @@
     <home-screen v-if="page === 'home'" :courses="courses"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
     <support-screen v-if="page === 'support'"></support-screen>
-    <course-screen v-if="page === 'course'" :courses="courses" :totalPage="totalPage" @pageChanged="onPageChanged"></course-screen>
+    <course-screen v-if="page === 'course'" :courses="courses" :totalPage="totalPage" @search="onSearchChange" @priceFrom="onPriceFromChanged" @priceTo="onPriceToChanged"  @pageChanged="onPageChanged"></course-screen>
     <login-screen v-if="page === 'login'"></login-screen>
     <register-screen v-if="page === 'register'"></register-screen>
     <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
@@ -29,17 +29,42 @@ export default {
   },
   setup(props, { emit }){
     const courses = ref([]);
+
     const page = ref(0);
     const records = 6;
     const totalPage = ref(0);
-    
+    const search = ref('');
+    const priceFrom = ref();
+    const priceTo = ref();
+
+    const onPriceFromChanged = (value) => {
+      priceFrom.value = value;
+
+      getAllCourses();
+    }
+
+    const onPriceToChanged = (value) => {
+      priceTo.value = value;
+
+      getAllCourses();
+    }
+
+    const onSearchChange = (keyword) => {
+      search.value = keyword;
+
+      getAllCourses();
+    }
+
     const getAllCourses = async () => {
       try
       {
         const res = await axios.get("http://localhost:8080/api/course", {
           params: {
             page: page.value,
-            records: records
+            records: records,
+            search: search.value,
+            priceFrom: priceFrom.value,
+            priceTo: priceTo.value
           }
         });
 
@@ -64,7 +89,10 @@ export default {
     return {
       totalPage,
       courses,
-      onPageChanged 
+      onPageChanged,
+      onSearchChange,
+      onPriceFromChanged,
+      onPriceToChanged
     }
   },
   name: 'App',

@@ -35,6 +35,11 @@
         border-bottom: 1px solid var(--color-border);
         padding-bottom: 10px;
         padding-top: 10px;
+
+        .filter--text
+        {
+          font-size: 15px;
+        }
       }
       .filter:first-child{
         padding-top: unset;
@@ -149,14 +154,14 @@
               }
               .card__info--right
               {
-                object-fit: contain;
                 width: 130px;
                 height: 25px;
                 padding: 2px 0;
                 width: 60px;
                 border-radius: 10px;
                 color: var(--color-white);
-                font-size: 14px;
+                font-size: 13px;
+                font-weight: 500;
               }
 
               .course__hot
@@ -189,28 +194,6 @@
           color: var(--color-white);
         }
 
-        .btn-collapse
-        {
-          display: none;
-          background-color: var(--color-navigate);
-          color: var(--color-white);
-        }
-
-        .btn-collapse.active, .btn-showMore.active
-        {
-          display: block;
-        }
-
-        .btn-collapse:hover
-        {
-          background-color: transparent;
-          color: var(--color-navigate);
-        }
-
-        .btn-showMore.hidden, .btn-collapse.hidden
-        {
-          display: none;
-        }
       }
     }
   }
