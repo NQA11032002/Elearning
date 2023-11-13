@@ -8,7 +8,7 @@
       <div class="filters p-5">
         <div class="filter__container">
           <div class="filter filter__search">
-            <p>Tìm thấy : <b>14 khóa học</b> theo <b>keyword</b></p>
+            <p>Tìm thấy : <b> {{ courses.length }} khóa học</b> {{ keyword != '' ? "theo" : "" }} <b>{{ keyword }}</b></p>
             <input type="text" class="search__name" @change="searchCourse" v-model="keyword" placeholder="Tìm tên khóa học...">
           </div>
 
@@ -48,26 +48,26 @@
             <h2 class="font-semibold">Thời gian khóa học</h2>
             <div>
               <label class="flex cursor-pointer filter--text" for="filter__education--1">
-                <input type="radio" id="filter__education--1" class="filter__education mr-2" name="rd__education"
-                  value="10">
+                <input type="radio" id="filter__education--1" class="filter__education mr-2" @change="selectedEducateRange($event)" name="rd__education"
+                  value="1">
                 Lớp 10
               </label>
 
               <label class="flex cursor-pointer filter--text" for="filter__education--2">
-                <input type="radio" id="filter__education--2" class="filter__education mr-2" name="rd__education"
-                  value="11">
+                <input type="radio" id="filter__education--2" class="filter__education mr-2" @change="selectedEducateRange($event)" name="rd__education"
+                  value="2">
                 Lớp 11
               </label>
 
               <label class="flex cursor-pointer filter--text" for="filter__education--3">
-                <input type="radio" id="filter__education--3" class="filter__education mr-2" name="rd__education"
-                  value="12">
+                <input type="radio" id="filter__education--3" class="filter__education mr-2" @change="selectedEducateRange($event)" name="rd__education"
+                  value="3">
                 Lớp 12
               </label>
 
               <label class="flex cursor-pointer filter--text" for="filter__education--4">
-                <input type="radio" id="filter__education--4" class="filter__education mr-2" name="rd__education"
-                  value="13">
+                <input type="radio" id="filter__education--4" class="filter__education mr-2" @change="selectedEducateRange($event)" name="rd__education"
+                  value="4">
                 Đại học
               </label>
             </div>
@@ -77,38 +77,38 @@
             <h2 class="font-semibold">Khóa học</h2>
             <div>
               <label class="flex cursor-pointer filter--text" for="filter__title--1">
-                <input type="radio" id="filter__title--1" class="filter__title mr-2" name="rd__title" value="wordpress">
-                Wordpress
+                <input type="radio" id="filter__title--1" class="filter__title mr-2" @change="selectedCategoryRange($event)" name="rd__title" value="1">
+                Frontend
               </label>
 
               <label class="flex cursor-pointer filter--text" for="filter__title--2">
-                <input type="radio" id="filter__title--2" class="filter__title mr-2" name="rd__title" value="programming">
-                Lập trình
+                <input type="radio" id="filter__title--2" class="filter__title mr-2" @change="selectedCategoryRange($event)" name="rd__title" value="2">
+                Backend
               </label>
 
               <label class="flex cursor-pointer filter--text" for="filter__title--3">
-                <input type="radio" id="filter__title--3" class="filter__title mr-2" name="rd__title" value="math">
-                Môn toán
-              </label>
-
-              <label class="flex cursor-pointer filter--text" for="filter__title--4">
-                <input type="radio" id="filter__title--4" class="filter__title mr-2" name="rd__title" value="literature">
-                Môn văn
-              </label>
-
-              <label class="flex cursor-pointer filter--text" for="filter__title--4">
-                <input type="radio" id="filter__title--4" class="filter__title mr-2" name="rd__title" value="english">
-                Tiếng Anh
-              </label>
-
-              <label class="flex cursor-pointer filter--text" for="filter__title--4">
-                <input type="radio" id="filter__title--4" class="filter__title mr-2" name="rd__title" value="ads">
+                <input type="radio" id="filter__title--3" class="filter__title mr-2" @change="selectedCategoryRange($event)" name="rd__title" value="3">
                 Google Ads
               </label>
 
               <label class="flex cursor-pointer filter--text" for="filter__title--4">
-                <input type="radio" id="filter__title--4" class="filter__title mr-2" name="rd__title" value="seo">
-                Seo website
+                <input type="radio" id="filter__title--4" class="filter__title mr-2" @change="selectedCategoryRange($event)" name="rd__title" value="4">
+                SEO
+              </label>
+
+              <label class="flex cursor-pointer filter--text" for="filter__title--5">
+                <input type="radio" id="filter__title--5" class="filter__title mr-2" @change="selectedCategoryRange($event)" name="rd__title" value="5">
+                Data Science
+              </label>
+
+              <label class="flex cursor-pointer filter--text" for="filter__title--6">
+                <input type="radio" id="filter__title--6" class="filter__title mr-2" @change="selectedCategoryRange($event)" name="rd__title" value="6">
+                English
+              </label>
+
+              <label class="flex cursor-pointer filter--text" for="filter__title--7">
+                <input type="radio" id="filter__title--7" class="filter__title mr-2" @change="selectedCategoryRange($event)" name="rd__title" value="7">
+                Mathematics
               </label>
             </div>
           </div>
@@ -118,10 +118,10 @@
     </div>
 
     <div class="col-right">
-      <div class="histories flex mb-3">
-        <p>Tìm kiếm gần đây: <b class="pl-1 histories__result">keyword</b></p>
-        <p class="mr-5 ml-5"><b>Từ khóa</b> được tìm kiếm nhiều nhất: <b class="pl-1 histories__result">keyword</b></p>
-        <p>Khóa học <b>nổi bật</b> trong tháng: <b class="pl-1 histories__result">Keyword</b></p>
+       <div class="histories flex mb-3">
+      <!--  <p>Tìm kiếm gần đây: <b class="pl-1 histories__result">keyword</b></p>
+        <p class="mr-5 ml-5"><b class=" mr-1">Từ khóa</b> được tìm kiếm nhiều nhất: <b class="pl-1 histories__result">keyword</b></p>
+        <p>Khóa học <b class="mr-1 ml-1">nổi bật</b> trong tháng: <b class="pl-1 histories__result">Keyword</b></p> -->
       </div>
 
       <div class="courses p-5">
@@ -220,10 +220,27 @@ export default {
       emit("priceFrom", priceFrom.value);
       emit("priceTo", priceTo.value);
     }
+
+    const education = ref();
+    const selectedEducateRange = (event) => {
+      education.value = event.target.getAttribute('value');
+
+      emit("education", education.value);
+    }
+
+    const category = ref();
+    const selectedCategoryRange = (event) => {
+      category.value = event.target.getAttribute('value');
+
+      emit("category", category.value);
+    }
+
     return {
       page,
       keyword,
       selectedPriceRange,
+      selectedEducateRange,
+      selectedCategoryRange,
       prePage,
       nextPage,
       searchCourse,

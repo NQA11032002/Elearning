@@ -4,7 +4,9 @@
     <home-screen v-if="page === 'home'" :courses="courses"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
     <support-screen v-if="page === 'support'"></support-screen>
-    <course-screen v-if="page === 'course'" :courses="courses" :totalPage="totalPage" @search="onSearchChange" @priceFrom="onPriceFromChanged" @priceTo="onPriceToChanged"  @pageChanged="onPageChanged"></course-screen>
+    <course-screen v-if="page === 'course'" :courses="courses" :totalPage="totalPage" 
+      @search="onSearchChange" @priceFrom="onPriceFromChanged" @priceTo="onPriceToChanged" @education="oneEducationChange" @category="oneCategoryChange" @pageChanged="onPageChanged">
+    </course-screen>
     <login-screen v-if="page === 'login'"></login-screen>
     <register-screen v-if="page === 'register'"></register-screen>
     <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
@@ -36,6 +38,20 @@ export default {
     const search = ref('');
     const priceFrom = ref();
     const priceTo = ref();
+    const education = ref();
+    const category = ref();
+
+    const oneCategoryChange = (value) => {
+      category.value = value;
+
+      getAllCourses();
+    }
+
+    const oneEducationChange = (value) => {
+      education.value = value;
+
+      getAllCourses();
+    }
 
     const onPriceFromChanged = (value) => {
       priceFrom.value = value;
@@ -64,7 +80,9 @@ export default {
             records: records,
             search: search.value,
             priceFrom: priceFrom.value,
-            priceTo: priceTo.value
+            priceTo: priceTo.value,
+            education: education.value,
+            category: category.value
           }
         });
 
@@ -90,9 +108,11 @@ export default {
       totalPage,
       courses,
       onPageChanged,
+      oneEducationChange,
       onSearchChange,
       onPriceFromChanged,
-      onPriceToChanged
+      onPriceToChanged,
+      oneCategoryChange
     }
   },
   name: 'App',
