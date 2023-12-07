@@ -1,29 +1,14 @@
 <template>
-  <div class="bg-gray-50">
-    <header-screen v-if="page!='login' && page!='register'"></header-screen>
-    <home-screen v-if="page === 'home'" :courses="courses"></home-screen>
-    <training-screen v-if="page === 'training'"></training-screen>
-    <support-screen v-if="page === 'support'"></support-screen>
-    <course-screen v-if="page === 'course'" :courses="courses" :totalPage="totalPage" 
-      @search="onSearchChange" @priceFrom="onPriceFromChanged" @priceTo="onPriceToChanged" @education="oneEducationChange" @category="oneCategoryChange" @pageChanged="onPageChanged">
-    </course-screen>
-    <login-screen v-if="page === 'login'"></login-screen>
-    <register-screen v-if="page === 'register'"></register-screen>
-    <detail-course-screen v-if="page === 'detail'"></detail-course-screen>
-    <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
+  <div>
+    <header-screen ></header-screen>
+    <router-view></router-view>
+    <footer-screen ></footer-screen>
   </div>
 </template>
 
 <script>
-  import HomeScreen from "./components/client/HomeScreen.vue";
   import HeaderScreen from "./components/client/HeaderScreen.vue";
   import FooterScreen from "./components/client/FooterScreen.vue";
-  import TrainingScreen from "./components/client/TrainingScreen.vue";
-  import SupportScreen from "./components/client/SupportScreen.vue";
-  import CourseScreen from "./components/client/CourseScreen.vue";
-  import LoginScreen from "./components/client/LoginScreen.vue";
-  import RegisterScreen from "./components/client/RegisterScreen.vue";
-  import DetailCourseScreen from "./components/client/DetailCourseScreen.vue";
   import { ref } from "vue";
   import axios from "axios";
 
@@ -119,19 +104,11 @@ export default {
   },
   name: 'App',
   components: {
-    HomeScreen,
-    TrainingScreen,
-    CourseScreen,
-    SupportScreen,
     HeaderScreen,
-    FooterScreen,
-    LoginScreen,
-    RegisterScreen,
-    DetailCourseScreen
+    FooterScreen
   },
   data(){
     return{
-      page: "detail",
     };
   }
 }
