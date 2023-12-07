@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-gray-50">
     <header-screen v-if="page!='login' && page!='register'"></header-screen>
     <home-screen v-if="page === 'home'" :courses="courses"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
@@ -9,6 +9,7 @@
     </course-screen>
     <login-screen v-if="page === 'login'"></login-screen>
     <register-screen v-if="page === 'register'"></register-screen>
+    <detail-course-screen v-if="page === 'detail'"></detail-course-screen>
     <footer-screen v-if="page!='login' && page!='register'"></footer-screen>
   </div>
 </template>
@@ -22,6 +23,7 @@
   import CourseScreen from "./components/client/CourseScreen.vue";
   import LoginScreen from "./components/client/LoginScreen.vue";
   import RegisterScreen from "./components/client/RegisterScreen.vue";
+  import DetailCourseScreen from "./components/client/DetailCourseScreen.vue";
   import { ref } from "vue";
   import axios from "axios";
 
@@ -124,11 +126,12 @@ export default {
     HeaderScreen,
     FooterScreen,
     LoginScreen,
-    RegisterScreen
+    RegisterScreen,
+    DetailCourseScreen
   },
   data(){
     return{
-      page: "course",
+      page: "detail",
     };
   }
 }
