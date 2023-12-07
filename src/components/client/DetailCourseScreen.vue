@@ -1,12 +1,12 @@
 <template>
-  <div class="max-w-screen-lg m-auto px-3 my-10 flex flex-col gap-7">
+  <div v-if="course" class="max-w-screen-lg m-auto px-3 my-10 flex flex-col gap-7">
     <div class="w-full">
       <div class="rounded-lg flex flex-col gap-3">
         <div class="w-detail">
-          <h1 class="text-gray-700 font-semibold text-2xl">Khóa học HTML CSS Master - from Zero to Hero</h1>
+          <h1  class="text-gray-700 font-semibold text-2xl">{{ course.title }}</h1>
 
           <div class="flex justify-between gap-3 mt-2">
-            <p class="text-gray-400"><i class="fa-regular fa-clock"></i>12/2023</p>
+            <p class="text-gray-400"><i class="fa-regular fa-clock"></i>{{ course.createdAt }}</p>
             <p class="text-gray-400">Tác giả: <label for="" class="font-semibold text-black">EvonDev</label></p>
           </div>
         </div>
@@ -14,7 +14,6 @@
         <div class="w-full flex justify-between gap-10">
           <div class="flex flex-col w-2/3 gap-2 bg-slate-700 rounded-xl overflow-hidden">
             <img class="object-cover" src="https://static.kt.city/cjxtrhjqs00we098574enz0ng/evondev-html2x-1675047140933.jpg" alt="">
-  
             <div class="flex gap-5 pb-2 pl-3">
               <img class="w-24 h-24 rounded-xl object-cover" src="https://static.kt.city/cjxtrhjqs00we098574enz0ng/evondev-html2x-1675047140933.jpg" alt="">
               <img class="w-24 h-24 rounded-xl object-cover" src="https://static.kt.city/cjxtrhjqs00we098574enz0ng/evondev-html2x-1675047140933.jpg" alt="">
@@ -23,7 +22,7 @@
           </div>
   
           <div class="w-1/3 bg-white shadow-lg border border-gray-200 rounded-lg p-5" >
-            <h1 class="font-semibold text-xl text-red-600">1,499,000đ</h1>
+            <h1 class="font-semibold text-xl text-red-600">{{ formatPrice(course.price) }}đ</h1>
             <div class="w-full flex justify-between mt-3">
               <h3 class="line-through text-gray-400 font-semibold">699,000đ</h3>
               <p class="bg-red-800 py-1 rounded-lg px-2 text-white text-sm text-center">Giảm giá 20%</p>
@@ -43,7 +42,7 @@
 
     <div class="flex gap-10 w-full bg-white rounded-lg p-5  shadow-md">
       <div class="w-2/3">
-        <p class="text-sm leading-7 text-slate-600">Nếu bạn chưa biết gì về HTML CSS, hoặc chỉ đơn giản là người mới tìm hiểu về Frontend bắt đầu học HTML CSS, người muốn cải thiện trình độ HTML CSS được chuyên sâu hơn thì khóa này chắc chắn sẽ phù hợp với bạn. Khóa học sẽ hướng dẫn không chỉ kiến thức kỹ càng mà còn về kinh nghiệm cắt giao diện từ Figma sang HTML CSS chỉn chu và nhanh gọn lẹ.</p>
+        <p class="text-sm leading-7 text-slate-600">{{ course.description }}</p>
       </div>
       <div class="1/3 mx-auto">
         <img class="rounded-full w-full h-36 object-cover " src="https://static.kt.city/e0ebee87-aefb-40bf-96a3-9a53986dfc17.jpg" alt="">
@@ -98,12 +97,43 @@
       </div>
     </div>
   </div>
+  <p v-else>Loading...</p>
+
 </template>
 
 <script>
-  
+  import { ref } from "vue";
+  import axios from "axios";
+
 export default {
-  
+  setup(){
+
+  const course = ref();
+
+  const getCourse = async () => {
+  try
+      {
+  const res = await axios.get("http://localhost:8087/api/course/1");
+
+        course.value = res.data.data;
+        console.log(course.value);
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+  getCourse()
+
+  return {
+    course
+
+  }
+},
+  methods: {
+    formatPrice(price) {
+      return price.toLocaleString("vi-VN");
+    },
+  },
   data() {
     return {};
   },

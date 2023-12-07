@@ -76,7 +76,7 @@ export default {
     const getAllCourses = async () => {
       try
       {
-        const res = await axios.get("http://localhost:8080/api/course", {
+        const res = await axios.get("http://localhost:8087/api/course", {
           params: {
             page: page.value,
             records: records,
