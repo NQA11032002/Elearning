@@ -17,10 +17,10 @@
 
     <div class="header__middle">
       <ul class="flex justify-between">
-        <li><a href="" class="navigate__link mr-8">Trang chủ</a></li>
-        <li><a href="" class="navigate__link mr-8">Đào tạo</a></li>
-        <li><a href="" class="navigate__link mr-8">Khóa học</a></li>
-        <li><a href="" class="navigate__link mr-8">Hỗ trợ</a></li>
+        <li><a href="/home" class="navigate__link mr-8">Trang chủ</a></li>
+        <li><a href="/training" class="navigate__link mr-8">Đào tạo</a></li>
+        <li><a href="/course" class="navigate__link mr-8">Khóa học</a></li>
+        <li><a href="/support" class="navigate__link mr-8">Hỗ trợ</a></li>
       </ul>
     </div>
 

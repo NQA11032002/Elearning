@@ -11,7 +11,9 @@
     "axios": "^1.6.0",
     "core-js": "^3.8.3",
     "date-fns": "^2.30.0",
-    "vue": "^3.3.6"
+    "moment": "^2.29.4",
+    "vue": "^3.3.6",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

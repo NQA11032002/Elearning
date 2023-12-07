@@ -131,7 +131,7 @@
         </label>
 
         <div class="cards grid mt-5">
-          <a href="" class="course flex flex-col" v-for="course in courses" :key="course.id">
+          <a :href="'/detail/' + course.id" class="course flex flex-col" v-for="course in courses" :key="course.id">
             <img class="image object-cover flex-shrink-0" :src="course.urlImage" alt="">
 
             <div class="card p-3 flex flex-col">
@@ -162,15 +162,43 @@
 import "../../assets/styles/course.scss";
 import { ref } from "vue";
 import {parseISO} from 'date-fns';
+import axios from "axios";
 
 export default {
-  props: ["courses", "totalPage", "search"],
-  setup(props, { emit }) {
-   // Lấy giá trị courses từ props
+  props: [],
+  setup() {
+    const courses = ref([]);
     const page = ref(0);
+    const records = 6;
     const currentDate = new Date();
     const monthCurrent = currentDate.getMonth() + 1;
     const yearCurrent = currentDate.getFullYear();
+    const keyword = ref('');
+    const priceFrom = ref();
+    const priceTo = ref();
+    const education = ref();
+    const category = ref();
+
+    const getAllCourses = async () => {
+      try
+      {
+        const res = await axios.get("http://localhost:8087/api/course", {
+          params: {
+            page: page.value,
+            records: records,
+            search: keyword.value,
+            priceFrom: priceFrom.value,
+            priceTo: priceTo.value,
+            education: education.value,
+            category: category.value
+          }
+        });
+        courses.value = res.data.data;
+        console.log(courses)
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
     const compareDates = (date) => {
       const parsedDate = parseISO(date);
@@ -187,57 +215,50 @@ export default {
       if(page.value > 0)
       {
         page.value--;
-
-        emit("pageChanged", page.value);
+        getAllCourses();
       }
 
-      // Phát ra sự kiện để thông báo giá trị mới của page cho component cha
     }
 
     const nextPage = () => {
-      if(page.value < props.totalPage - 1)
+      if(page.value < courses.value.totalPage - 1)
       {
         page.value++;
 
-        emit("pageChanged", page.value);
+        getAllCourses();      
       } 
     }
 
     //search course by title
-    const keyword = ref('');
-
     const searchCourse = () => {
-      emit("search", keyword.value);
+      getAllCourses();
     }
 
-    const priceFrom = ref(0);
-    const priceTo = ref(0);
 
     const selectedPriceRange = (event) => {
       priceFrom.value = event.target.getAttribute('data-price_from');
       priceTo.value = event.target.getAttribute('value')
 
-      emit("priceFrom", priceFrom.value);
-      emit("priceTo", priceTo.value);
+      getAllCourses();
     }
 
-    const education = ref();
+    
     const selectedEducateRange = (event) => {
       education.value = event.target.getAttribute('value');
-
-      emit("education", education.value);
+      getAllCourses();
     }
 
-    const category = ref();
     const selectedCategoryRange = (event) => {
       category.value = event.target.getAttribute('value');
 
-      emit("category", category.value);
+      getAllCourses();
     }
+    getAllCourses();
 
     return {
       page,
       keyword,
+      courses,
       selectedPriceRange,
       selectedEducateRange,
       selectedCategoryRange,
