@@ -1,6 +1,6 @@
 <template>
   <!-- <HeaderScreen></HeaderScreen> -->
-  <div class="bg-main py-8 w-full max-sm:py-0">
+  <div class="py-8 w-full max-sm:py-0">
     <router-view></router-view>
   </div>
   <!-- <footer-screen></footer-screen> -->

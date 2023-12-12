@@ -7,6 +7,8 @@ import LoginScreenVue from './components/client/LoginScreen.vue'
 import RegisterScreenVue from './components/client/RegisterScreen.vue'
 import DetailCourseScreen from './components/client/DetailCourseScreen.vue'
 import PaymentScreenVue from './components/client/PaymentScreen.vue'
+import MyCourseScreen from './components/client/MyCourseScreen.vue'
+import LessonScreen from './components/client/lessons/LessonScreen.vue'
 
 const routes = [
   {
@@ -40,6 +42,14 @@ const routes = [
   {
     path: '/payment',
     component: PaymentScreenVue
+  },
+  {
+    path: '/my-course',
+    component: MyCourseScreen
+  },
+  {
+    path: '/lesson',
+    component: LessonScreen
   },
   {
     path: '/:catchAll(.*)',

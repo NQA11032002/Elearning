@@ -13,6 +13,9 @@ module.exports = {
       {
         main: "#272A31"
       },
+      height: {
+        lesson: "650px"
+      }
 
     },
   },
