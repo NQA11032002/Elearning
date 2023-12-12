@@ -8,7 +8,12 @@ module.exports = {
     extend: {
       width:{
         detail: "63.666667%"
-      }
+      },
+      backgroundColor:
+      {
+        main: "#272A31"
+      },
+
     },
   },
   plugins: [],

@@ -1,22 +1,19 @@
 <template>
-  <div>
-    <HeaderScreen></HeaderScreen>
+  <!-- <HeaderScreen></HeaderScreen> -->
+  <div class="bg-main py-8 w-full max-sm:py-0">
     <router-view></router-view>
-    <footer-screen></footer-screen>
   </div>
+  <!-- <footer-screen></footer-screen> -->
+
 </template>
 
 <script>
-  import HeaderScreen from "./components/client/HeaderScreen.vue";
-  import FooterScreen from "./components/client/FooterScreen.vue";
 
 export default {
   setup(){
   },
   name: 'App',
   components: {
-    HeaderScreen,
-    FooterScreen
 
 },
   data(){

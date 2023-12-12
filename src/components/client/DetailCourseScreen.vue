@@ -18,15 +18,16 @@
         <div class="w-full flex justify-between gap-10">
           <div class="flex flex-col w-2/3 gap-2 bg-white rounded-xl shadow-md overflow-hidden">
             <img
-              class="object-cover"
+              class="object-cover h-80 flex-shrink-0"
               :src="course.urlImage"
               alt=""
             />
-            <div class="flex pb-2 pl-3 justify-around px-">
+            <div class="flex pb-2 justify-around mt-auto flex-1 cursor-pointer">
               <img
+                @click="changeImage(image.urlImage)"
                 v-for="image in course.courseImages"
                 :key="image.id"
-                class="w-24 h-24 rounded-xl object-cover"
+                class="w-24 h-24 rounded-xl object-cover hover:opacity-70 border shadow-sm"
                 :src="image.urlImage"
                 alt=""
               />
@@ -143,7 +144,7 @@
         </form>
 
         <div class="flex flex-col gap-5 mt-5">
-          <div class="flex gap-3 border-b-slate-200 border-b w-full pb-3 last:border-b-0" v-for="(evaluation, index) in displayedEvaluations" :key="evaluation.id">
+          <div class="flex gap-3 border-b-slate-200 border-b w-full pb-3 last:border-b-0" v-for="(evaluation) in displayedEvaluations" :key="evaluation.id">
             <div>
               <img
                 class="w-10 h-10 rounded-full object-cover"
@@ -153,7 +154,7 @@
             </div>
 
             <div class="flex flex-col gap-1">
-              <p class="font-semibold text-sm">Nguyễn quốc anh {{ index }}</p>
+              <p class="font-semibold text-sm">Nguyễn quốc anh</p>
               <p class="text-sm text-gray-400 text-sm">
                 <i class="fa-regular fa-clock pr-2"></i>{{ evaluation.createdAt }}
               </p>
@@ -190,6 +191,11 @@
 
           course.value = res.data.data;
 
+          if(course.value.courseImages.length > 0)
+          {
+            course.value.urlImage = course.value.courseImages[0].urlImage;
+          }
+
         } catch (error) {
           console.log(error);
         }
@@ -207,6 +213,7 @@
         return price.toLocaleString("vi-VN");
       },
       
+      //insert evaluation
       async insertEvaluation() {
         try
         {
@@ -222,6 +229,8 @@
           console.log(error);
         }
       },
+
+      //submit form evaluation
       submitFormEvaluation(){
         const inputElement = this.$refs.evaluationInput;
         if (inputElement) {
@@ -230,6 +239,8 @@
           this.insertEvaluation();
         }
       },
+      
+      //change more or less evaluate
       changeShowEvaluate(){
         this.showMoreEvaluate = !this.showMoreEvaluate;
 
@@ -241,6 +252,11 @@
         {
           this.itemsPerPage = this.course.courseEvaluations.length;
         }
+      },
+
+      //click subImage in page detail change main Image
+      changeImage(newImageUrl) {
+        this.course.urlImage = newImageUrl;
       },
     },
     computed: {
@@ -259,7 +275,7 @@
           courseID: 1,
           comment: '',
           rate: 1,
-          userID: 1
+          userID: 1,
         },
         showMoreEvaluate: false,
         currentPage: 1,
