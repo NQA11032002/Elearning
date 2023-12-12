@@ -9,6 +9,7 @@ import DetailCourseScreen from './components/client/DetailCourseScreen.vue'
 import PaymentScreenVue from './components/client/PaymentScreen.vue'
 import MyCourseScreen from './components/client/MyCourseScreen.vue'
 import LessonScreen from './components/client/lessons/LessonScreen.vue'
+import InfoExpertScreen from './components/client/experts/InfoExpertScreen.vue'
 
 const routes = [
   {
@@ -50,6 +51,10 @@ const routes = [
   {
     path: '/lesson',
     component: LessonScreen
+  },
+  {
+    path: '/expert',
+    component: InfoExpertScreen
   },
   {
     path: '/:catchAll(.*)',
