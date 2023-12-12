@@ -4,7 +4,7 @@
             <h2 class="text-2xl">Hi, Welcome back!</h2>
             <h4 class="font-light">Dasboard</h4>
         </div>
-        <div class="pt-[20px] flex ml-[220px] justify-between">
+        <div class="pt-[20px] flex ml-[133px] justify-between">
             <div class="w-[681px] h-[200px] bg-blue-600">
                 <div class="uppercase text-2xl mt-5 ml-4 text-white">
                     <span>Today Order</span>

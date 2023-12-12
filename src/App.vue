@@ -1,20 +1,23 @@
 <template>
   <div>
-    <header-screen v-if="page != 'login' && page != 'register' && page !== 'adminHome'"></header-screen>
+    <header-screen v-if="page != 'login' && page != 'register' && page !== 'adminHome' && page !== 'ProsserMangerPage'"></header-screen>
     <home-screen v-if="page === 'home'"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
     <support-screen v-if="page === 'support'"></support-screen>
     <course-screen v-if="page === 'course'"></course-screen>
     <login-screen v-if="page === 'login'"></login-screen>
     <register-screen v-if="page === 'register'"></register-screen>
-    <footer-screen v-if="page != 'login' && page != 'register' && page !== 'adminHome'"></footer-screen>
+    <footer-screen v-if="page != 'login' && page != 'register' && page !== 'adminHome'&& page !== 'ProsserMangerPage'"></footer-screen>
 
   </div>
   <div class="admin"> 
-    <headerAdmin-screen v-if="page === 'adminHome'"></headerAdmin-screen>
+    <headerAdmin-screen v-if="page === 'adminHome' || page==='ProsserMangerPage'"></headerAdmin-screen>
     <div class="flex">
-      <sidebar-screen v-if="page === 'adminHome'"></sidebar-screen>
-      <adminHome-screen v-if="page === 'adminHome'"></adminHome-screen>
+      <sidebar-screen v-if="page === 'adminHome' || page==='ProsserMangerPage'"></sidebar-screen>
+      <adminHome-screen v-if="page === 'adminHome'|| page!=='ProsserMangerPage'"></adminHome-screen>
+      <ProfesserManager-screen v-if="page === 'ProsserMangerPage' || page==='adminHome'"></ProfesserManager-screen>
+      <!-- <CourseManager-Screen v-if="page === 'CourseMangerPage' || page==='adminHome'"></CourseManager-Screen> -->
+      <CourseManagerScreenVue v-if="page === 'CourseMangerPage' || page ==='adminHome'"></CourseManagerScreenVue>
     </div>
   </div>
 </template>
@@ -30,6 +33,9 @@ import RegisterScreen from "./components/client/RegisterScreen.vue";
 import SidebarScreen from "./components/admin/SidebarScreen.vue";
 import HeaderAdminScreen from "./components/admin/HeaderAdminScreen.vue";
 import AdminHomeScreen from "./components/admin/AdminHomeScreen.vue";
+import ProfesserManagerScreen from "./components/admin/ProfesserManagerScreen.vue";
+import CourseManagerScreenVue from "./components/admin/CourseMangerScreen.vue";
+
 
 export default {
   name: 'App',
@@ -44,11 +50,13 @@ export default {
     RegisterScreen,
     SidebarScreen,
     HeaderAdminScreen,
-    AdminHomeScreen
+    AdminHomeScreen,
+    ProfesserManagerScreen,
+    CourseManagerScreenVue
   },
   data() {
     return {
-      page: "adminHome",
+      page: "ProsserMangerPage",
     };
   }
 }
