@@ -22,7 +22,7 @@
               :src="course.urlImage"
               alt=""
             />
-            <div class="flex pb-2 justify-around mt-auto flex-1 cursor-pointer">
+            <div class="flex pb-2 justify-left mt-auto flex-1 cursor-pointer">
               <img
                 @click="changeImage(image.urlImage)"
                 v-for="image in course.courseImages"
@@ -35,33 +35,24 @@
           </div>
 
           <div class="w-1/3 bg-white shadow-md border border-gray-200 rounded-lg p-5">
-            <h1 class="font-semibold text-xl text-red-600">
-              {{ formatPrice(course.price) }}đ
-            </h1>
-            <div  class="w-full flex justify-between mt-3">
+            <div  class="w-full flex justify-between ">
               <h3 class="line-through text-gray-400 font-semibold">{{ formatPrice(course.price - (course.price * (course.reduce / 100))) }}đ</h3>
               <p  class="bg-red-800 py-1 rounded-lg px-2 text-white text-sm text-center">
                 Giảm giá {{course.reduce}}%
               </p>
             </div>
+            <h1 class="font-semibold text-xl text-red-600">
+              {{ formatPrice(course.price) }}đ
+            </h1>
 
-            <form action="" class="flex flex-col gap-5 mt-5">
-              <input
-                type="text"
-                placeholder="Tên của bạn"
-                class="rounded-lg border border-gray-100 text-sm py-2 px-2 outline-none"
-              />
-              <input
-                type="text"
-                placeholder="Email"
-                class="rounded-lg border border-gray-100 text-sm py-2 px-2 outline-none"
-              />
-              <input
-                type="text"
-                placeholder="Số điện thoại"
-                class="rounded-lg border border-gray-100 text-sm py-2 px-2 outline-none"
-              />
 
+            <form action="" class="flex flex-col gap-5 mt-5" @submit.prevent="submitFormOrderCourse">
+              <div class="flex flex-col gap-3 text-sm">
+                <p>Xin chào: <span class="font-semibold">Nguyễn Quốc Anh</span></p>
+                <p>Cảm ơn bạn đã quan tâm khóa học này!</p>
+                <p>Cam kết đảm bảo chất lượng đầu ra khi bạn hoàn thành khóa học.</p>
+                <p>Nhấn vào nút <span class="font-semibold">"ĐĂNG KÝ"</span> để tham gia khóa học</p>
+              </div>
               <input
                 type="submit"
                 value="ĐĂNG KÝ"
@@ -217,7 +208,6 @@
       async insertEvaluation() {
         try
         {
-          console.log(this.formData)
           const res = await axios.post("http://localhost:8087/api/evaluation", this.formData);
           
           if(res.status == 200)
@@ -226,6 +216,38 @@
           }
           
         } catch (error) {
+          console.log(error);
+        }
+      },
+
+      //submit order course
+      async submitFormOrderCourse(){
+        try{
+          this.course.id != null ? this.orderData.courseID = this.course.id : 0;
+
+            
+          const res = await axios.post("http://localhost:8085/api/order", this.orderData).then(async (data) => {
+            if(data.status == 200)
+            {
+              this.paymentData.orderID = data.data.data.id;
+              this.course.price != null ? this.paymentData.totalPrice = this.course.price : 0;
+              this.paymentData.paymentMethod = "Smart Banking Online";
+                
+              await axios.post("http://localhost:8085/api/payment", this.paymentData).then(async () => {
+                this.orderData.status = "Đăng ký thành công";
+
+                await axios.put("http://localhost:8085/api/order/" + data.data.data.id, this.orderData).then(async (response) => {
+                  if(response.status == 200)
+                  {
+                    console.log("đăng ký thành công")
+
+                  }
+                })
+              })
+            }
+          });
+          return res;
+        } catch (error){
           console.log(error);
         }
       },
@@ -280,6 +302,16 @@
         showMoreEvaluate: false,
         currentPage: 1,
         itemsPerPage: 5,
+        orderData: {
+          userID: 1,
+          courseID: 0,
+          status: "Đang xử lý"
+        },
+        paymentData: {
+          orderID: 0,
+          totalPrice: 0,
+          paymentMethod: "",
+        }
       };
     },
     watch: {},

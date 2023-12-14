@@ -27,7 +27,7 @@
             </div>
           </a>  
 
-          <a href="" class="flex flex-col gap-6 overflow-hidden lg:w-course max-sm:w-full max-sm:py-4 justify-center items-center rounded-lg transition-all hover:outline-slate-700 outline-2 outline-gray-300 outline-dashed">
+          <a href="" class="flex flex-col gap-6 overflow-hidden max-sm:w-full w-52 max-sm:py-4 justify-center items-center rounded-lg transition-all hover:outline-slate-700 outline-2 outline-gray-300 outline-dashed">
             <i class="fa-solid fa-circle-plus text-2xl text-gray-400 "></i>
             <button class="border-slate-700 rounded-lg border py-2 w-32 text-sm text-gray-400">Thêm khóa học</button>
           </a>  

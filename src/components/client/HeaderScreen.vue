@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white z-10 fixed top-0 flex items-center justify-between p-5 h-20 shadow-md shadow-gray-300 w-full left-0 right-0">
+  <header class="bg-white z-10 fixed top-0 flex items-center justify-between p-5 h-16 shadow-md shadow-gray-300 w-full left-0 right-0">
     <div class="flex items-center">
       <div class="header__logo">
         <img src="../../assets/images/client/logo.png" alt="">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <a href="" class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Học tập</a>
+        <a href="/my-course" class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Học tập</a>
         <img class="w-8 h-8 rounded-full cursor-pointer" src="../../assets/images/client/avatars/avatar.png" alt="">
     </div>
   </header>
