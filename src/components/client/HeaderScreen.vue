@@ -1,18 +1,16 @@
 <template>
-  <header class="header flex justify-between p-5">
-    <div class="header__left flex">
+  <header class="bg-white z-10 fixed top-0 flex items-center justify-between p-5 h-20 shadow-md shadow-gray-300 w-full left-0 right-0">
+    <div class="flex items-center">
       <div class="header__logo">
         <img src="../../assets/images/client/logo.png" alt="">
       </div>
-      <div class="header__search">
-        <form action="" class="relative">
-          <input type="text" placeholder="Tìm khóa học, chuyên gia..." class="header__search--keyword left-0 pl-3 outline-none">
-          <label for="search__submit" class="header__search--submit absolute right-3">
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <form action="" class="relative border rounded-md px-2 flex items-center">
+          <input type="text" placeholder="Tìm khóa học, chuyên gia..." class="left-0 outline-none h-full py-2 text-sm w-56">
+          <label for="search__submit" class="absolute right-3 cursor-pointer">
+            <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
           </label>
           <input type="submit" id="search__submit" hidden value="tìm">
         </form>
-      </div>
     </div>
 
     <div class="header__middle">
@@ -24,13 +22,9 @@
       </ul>
     </div>
 
-    <div class="header__right flex">
-      <div class="mr-5">
-        <a href="" class="navigate__link navigate__link--learning">Học tập</a>
-      </div>
-      <div class="header__user">
-          <img src="../../assets/images/client/avatars/avatar.png" alt="">
-      </div>
+    <div class="flex items-center gap-4">
+        <a href="" class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Học tập</a>
+        <img class="w-8 h-8 rounded-full cursor-pointer" src="../../assets/images/client/avatars/avatar.png" alt="">
     </div>
   </header>
 </template>

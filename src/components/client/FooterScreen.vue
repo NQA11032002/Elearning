@@ -1,7 +1,7 @@
 <template>
   <footer class="footer relative">
-    <div class="footer__container grid m-auto absolute">
-      <ul class="grid mr-[100px]">
+    <div class="flex w-2/3 left-1/2 -translate-x-1/2 absolute justify-between">
+      <ul class="flex flex-col gap-3 w-1/4">
         <li>
           <img class="footer__logo" src="../../assets/images/client/logo.png" alt="">
         </li>
@@ -16,7 +16,7 @@
         </li>
       </ul>
 
-      <ul class="grid">
+      <ul class="flex flex-col gap-3 flex-shrink-0">
         <li><h5 class="font-semibold">Website</h5></li>
         <li><a>Trang chủ</a></li>
         <li><a>Đào tạo </a></li>
@@ -24,14 +24,14 @@
         <li><a>Hỗ trợ</a></li>
       </ul>
 
-      <ul class="grid">
+      <ul class="flex flex-col gap-3 flex-shrink-0">
         <li><h5 class="font-semibold">Khám phá</h5></li>
         <li><a>Khóa học</a></li>
         <li><a>Các chuyên gia</a></li>
         <li><a>Tin tức</a></li>
       </ul>
 
-      <ul class="grid">
+      <ul class="flex flex-col gap-3 flex-shrink-0">
         <li><h5 class="font-semibold">Liên kết</h5></li>
         <li>          
           <div class="flex">

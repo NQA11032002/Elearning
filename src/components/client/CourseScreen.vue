@@ -131,8 +131,8 @@
         </label>
 
         <div class="cards grid mt-5">
-          <a :href="'/detail/' + course.id" class="course flex flex-col" v-for="course in courses" :key="course.id">
-            <img class="image object-cover flex-shrink-0" :src="course.urlImage" alt="">
+          <a :href="'/detail/' + course.id" class="course flex flex-col w-1/1 gap-4" v-for="course in courses" :key="course.id">
+            <img class="image object-cover flex-shrink-0 h-40 w-full" :src="course.courseImages.length > 0 ? course.courseImages[0].urlImage : ''" alt="">
 
             <div class="card p-3 flex flex-col">
               <p class="title font-semibold flex-shrink-0 mt-auto">{{ course.title }}</p>
@@ -173,7 +173,7 @@ export default {
     const currentDate = new Date();
     const monthCurrent = currentDate.getMonth() + 1;
     const yearCurrent = currentDate.getFullYear();
-    const keyword = ref('');
+    const keyword = ref();
     const priceFrom = ref();
     const priceTo = ref();
     const education = ref();
@@ -194,7 +194,7 @@ export default {
           }
         });
         courses.value = res.data.data;
-        console.log(courses)
+        console.log(res.data.data)
       } catch (error) {
         console.log(error)
       }
