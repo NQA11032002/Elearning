@@ -7,18 +7,18 @@
     @apply flex justify-between mb-3;
 }
 
-.profeserTable{
+.Table{
     margin: 0 auto;
     margin-top: 30px;
     width: 90%;
     @apply table-fixed;
 }
 
-.profesItems{
+.tableItems{
     @apply px-2 py-2 text-lg;
 }
 
-.eyesIcon{
+.Icon{
     margin: 0 auto;
 }
 

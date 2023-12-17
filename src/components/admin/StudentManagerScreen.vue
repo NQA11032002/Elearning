@@ -1,14 +1,13 @@
 <template>
     <div class="Container w-[100%]">
-        <h1 class="text-[25px] font-black pl-5 mt-[28px]">Danh Sách Khoá Học</h1>
+        <h1 class="text-[25px] font-black pl-5 mt-[28px]">Danh Sách Học Viên</h1>
         <table class="Table">
             <tr>
-                <th class="tableItems">Thumbnail</th>
-                <th class="tableItems">khoá học</th>
-                <th class="tableItems">Người Đăng</th>
-                <th class="tableItems w-[200px]">Số Bài học</th>
-                <th class="tableItems">Trạng thái</th>
-                <th class="tableItems">Ngày Đăng</th>
+                <th class="tableItems"></th>
+                <th class="tableItems">Họ và Tên</th>
+                <th class="tableItems w-[200px]">Gmail</th>
+                <th class="tableItems">Số điện thoại</th>
+                <th class="tableItems">Số khoá học tham gia</th>
                 <th class="tableItems">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="Icon w-6 h-6">
@@ -28,25 +27,23 @@
                 </th>
             </tr>
             <tr>
-                <td class="tableItems"><img src="https://ssg.vn/wp-content/uploads/2023/08/java.jpg"
-                        class="avatar w-30 m-3"></td>
-                <td class="tableItems">
-                    <div class="text-center">Tìm hiểu về java</div>
-                </td>
+                <td class="tableItems"><img
+                        src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/402115421_1748573295622852_6964444934763396830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Bgk_z7agv_sAX8eGo6D&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfDFpJJ6QbNK5pz4HuXlZYZdQIzj05_khTjUKNRmlfkhtA&oe=657E4547"
+                        class="avatar w-20 rounded-full m-3"></td>
                 <td class="tableItems">
                     <div class="text-center">Nguyễn Đình Khang</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center">20</div>
+                    <div class="text-center">KhangDan@gmail.com</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center">Đang hoạt động</div>
+                    <div class="text-center">000000000</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center">10/01/2021</div>
+                    <div class="text-center">1</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg bg-orange-400"><span class="mx-3">Chi
+                    <div class="text-center"><button class="border border-black rounded-lg"><span class="mx-3">Chi
                                 tiết</span></button></div>
                 </td>
                 <td class="tableItems">
@@ -54,6 +51,6 @@
                                 class="mx-3">Khoá</span></button></div>
                 </td>
             </tr>
-        </table>
+    </table>
     </div>
 </template>

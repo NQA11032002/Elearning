@@ -1,13 +1,13 @@
 <template>
     <div class="Container w-[100%]">
-        <h1 class="text-[25px] font-black pl-5 mt-[28px]">Danh Sách Khoá Học</h1>
+        <h1 class="text-[25px] font-black pl-5 mt-[28px]">Danh Sách Kiểm Duyệt</h1>
         <table class="Table">
             <tr>
                 <th class="tableItems">Thumbnail</th>
-                <th class="tableItems">khoá học</th>
+                <th class="tableItems">Title</th>
                 <th class="tableItems">Người Đăng</th>
-                <th class="tableItems w-[200px]">Số Bài học</th>
-                <th class="tableItems">Trạng thái</th>
+                <th class="tableItems">Khoá Học</th>
+                <th class="tableItems">Thời Lượng</th>
                 <th class="tableItems">Ngày Đăng</th>
                 <th class="tableItems">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -26,21 +26,27 @@
                             clip-rule="evenodd" />
                     </svg>
                 </th>
+                <th class="tableItems">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="Icon w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                </th>
             </tr>
             <tr>
                 <td class="tableItems"><img src="https://ssg.vn/wp-content/uploads/2023/08/java.jpg"
                         class="avatar w-30 m-3"></td>
                 <td class="tableItems">
-                    <div class="text-center">Tìm hiểu về java</div>
+                    <div class="text-center">Chào Mừng đến với java</div>
                 </td>
                 <td class="tableItems">
                     <div class="text-center">Nguyễn Đình Khang</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center">20</div>
+                    <div class="text-center">java</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center">Đang hoạt động</div>
+                    <div class="text-center">20:00</div>
                 </td>
                 <td class="tableItems">
                     <div class="text-center">10/01/2021</div>
@@ -52,6 +58,10 @@
                 <td class="tableItems">
                     <div class="text-center"><button class="border border-black rounded-lg bg-red-400"><span
                                 class="mx-3">Khoá</span></button></div>
+                </td>
+                <td class="tableItems">
+                    <div class="text-center"><button class="border border-black rounded-lg bg-green-400"><span
+                                class="mx-3">Duyệt</span></button></div>
                 </td>
             </tr>
         </table>
