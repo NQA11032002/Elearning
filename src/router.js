@@ -6,6 +6,19 @@ import SupportScreenVue from './components/client/SupportScreen.vue'
 import LoginScreenVue from './components/client/LoginScreen.vue'
 import RegisterScreenVue from './components/client/RegisterScreen.vue'
 import DetailCourseScreen from './components/client/DetailCourseScreen.vue'
+import ForgotPassScreen from "./components/client/ForgotPassScreen.vue";
+import InformationScreen from "./components/client/InformationScreen.vue";
+import ChangepassScreen from "./components/client/ChangepassScreen.vue";
+import RegisteredCourses from "./components/client/RegisteredCourses.vue";
+import GiftCodeScreen from "./components/client/GiftCodeScreen.vue";
+import CourseManagement from "./components/client/Professional/CourseManagement.vue";
+import EditCourse from "./components/client/Professional/EditCourse.vue";
+import DetailCoursePro from "./components/client/Professional/DetailCoursePro.vue";
+import InformationPro from "./components/client/Professional/InformationPro.vue";
+import TopicInformation from "./components/client/Professional/TopicInformation.vue";
+import CourseVideoScreen from "./components/client/Professional/CourseVideoScreen.vue";
+
+
 
 const routes = [
   {
@@ -40,6 +53,53 @@ const routes = [
     path: '/:catchAll(.*)',
     component: HomeScreenVue
   },
+  {
+      path: '/forgotpass',
+      component: ForgotPassScreen
+  },
+  {
+      path: '/profile/:id',
+      component: InformationScreen
+  },
+  {
+      path: '/changepass/:id',
+      component: ChangepassScreen
+  },
+  {
+    path: '/registered-course/:id',
+    component: RegisteredCourses
+  },
+  {
+    path: '/detail-course/:id',
+    component: DetailCoursePro
+  },
+  {
+    path: '/gift-code/:id',
+    component: GiftCodeScreen
+  },
+  {
+    path: '/course-management/:id',
+    component: CourseManagement
+  },
+  {
+    path: '/edit-course/:id',
+    component: EditCourse
+  },
+  {
+    path: '/information-pro/:id',
+    component: InformationPro
+  },
+  {
+    path: '/topicinfor/:id',
+    component: TopicInformation
+  },
+  {
+    path: '/addvideocourse/:id',
+    component: CourseVideoScreen
+  },
+
+  
+
 ]
 
 

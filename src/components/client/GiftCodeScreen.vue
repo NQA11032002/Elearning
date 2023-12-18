@@ -10,7 +10,7 @@ export default {
 <template>
     <div class="w-full flex my-5 max-sm:flex-col">
         <sidebarmember-screen></sidebarmember-screen>
-        <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
+        <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0  shadow-md">
             <div class="p-4">
                 <p class="text-xl font-semibold">Kích hoạt mã</p>
                 

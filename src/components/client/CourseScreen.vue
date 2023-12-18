@@ -1,5 +1,5 @@
 <template>
-  <div class="grid container mt-14 mb-14">
+  <div class="grid container mt-14 mb-14 shadow-md">
     <div class="sidebar">
       <div class="sidebar__container">
         <h1 class="title mb-3 text-center font-semibold">KHÓA HỌC</h1>

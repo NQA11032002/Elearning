@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       width:{
         detail: "63.666667%"
+      },
+      gridTemplateColumns: {
+        gridTable: '50px auto',
       }
     },
   },

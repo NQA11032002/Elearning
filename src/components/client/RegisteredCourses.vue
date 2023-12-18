@@ -8,7 +8,7 @@ export default {
 };
 </script>
 <template>
-    <div class="w-full flex my-5 max-sm:flex-col">
+    <div class="w-full flex my-5 max-sm:flex-col shadow-md">
         <sidebarmember-screen></sidebarmember-screen>
         <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
             <div class="p-4">
