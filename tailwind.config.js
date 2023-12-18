@@ -15,6 +15,8 @@ module.exports = {
       },
       height: {
         lesson: "650px"
+      gridTemplateColumns: {
+        gridTable: '50px auto',
       }
 
     },

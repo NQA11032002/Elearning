@@ -1,5 +1,6 @@
 <template>
   <HeaderScreen></HeaderScreen>
+
   <div class="py-8 w-full max-sm:py-0">
     <router-view></router-view>
   </div>
@@ -10,6 +11,7 @@
 <script>
   import HeaderScreen from "./components/client/HeaderScreen.vue";
   import FooterScreen from "./components/client/FooterScreen.vue";
+
 export default {
   setup(){
   },
@@ -20,7 +22,7 @@ export default {
 },
   data(){
     return{
-      page: "detail",
+      page: "home",
     }
   }
 }
