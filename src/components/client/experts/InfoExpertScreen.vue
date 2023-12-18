@@ -21,7 +21,7 @@
 
     <div class=" mt-5 flex w-3/4 mx-auto gap-8 max-sm:flex-col max-sm:w-full max-sm:px-5">
       <div class="w-1/4 bg-gray-50 shadow-lg rounded-sm p-5 h-60 max-sm:w-full">
-        <p class="text-gray-500 text-sm">Blogger tại Phungthaihoc.com. 10 năm kinh nghiệm Content & Copywriting.</p>
+        <p class="text-gray-500 text-sm">Blogger tại Phungthaihoc.com. 10 năm kinh nghiệm Content  Copywriting.</p>
             <div class="flex flex-col gap-3 mt-3 border-t border-t-gray-300 pt-3">
               <p class="text-slate-600 cursor-pointer font-black hover:opacity-70"><i class="fa-brands fa-facebook pr-3"></i>https://www.facebook.com/Bianh0/</p>
               <p class="text-slate-600 cursor-pointer font-black hover:opacity-70"><i class="fa-brands fa-twitter pr-3"></i>https://www.facebook.com/Bianh0/</p>

@@ -14,11 +14,11 @@
         <div class="flex flex-col items-left ml-6">
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-book text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Thông tin người dùng</a>
+                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/profile/1">Thông tin người dùng</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-book text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Khóa học đăng ký</a>
+                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/registered-course/1">Khóa học đăng ký</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-headphones-simple text-xl mr-3 text-blue-900"></i>
