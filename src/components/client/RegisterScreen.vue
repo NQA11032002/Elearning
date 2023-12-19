@@ -55,7 +55,11 @@ export default {
             try {
               
                 // Gửi yêu cầu POST đến API Spring Boot để đăng ký
+<<<<<<< HEAD
                 await axios.post('http://localhost:8086/auth/register', {
+=======
+                const response = await axios.post('http://localhost:8086/auth/register', {
+>>>>>>> abc00c24 (save userID)
                     userName: this.user.userName,
                     password: this.user.password,
                     fullName: this.user.fullName,

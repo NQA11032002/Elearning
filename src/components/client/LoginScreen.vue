@@ -64,13 +64,31 @@ export default {
                     password: this.password,
                 });
 
+                // Xử lý dữ liệu nhận được từ API (response.data) nếu cần
+                console.log('Login successful', response.data.token);
+                
+
                 if(response.status == 200 && Cookies.get('auth') === undefined){
                     Cookies.set('auth', response.data.token, { expires: 1 }); // Expires in 7 days
                 }
+                
+                const formData = new FormData();
+                formData.append('token', response.data.token);
+
+                const response_token = await axios.post('http://localhost:8086/auth/getUserID', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+                console.log('get IDUser success', response_token.data);
+
+                localStorage.setItem('idUser', response_token.data.data);
+
                 this.$router.push('/home'); // Chuyển hướng đến trang home
             } catch (error) {
                 // Xử lý lỗi từ API (error.response.data) nếu cần
                 console.error('Login failed', error.response.data);
+                console.error('get IDuser failed', error.response_token.data);
             }
         },
     },

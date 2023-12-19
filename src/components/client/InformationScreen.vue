@@ -1,12 +1,4 @@
-<script>
-import SidebarmemberScreen from './SidebarmemberScreen.vue';
 
-export default {
-    components: {
-        SidebarmemberScreen,
-    },
-};
-</script>
 <template>
     <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
         <div class="w-full flex my-5 max-sm:flex-col">
@@ -46,3 +38,12 @@ export default {
     </div>
 
 </template>
+<script>
+import SidebarmemberScreen from './SidebarmemberScreen.vue';
+
+export default {
+    components: {
+        SidebarmemberScreen,
+    },
+};
+</script>
