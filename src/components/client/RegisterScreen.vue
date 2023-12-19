@@ -7,10 +7,12 @@
                     <span>Create your new account</span>
                     <input v-model="user.userName" type="text" placeholder="Username" />
                     <input v-model="user.fullName" type="text" placeholder="Full name" />
-                    <input v-model="user.phone" type="text" placeholder="Phone number" />
+                    <input v-model="user.phone" type="text" placeholder="Phone number" maxlength="12"/>
                     <input v-model="user.password" type="password" placeholder="Password" />
+                    <p v-if="user.password.length < 6 && user.password.length > 1" class="text-red-500 font-semibold py-2 text-sm">Mật khẩu phải ít nhất 6 kí tự</p>
                     <input v-model="user.repeatPassword" type="password" placeholder="Repeat your password" />
                     <p v-if="user.password !== user.repeatPassword" class="text-red-500 font-semibold py-2 text-sm">Mật khẩu nhập lại không chính xác!</p>
+
                     <button type="submit">Register</button>
                 </form>
             </div>
@@ -35,38 +37,42 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            user: {
-              userName: '',
-              fullName: '',
-              phone: '',
-              password: '',
-              repeatPassword: '',
-            }
-        };
+            user : {
+                userName: '',
+                fullName: '',
+                phone: '',
+                password: '',
+                repeatPassword: '',
+                checkPasswordLength: true
+            },
+        }
     },
     methods: {
         async register() {
             // Kiểm tra xem mật khẩu có trùng khớp không
-            if (this.password !== this.repeatPassword) {
+            if (this.user.password !== this.user.repeatPassword) {
                 alert('Mật khẩu nhập lại không chính xác');
                 return;
             }
 
+            if(this.user.password.length < 6){
+                this.user.checkPasswordLength = false;
+                return;
+            }
             try {
-              
                 // Gửi yêu cầu POST đến API Spring Boot để đăng ký
-<<<<<<< HEAD
-                await axios.post('http://localhost:8086/auth/register', {
-=======
                 const response = await axios.post('http://localhost:8086/auth/register', {
->>>>>>> abc00c24 (save userID)
                     userName: this.user.userName,
                     password: this.user.password,
                     fullName: this.user.fullName,
                     phone: this.user.phone,
                 });
 
+                // Xử lý dữ liệu nhận được từ API (response.data) nếu cần
+                console.log('Đăng ký tài khoản thành công', response.data);
 
+                // Hiển thị thông báo và chuyển hướng sau khi đăng ký thành công
+                alert('Đăng ký tài khoản thành công');
                 this.$router.push('/login'); // Chuyển hướng đến trang login
             } catch (error) {
                 // Xử lý lỗi từ API (error.response.data) nếu cần

@@ -64,10 +64,6 @@ export default {
                     password: this.password,
                 });
 
-                // Xử lý dữ liệu nhận được từ API (response.data) nếu cần
-                console.log('Login successful', response.data.token);
-                
-
                 if(response.status == 200 && Cookies.get('auth') === undefined){
                     Cookies.set('auth', response.data.token, { expires: 1 }); // Expires in 7 days
                 }
@@ -80,7 +76,6 @@ export default {
                         'Content-Type': 'multipart/form-data',
                     },
                 });
-                console.log('get IDUser success', response_token.data);
 
                 localStorage.setItem('idUser', response_token.data.data);
 
@@ -88,7 +83,6 @@ export default {
             } catch (error) {
                 // Xử lý lỗi từ API (error.response.data) nếu cần
                 console.error('Login failed', error.response.data);
-                console.error('get IDuser failed', error.response_token.data);
             }
         },
     },

@@ -163,6 +163,7 @@ import "../../assets/styles/course.scss";
 import { ref } from "vue";
 import {parseISO} from 'date-fns';
 import axios from "axios";
+import { findApiByName } from '../../assets/js/apiUtil.js';
 
 export default {
   props: [],
@@ -182,7 +183,10 @@ export default {
     const getAllCourses = async () => {
       try
       {
-        const res = await axios.get("http://localhost:8087/api/course", {
+        //get url API
+        const apiObject = findApiByName("course", "get").url;
+
+        const res = await axios.get(apiObject, {
           params: {
             page: page.value,
             records: records,
