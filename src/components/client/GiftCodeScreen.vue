@@ -14,7 +14,6 @@ export default {
             <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0  shadow-md">
                 <div class="p-4">
                     <p class="text-xl font-semibold">Kích hoạt mã</p>
-                    
                 </div>
                 <div class="w-full rounded-xl flex justify-center flex-col py-12 px-40 mb border-b border-gray-100 max-sm:flex-col max-sm:py-6 max-sm:px-4">
                     <div class="flex flex-col text-center">
@@ -29,9 +28,7 @@ export default {
                         <button class="text-white bg-blue-900 p-2 rounded-md w-32 ml-4 max-sm:ml-0 max-sm:mt-4">Kích hoạt</button>
                     </div>
                 </div>
-                
             </div>
-            
         </div>
     </div>
     

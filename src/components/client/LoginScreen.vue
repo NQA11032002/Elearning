@@ -45,6 +45,7 @@ export default {
 
         if (Cookies.get('auth') !== undefined) {
             router.push('/home');
+            window.location.reload();
         }
     },
     data() {

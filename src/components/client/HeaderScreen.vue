@@ -22,15 +22,89 @@
       </ul>
     </div>
 
-    <div class="flex items-center gap-4">
-        <a href="/my-course" class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Học tập</a>
-        <img class="w-8 h-8 rounded-full cursor-pointer" src="../../assets/images/client/avatars/avatar.png" alt="">
+    <div class="">
+        <div v-if="isAuthenticated" class="">
+          <div  class="flex items-center gap-4 ">
+            <a href="/my-course" class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Học tập</a>
+            <div class="relative">
+              <img @click="toggleDropdown" class="w-8 h-8 rounded-full cursor-pointer" src="../../assets/images/client/avatars/avatar.png" alt="">
+              <ul v-if="showDropdown" class="absolute right-0 mt-2 bg-white border rounded-md shadow-md w-48 p-4">
+                <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/profile/1">Thông tin tài khoản</a></li>
+                <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/changepass/1">Đổi mật khẩu</a></li>
+                <li><a class="p-2" @click="logout" href="#">Đăng xuất</a></li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div v-else class="flex items-center gap-4">
+          <a href="/login" class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Đăng nhập</a>
+          <a href="/register" class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Đăng ký</a>
+        </div>
     </div>
   </header>
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+import axios from 'axios';
 export default {
-  name: 'HeaderScreen'
+  
+  name: 'HeaderScreen',
+  data() {
+    return {
+      isAuthenticated: false,
+      showDropdown: false,
+    };
+  },
+  mounted() {
+    this.checkAuthentication();
+  },
+  methods: {
+    checkAuthentication() {
+      const token = Cookies.get("auth"); // Thay "auth" bằng tên của cookie lưu token
+
+      if (token) {
+        // Nếu có token, tức là đã đăng nhập
+        this.isAuthenticated = true;
+      } else {
+        // Nếu không có token, tức là chưa đăng nhập
+        this.isAuthenticated = false;
+      }
+    },
+
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
+    },
+
+    async logout(){
+      try{
+        const token = Cookies.get("auth");
+        const formData = new FormData();
+        formData.append('token', token);
+
+        const response = await axios.post('http://localhost:8086/auth/logout', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log(response);
+        this.deleteCookie("auth");
+        localStorage.removeItem("idUser");
+
+        this.$router.push('/login'); // Chuyển hướng đến trang home
+
+      }catch(error){
+        console.error('Get infor failed', error.response.data);
+      }
+    },
+
+    deleteCookie(name) {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+  },
+
+
 }
 </script>
