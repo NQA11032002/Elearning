@@ -38,6 +38,8 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
 
 export default {
+  created () {
+  },
     setup() {
         const router = useRouter();
 
@@ -57,13 +59,10 @@ export default {
         async login() {
             try {
                 // Gửi yêu cầu POST đến API Spring Boot để đăng nhập
-                const response = await axios.post('http://localhost:8087/auth/login', {
+                const response = await axios.post('http://localhost:8086/auth/login', {
                     userName: this.userName,
                     password: this.password,
                 });
-
-                // Xử lý dữ liệu nhận được từ API (response.data) nếu cần
-                console.log('Login successful', response);
 
                 if(response.status == 200 && Cookies.get('auth') === undefined){
                     Cookies.set('auth', response.data.token, { expires: 1 }); // Expires in 7 days

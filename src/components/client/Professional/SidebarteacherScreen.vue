@@ -18,7 +18,7 @@
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-bars-progress text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/detail-course/1 ">Quản lý khóa học</a>
+                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/expert/course">Quản lý khóa học</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-people-roof text-xl mr-3 text-blue-900"></i>

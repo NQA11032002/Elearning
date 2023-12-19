@@ -23,7 +23,7 @@ import DetailCoursePro from "./components/client/Professional/DetailCoursePro.vu
 import InformationPro from "./components/client/Professional/InformationPro.vue";
 import TopicInformation from "./components/client/Professional/TopicInformation.vue";
 import CourseVideoScreen from "./components/client/Professional/CourseVideoScreen.vue";
-
+import CourseManager from "./components/client/Professional/CourseManager.vue";
 
 
 
@@ -101,7 +101,7 @@ const routes = [
     component: GiftCodeScreen
   },
   {
-    path: '/course-management/:id',
+    path: '/expert/course',
     component: CourseManagement
   },
   {
@@ -117,12 +117,13 @@ const routes = [
     component: TopicInformation
   },
   {
-    path: '/addvideocourse/:id',
+    path: '/expert-upload-video/:id',
     component: CourseVideoScreen
   },
-
-  
-
+  {
+    path: '/expert/courses',
+    component: CourseManager
+  },
 ]
 
 
