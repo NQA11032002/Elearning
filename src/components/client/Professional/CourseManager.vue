@@ -17,7 +17,7 @@ export default {
                 </div>
                 <div class="w-full max-sm:px-4">
                     <div class="w-full text-right">
-                        <button class="bg-blue-900 text-white p-2 mr-4 mb-4 rounded text-sm max-sm:mr-0">Thêm khóa học</button>
+                        <a href="/expert/course" class="bg-blue-900 text-white p-2 mr-4 mb-4 rounded text-sm max-sm:mr-0">Thêm khóa học</a>
                     </div>
                     <div class="flex shadow-md w-full mb-4 max-sm:flex-col max-sm:px-2 cursor-pointer">
                         <div class="">
