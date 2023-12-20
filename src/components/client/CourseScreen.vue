@@ -184,7 +184,7 @@ export default {
       try
       {
         //get url API
-        const apiObject = findApiByName("course", "get").url;
+        const apiObject = findApiByName("course", "common").url;
 
         const res = await axios.get(apiObject, {
           params: {

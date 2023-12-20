@@ -1,9 +1,11 @@
 <template>
-  <div class=" text-slate-600 flex lg:w-2/3 mx-auto gap-6 h-full py-5 max-sm:flex-col max-sm:w-full max-sm:px-5 md:w-10/12">
+  <div  class=" text-slate-600 flex lg:w-2/3 my-28 mx-auto gap-6 h-full py-5 max-sm:flex-col max-sm:w-full max-sm:px-5 md:w-10/12">
+    <PopupScreen v-if="isPopup" :contents="contents"></PopupScreen>
+
     <div class="border-r lg:w-1/3 border-slate-700 flex flex-col gap-5 pr-5 max-sm:flex-col max-sm:w-full max-sm:pr-0 max-sm:border-r-0">
       <div class="border-b border-slate-700 pb-4">
         <h3 class="text-xl font-semibold text-slate-700 max-sm:text-lg max-sm:text-center">Đang chờ thanh toán</h3>
-        <p class="text-center text-2xl font-medium mt-3 text-slate-700">04:42</p>
+        <p class="text-center text-2xl font-medium mt-3 text-slate-700">{{ countdown }}</p>
       </div>
 
       <div class="border-b border-slate-700 pb-4 flex flex-col gap-3">
@@ -14,7 +16,7 @@
       <div class="flex border-b border-slate-700 pb-4">
         <input type="text" class="rounded-md py-2 px-4 w-full text-sm bg-slate-600 outline-none  text-gray-100" placeholder="Nhập mã khuyến mãi" />
 
-        <button class="border rounded-md text-sm text-gray-300 ml-3 text-center outline-none w-32 bg-neutral-800 border-slate-500 px-4 cursor-pointer">ÁP DỤNG</button>
+        <button class="border rounded-md text-sm text-gray-300 ml-3 text-center outline-none bg-neutral-800 border-slate-500 w-44 cursor-pointer">ÁP DỤNG</button>
       </div>
 
       <div>
@@ -117,3 +119,136 @@
     </div>
   </div>
 </template>
+
+<script>
+  import { useRoute } from 'vue-router';
+  import { ref } from "vue";
+  import axios from "axios";
+  import  PopupScreen  from './common/PopupScreen.vue';
+
+  export default{
+    mounted() {
+      // Convert initial time to seconds
+      let timeInSeconds = this.convertTimeToSeconds(this.countdown);
+
+      // Update the countdown every second
+      this.interval = setInterval(() => {
+        if (timeInSeconds > 0) {
+          timeInSeconds--;
+          this.countdown = this.convertSecondsToTime(timeInSeconds);
+
+          this.isPopup = false;
+        } else {
+          // Countdown reached zero, you can perform additional actions here
+          clearInterval(this.interval);
+          this.isPopup = true;
+
+          // Change contents in the child component
+          this.contents.title = "Hết thời hạn thanh toán, vui lòng thử lại.!";
+        }
+      }, 1000);
+
+    },
+    setup(){
+      const course = ref();
+      const route = useRoute();
+      const courseId = route.params.id;
+
+      const getCourse = async () => {
+
+        try {
+          const res = await axios.get("http://localhost:8087/api/course/" + courseId);
+
+          course.value = res.data.data;
+
+          if(course.value.courseImages.length > 0)
+          {
+            course.value.urlImage = course.value.courseImages[0].urlImage;
+          }
+
+        } catch (error) {
+          console.log(error);
+        }
+    }
+
+    getCourse();
+
+    return {
+      course,
+      getCourse
+    }
+  },
+  
+  methods:{
+      convertTimeToSeconds(time) {
+        const [minutes, seconds] = time.split(":").map(Number);
+        return minutes * 60 + seconds;
+      },
+      convertSecondsToTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+      },
+
+        //submit order course
+        async submitFormOrderCourse(){
+        try{
+          this.course.id != null ? this.orderData.courseID = this.course.id : 0;
+
+            
+          const res = await axios.post("http://localhost:8085/api/order", this.orderData).then(async (data) => {
+            if(data.status == 200)
+            {
+              this.paymentData.orderID = data.data.data.id;
+              this.course.price != null ? this.paymentData.totalPrice = this.course.price : 0;
+              this.paymentData.paymentMethod = "Smart Banking Online";
+                
+              await axios.post("http://localhost:8085/api/payment", this.paymentData).then(async () => {
+                this.orderData.status = "Đăng ký thành công";
+
+                await axios.put("http://localhost:8085/api/order/" + data.data.data.id, this.orderData).then(async (response) => {
+                  if(response.status == 200)
+                  {
+                    console.log("đăng ký thành công")
+
+                  }
+                })
+              })
+            }
+          });
+          return res;
+        } catch (error){
+          console.log(error);
+        }
+      },
+    },
+
+    data(){
+      return{
+        paymentData: {
+          orderID: 0,
+          totalPrice: 0,
+          paymentMethod: "",
+        },
+        interval: null,
+        countdown: "00:10",
+        orderData: {
+          userID: localStorage.getItem('idUser') != null ? localStorage.getItem('idUser') : null,
+          courseID: this.$route.params.id,
+          status: "Đang xử lý"
+        },
+        isPopup:false,
+        contents: {
+          title: "Đăng ký khóa học thành công. Theo dõi khóa học tại trang quản lý của bạn!",
+          status: true,
+        },
+      }
+    },
+    beforeUnmount() {
+      clearInterval(this.interval); // Clear the interval to prevent memory leaks
+    },
+    components:{
+      PopupScreen
+    }
+  }
+</script>

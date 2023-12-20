@@ -46,19 +46,19 @@
             </h1>
 
 
-            <form action="" class="flex flex-col gap-5 mt-5" @submit.prevent="submitFormOrderCourse">
+            <div action="" class="flex flex-col gap-5 mt-5" >
               <div class="flex flex-col gap-3 text-sm">
                 <p>Xin chào: <span class="font-semibold">Nguyễn Quốc Anh</span></p>
                 <p>Cảm ơn bạn đã quan tâm khóa học này!</p>
                 <p>Cam kết đảm bảo chất lượng đầu ra khi bạn hoàn thành khóa học.</p>
                 <p>Nhấn vào nút <span class="font-semibold">"ĐĂNG KÝ"</span> để tham gia khóa học</p>
               </div>
-              <input
-                type="submit"
-                value="ĐĂNG KÝ"
-                class="bg-gray-700 text-white rounded-lg py-2 font-medium cursor-pointer hover:opacity-70"
-              />
-            </form>
+              <a
+                :href="'/payment/' + course.id"
+                class="bg-gray-700 text-white text-center font-medium rounded-lg py-3  cursor-pointer hover:opacity-70">
+                ĐĂNG KÝ
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -165,9 +165,10 @@
 </template>
 
 <script>
-  import { ref } from "vue";
   import axios from "axios";
+  import { ref } from "vue";
   import { useRoute } from 'vue-router';
+
 
   export default {
     setup(){
@@ -176,7 +177,6 @@
       const courseId = route.params.id;
 
       const getCourse = async () => {
-
         try {
           const res = await axios.get("http://localhost:8087/api/course/" + courseId);
 
@@ -190,14 +190,14 @@
         } catch (error) {
           console.log(error);
         }
-    }
+      }
 
-    getCourse();
+      getCourse();
 
-    return {
-      course,
-      getCourse
-    }
+      return {
+        getCourse,
+        course
+      }
     },
     methods: {
       formatPrice(price) {
@@ -220,38 +220,7 @@
         }
       },
 
-      //submit order course
-      async submitFormOrderCourse(){
-        try{
-          this.course.id != null ? this.orderData.courseID = this.course.id : 0;
-
-            
-          const res = await axios.post("http://localhost:8085/api/order", this.orderData).then(async (data) => {
-            if(data.status == 200)
-            {
-              this.paymentData.orderID = data.data.data.id;
-              this.course.price != null ? this.paymentData.totalPrice = this.course.price : 0;
-              this.paymentData.paymentMethod = "Smart Banking Online";
-                
-              await axios.post("http://localhost:8085/api/payment", this.paymentData).then(async () => {
-                this.orderData.status = "Đăng ký thành công";
-
-                await axios.put("http://localhost:8085/api/order/" + data.data.data.id, this.orderData).then(async (response) => {
-                  if(response.status == 200)
-                  {
-                    console.log("đăng ký thành công")
-
-                  }
-                })
-              })
-            }
-          });
-          return res;
-        } catch (error){
-          console.log(error);
-        }
-      },
-
+  
       //submit form evaluation
       submitFormEvaluation(){
         const inputElement = this.$refs.evaluationInput;
@@ -294,24 +263,14 @@
     data() {
       return {
         formData: {
-          courseID: 1,
+          courseID: this.$route.params.id,
           comment: '',
           rate: 1,
-          userID: 1,
+          userID: localStorage.getItem('idUser') != null ? localStorage.getItem('idUser') : null,
         },
         showMoreEvaluate: false,
         currentPage: 1,
-        itemsPerPage: 5,
-        orderData: {
-          userID: 1,
-          courseID: 0,
-          status: "Đang xử lý"
-        },
-        paymentData: {
-          orderID: 0,
-          totalPrice: 0,
-          paymentMethod: "",
-        }
+        itemsPerPage: 5
       };
     },
     watch: {},

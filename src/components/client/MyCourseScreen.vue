@@ -1,5 +1,6 @@
 <template>
   <div class="w-3/4 mx-auto">
+    <PopupScreen></PopupScreen>
     <div class="py-10">
       <div class="border-b border-b-gray-200 pb-5">
         <h1 class="text-xl font-semibold justify-between flex">Khóa học của tôi <p class="text-gray-500 text-lg text-medium">Số lượng: 5</p></h1>
@@ -38,5 +39,11 @@
 </template>
 
 <script>
+  import PopupScreen from "./common/PopupScreen.vue";
 
+export default{
+  components: {
+    PopupScreen
+  }
+}
 </script>

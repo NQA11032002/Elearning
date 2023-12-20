@@ -57,7 +57,7 @@ const routes = [
     component: RegisterScreenVue
   },
   {
-    path: '/payment',
+    path: '/payment/:id',
     component: PaymentScreenVue
   },
   {
