@@ -1,21 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeScreenVue from './components/client/HomeScreen.vue'
-import TrainingScreenVue from './components/client/TrainingScreen.vue'
-import CourseScreenVue from './components/client/CourseScreen.vue'
-import SupportScreenVue from './components/client/SupportScreen.vue'
-import LoginScreenVue from './components/client/LoginScreen.vue'
-import RegisterScreenVue from './components/client/RegisterScreen.vue'
-import DetailCourseScreen from './components/client/DetailCourseScreen.vue'
+import HomeScreenVue from './components/client/pages/HomeScreen.vue'
+import TrainingScreenVue from './components/client/pages/TrainingScreen.vue'
+import CourseScreenVue from './components/client/courses/CourseScreen.vue'
+import SupportScreenVue from './components/client/pages/SupportScreen.vue'
+import LoginScreenVue from './components/client/auths/LoginScreen.vue'
+import RegisterScreenVue from './components/client/auths/RegisterScreen.vue'
+import DetailCourseScreen from './components/client/courses/DetailCourseScreen.vue'
 
-import PaymentScreenVue from './components/client/PaymentScreen.vue'
-import MyCourseScreen from './components/client/MyCourseScreen.vue'
+import PaymentScreenVue from './components/client/courses/PaymentScreen.vue'
+import MyCourseScreen from './components/client/students/MyCourseScreen.vue'
 import LessonScreen from './components/client/lessons/LessonScreen.vue'
 import InfoExpertScreen from './components/client/experts/InfoExpertScreen.vue'
 
-import ForgotPassScreen from "./components/client/ForgotPassScreen.vue";
+import ForgotPassScreen from "./components/client/auths/ForgotPassScreen.vue";
 import InformationScreen from "./components/client/InformationScreen.vue";
-import ChangepassScreen from "./components/client/ChangepassScreen.vue";
-import RegisteredCourses from "./components/client/RegisteredCourses.vue";
+import ChangepassScreen from "./components/client/auths/ChangepassScreen.vue";
+import RegisteredCourses from "./components/client/auths/RegisteredCourses.vue";
 import GiftCodeScreen from "./components/client/GiftCodeScreen.vue";
 import CourseManagement from "./components/client/Professional/CourseManagement.vue";
 import EditCourse from "./components/client/Professional/EditCourse.vue";
@@ -41,7 +41,7 @@ const routes = [
       component: CourseScreenVue
   },
   {
-    path: '/detail/:id',
+    path: '/course/:id',
     component: DetailCourseScreen
   },
   {

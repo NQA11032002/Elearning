@@ -38,4 +38,34 @@ export const API_URLS = [
       }
     ] ,
   },
+  {
+    name: 'order',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8085/api/order"
+      },
+      {
+        subName: "course",
+        url: "http://localhost:8085/api/order/course"
+      },      
+      {
+        subName: "findCourse",
+        url: "http://localhost:8085/api/order/find-course/"
+      },
+    ]
+  },
+  {
+    name: 'customer',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8086/api/customer"
+      },
+      {
+        subName: "findUser",
+        url: "http://localhost:8086/api/customer/"
+      }
+    ]
+  },
 ]
