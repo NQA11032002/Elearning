@@ -3,7 +3,7 @@
     class="bg-white z-10 fixed top-0 flex items-center justify-between p-5 h-16 shadow-md shadow-gray-300 w-full left-0 right-0">
     <div class="flex items-center">
       <div class="header__logo">
-        <img src="../../assets/images/client/logo.png" alt="">
+        <img src="../../../assets/images/client/logo.png" alt="">
       </div>
       <form action="" class="relative border rounded-md px-2 flex items-center">
         <input type="text" placeholder="Tìm khóa học, chuyên gia..." class="left-0 outline-none h-full py-2 text-sm w-56">
@@ -38,7 +38,7 @@
           </div>
           <div class="relative">
             <img @click="toggleDropdown" class="w-8 h-8 rounded-full cursor-pointer"
-              src="../../assets/images/client/avatars/avatar.png" alt="">
+              src="../../../assets/images/client/avatars/avatar.png" alt="">
             <ul v-if="showDropdown" class="absolute right-0 mt-2 bg-white border rounded-md shadow-md w-48 p-4">
               <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/profile/1">Thông tin tài khoản</a></li>
               <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/changepass/1">Đổi mật khẩu</a></li>
@@ -64,8 +64,8 @@
 <script>
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { findApiByName } from '../../assets/js/apiUtil.js';
-// import App from '../../App.vue';
+import { findApiByName } from '../../../assets/js/apiUtil.js';
+// import App from '../../../App.vue';
 
 export default {
   name: 'HeaderScreen',

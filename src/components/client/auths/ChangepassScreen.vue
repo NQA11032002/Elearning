@@ -24,7 +24,6 @@
               <button type="submit" class="bg-blue-900 text-white p-2 rounded-md">Đổi mật khẩu</button>
             </div>
           </form>
-
         </div>
       </div>
     </div>
@@ -32,10 +31,10 @@
 </template>
 
 <script>
-import SidebarmemberScreen from './SidebarmemberScreen.vue';
+import SidebarmemberScreen from '../common/SidebarmemberScreen.vue';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { findApiByName } from '../../assets/js/apiUtil.js';
+import { findApiByName } from '../../../assets/js/apiUtil.js';
 
 export default {
   components: {

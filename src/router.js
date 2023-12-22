@@ -8,22 +8,25 @@ import RegisterScreenVue from './components/client/auths/RegisterScreen.vue'
 import DetailCourseScreen from './components/client/courses/DetailCourseScreen.vue'
 
 import PaymentScreenVue from './components/client/courses/PaymentScreen.vue'
-import MyCourseScreen from './components/client/students/MyCourseScreen.vue'
 import LessonScreen from './components/client/lessons/LessonScreen.vue'
 import InfoExpertScreen from './components/client/experts/InfoExpertScreen.vue'
+import InformationScreen from "./components/client/students/InfoStudentScreen.vue";
+import MyCourseScreen from './components/client/students/MyCourseScreen.vue'
+
 
 import ForgotPassScreen from "./components/client/auths/ForgotPassScreen.vue";
-import InformationScreen from "./components/client/InformationScreen.vue";
 import ChangepassScreen from "./components/client/auths/ChangepassScreen.vue";
 import RegisteredCourses from "./components/client/auths/RegisteredCourses.vue";
+
 import GiftCodeScreen from "./components/client/GiftCodeScreen.vue";
-import CourseManagement from "./components/client/Professional/CourseManagement.vue";
-import EditCourse from "./components/client/Professional/EditCourse.vue";
-import DetailCoursePro from "./components/client/Professional/DetailCoursePro.vue";
-import InformationPro from "./components/client/Professional/InformationPro.vue";
-import TopicInformation from "./components/client/Professional/TopicInformation.vue";
-import CourseVideoScreen from "./components/client/Professional/CourseVideoScreen.vue";
-import CourseManager from "./components/client/Professional/CourseManager.vue";
+
+import CourseManagement from "./components/client/Profession/CourseManagement.vue";
+import EditCourse from "./components/client/Profession/EditCourse.vue";
+import DetailCoursePro from "./components/client/Profession/DetailCoursePro.vue";
+import InformationPro from "./components/client/Profession/InformationPro.vue";
+import TopicInformation from "./components/client/Profession/TopicInformation.vue";
+import CourseVideoScreen from "./components/client/Profession/CourseVideoScreen.vue";
+import CourseManager from "./components/client/Profession/CourseManager.vue";
 
 
 
@@ -65,7 +68,7 @@ const routes = [
     component: MyCourseScreen
   },
   {
-    path: '/lesson',
+    path: '/lesson/:id',
     component: LessonScreen
   },
   {

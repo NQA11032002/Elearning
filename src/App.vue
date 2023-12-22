@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import HeaderScreen from "./components/client/HeaderScreen.vue";
-import FooterScreen from "./components/client/FooterScreen.vue";
+import HeaderScreen from "./components/client/common/HeaderScreen.vue";
+import FooterScreen from "./components/client/common/FooterScreen.vue";
 import { findApiByName } from './assets/js/apiUtil.js';
 import axios from 'axios';
 export default {

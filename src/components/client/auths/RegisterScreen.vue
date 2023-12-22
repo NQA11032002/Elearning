@@ -35,7 +35,7 @@
 
 <script>
 import axios from 'axios';
-import { findApiByName } from '../../assets/js/apiUtil.js';
+import { findApiByName } from '../../../assets/js/apiUtil.js';
 export default {
   data() {
     return {

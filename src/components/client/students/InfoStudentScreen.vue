@@ -12,7 +12,7 @@
           class="w-full rounded-xl flex justify-between py-12 px-40 max-sm:px-0 mb border-b border-gray-100 max-sm:flex-col max-sm:py-6">
           <div class="max-sm:w-full flex max-sm:justify-center max-sm:mb-4">
             <img class="w-40 h-40 rounded-full object-cover max-sm:w-28 max-sm:h-28"
-              src="../../assets/images/client/avatars/1.png" alt="">
+              src="../../../assets/images/client/avatars/1.png" alt="">
           </div>
           <div class="flex flex-col w-80 max-sm:w-full max-sm:px-2 max-sm:flex max-sm:justify-center">
             <input :value=user.fullName class="outline-none border border-blue-900 mb-4 p-2 rounded-md" type="text"
@@ -45,7 +45,7 @@
       class="w-full rounded-xl flex justify-between py-12 px-40 max-sm:px-0 mb border-b border-gray-100 max-sm:flex-col max-sm:py-6">
       <div class="max-sm:w-full flex max-sm:justify-center max-sm:mb-4">
         <img class="w-40 h-40 rounded-full object-cover max-sm:w-28 max-sm:h-28"
-          src="../../assets/images/client/avatars/1.png" alt="">
+          src="../../../assets/images/client/avatars/1.png" alt="">
       </div>
       <div class="flex flex-col w-80 max-sm:w-full max-sm:px-2 max-sm:flex max-sm:justify-center">
         <input v-model="user1.fullName" class="outline-none border border-blue-900 mb-4 p-2 rounded-md" type="text"
@@ -74,7 +74,7 @@
   </div>
 </template>
 <script>
-import SidebarmemberScreen from './common/SidebarmemberScreen.vue';
+import SidebarmemberScreen from '../common/SidebarmemberScreen.vue';
 import axios from 'axios';
 
 export default {

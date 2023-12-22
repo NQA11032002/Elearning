@@ -29,7 +29,7 @@ export const API_URLS = [
       },
       {
         subName: "findCourseByID",
-        url: "http://localhost:8087/api/course"
+        url: "http://localhost:8087/api/course/"
       }
       ,
       {

@@ -9,7 +9,7 @@
       </div>
 
       <div class="flex flex-wrap pt-5 gap-6 w-full">
-        <a :href="'/course/' + course.id" v-for=" course in courses" :key="course.id"
+        <a :href="'/lesson/' + course.id" v-for=" course in courses" :key="course.id"
           class="flex bg-white shadow-md w-1/5 flex-col gap-3 lg:w-course overflow-hidden hover:opacity-80 hover:shadow-lg rounded-lg transition-all">
           <div>
             <img class="flex-shrink-0 h-44 w-full rounded-lg" :src="course.courseImages.length > 0 ?
