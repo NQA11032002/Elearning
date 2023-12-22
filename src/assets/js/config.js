@@ -35,8 +35,25 @@ export const API_URLS = [
       {
         subName: "findCourseByTitle",
         url: "http://localhost:8087/api/course/title"
+      },
+      {
+        subName: "upload-video",
+        url: "http://localhost:8087/api/upload"
       }
     ] ,
+  },
+  {
+    name: 'thematic',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/thematic"
+      },
+      {
+        subName: "findThematicByID",
+        url: "http://localhost:8087/api/thematic/"
+      }
+    ]
   },
   {
     name: 'order',
