@@ -11,7 +11,7 @@
           <span>or use your account</span>
           <input v-model="userName" type="text" placeholder="Username" />
           <input v-model="password" type="password" placeholder="Password" />
-          <p class="text-red-500 font-semibold py-2 text-sm">Tài khoản hoặc mật khẩu không chính xác</p>
+          <p v-if="isLogin" class="text-red-500 font-semibold py-2 text-sm">Tài khoản hoặc mật khẩu không chính xác</p>
           <a href="#">Forgot your password?</a>
           <button type="submit">Log In</button>
         </form>
@@ -32,20 +32,19 @@
 </template>
 
 <script>
-import "../../../assets/styles/login.scss";
+import "../../assets/styles/login.scss";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
+import { findApiByName } from '../../assets/js/apiUtil.js';
+
 
 export default {
-  created() {
-  },
   setup() {
     const router = useRouter();
 
     if (Cookies.get('auth') !== undefined) {
       router.push('/home');
-      window.location.reload();
     }
   },
   data() {
@@ -56,23 +55,27 @@ export default {
 
     };
   },
+
   methods: {
     async login() {
       try {
         // Gửi yêu cầu POST đến API Spring Boot để đăng nhập
-        const response = await axios.post('http://localhost:8086/auth/login', {
+        const apiObject = findApiByName("auth", "login").url;
+        const response = await axios.post(apiObject, {
           userName: this.userName,
           password: this.password,
         });
 
         if (response.status == 200 && Cookies.get('auth') === undefined) {
-          Cookies.set('auth', response.data.token, { expires: 1 }); // Expires in 7 days
+          Cookies.set('auth', response.data.token, { expires: 1 }); // Expires in 1 days
         }
-
+        this.isLogin = true;
         const formData = new FormData();
         formData.append('token', response.data.token);
 
-        const response_token = await axios.post('http://localhost:8086/auth/getUserID', formData, {
+        const apiObject_getID = findApiByName("auth", "getUserID").url;
+
+        const response_token = await axios.post(apiObject_getID, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -83,9 +86,11 @@ export default {
         this.$router.push('/home'); // Chuyển hướng đến trang home
       } catch (error) {
         // Xử lý lỗi từ API (error.response.data) nếu cần
+
         console.error('Login failed', error.response.data);
       }
     },
+
   },
 };
 </script>

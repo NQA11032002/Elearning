@@ -29,7 +29,7 @@ export const API_URLS = [
       },
       {
         subName: "findCourseByID",
-        url: "http://localhost:8087/api/course/"
+        url: "http://localhost:8087/api/course"
       }
       ,
       {
@@ -54,6 +54,20 @@ export const API_URLS = [
         url: "http://localhost:8085/api/order/find-course/"
       },
     ]
+    
+  },
+  {
+    name: 'user',
+    urls: [
+      {
+        subName: "updateUser",
+        url: "http://localhost:8086/api/user"
+      },
+      {
+        subName: "findUserById",
+        url: "http://localhost:8086/api/user"
+      },
+    ] ,
   },
   {
     name: 'customer',
@@ -65,7 +79,11 @@ export const API_URLS = [
       {
         subName: "findUser",
         url: "http://localhost:8086/api/customer/"
-      }
-    ]
+      },
+      {
+        subName: "findByID",
+        url: "http://localhost:8086/api/customer"
+      },
+    ] ,
   },
 ]

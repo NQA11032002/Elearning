@@ -35,7 +35,7 @@
 
 <script>
 import axios from 'axios';
-
+import { findApiByName } from '../../assets/js/apiUtil.js';
 export default {
   data() {
     return {
@@ -47,6 +47,7 @@ export default {
         repeatPassword: '',
         checkPasswordLength: true
       },
+
     }
   },
   methods: {
@@ -62,8 +63,9 @@ export default {
         return;
       }
       try {
-        // Gửi yêu cầu POST đến API Spring Boot để đăng ký
-        const response = await axios.post('http://localhost:8086/auth/register', {
+        const apiObject = findApiByName("auth", "register").url;
+
+        const response = await axios.post(apiObject, {
           userName: this.user.userName,
           password: this.user.password,
           fullName: this.user.fullName,
