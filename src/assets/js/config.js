@@ -103,4 +103,22 @@ export const API_URLS = [
       },
     ] ,
   },
+  {
+    name: 'categories',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/categories"
+      }
+    ] ,
+  },
+  {
+    name: 'educations',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/educations"
+      }
+    ] ,
+  },
 ]

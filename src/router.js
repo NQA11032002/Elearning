@@ -112,15 +112,15 @@ const routes = [
     component: EditCourse
   },
   {
-    path: '/information-pro/:id',
+    path: '/expert/:id',
     component: InformationPro
   },
   {
-    path: '/topicinfor/:id',
+    path: '/expert/course/topic',
     component: TopicInformation
   },
   {
-    path: '/expert-upload-video/:id',
+    path: '/expert/course/lesson/:id',
     component: CourseVideoScreen
   },
   {

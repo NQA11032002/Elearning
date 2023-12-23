@@ -76,10 +76,39 @@
 </template>
 <script>
 import SidebarteacherScreen from "./SidebarteacherScreen.vue";
+import axios from "axios";
+import { findApiByName } from "../../../assets/js/apiUtil.js";
 
 export default {
+  mounted:{
+
+  },
   components: {
     SidebarteacherScreen,
   },
+  methods(){
+    const categories = async () => {
+      const apiObject = findApiByName("categories", "common").url;
+
+      await axios.get(apiObject).then((res) => {
+        console.log(res)
+      });
+
+    } 
+
+    categories();
+  },
+  data(){
+    return {
+      categories: {
+        id: 0,
+        name: ""
+      },
+      educations: {
+        id: 0,
+        name: ""
+      }
+    }
+  }
 };
 </script>
