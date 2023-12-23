@@ -18,8 +18,10 @@ module.exports = {
       },
       gridTemplateColumns: {
         gridTable: '50px auto',
+      },
+      zIndex:{
+        zIndex: "99999"
       }
-
     },
   },
   plugins: [],

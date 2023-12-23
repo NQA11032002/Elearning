@@ -116,11 +116,11 @@ const routes = [
     component: InformationPro
   },
   {
-    path: '/topicinfor/:id',
+    path: '/expert/course-topic/:id',
     component: TopicInformation
   },
   {
-    path: '/expert-upload-video/:id',
+    path: '/expert/course-lesson/:id',
     component: CourseVideoScreen
   },
   {
