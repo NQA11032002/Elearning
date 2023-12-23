@@ -37,8 +37,12 @@ export const API_URLS = [
         url: "http://localhost:8087/api/course/title"
       },
       {
-        subName: "upload-video",
+        subName: "upload",
         url: "http://localhost:8087/api/upload"
+      },
+      {
+        subName: "course-image",
+        url: "http://localhost:8087/api/course-image"
       }
     ] ,
   },
@@ -65,13 +69,12 @@ export const API_URLS = [
       {
         subName: "course",
         url: "http://localhost:8085/api/order/course"
-      },      
+      },
       {
         subName: "findCourse",
         url: "http://localhost:8085/api/order/find-course/"
       },
     ]
-    
   },
   {
     name: 'user',
