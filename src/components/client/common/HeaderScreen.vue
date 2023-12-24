@@ -95,24 +95,26 @@ export default {
 
 
     async logout() {
-      try {
+      try { 
+        const apiObject = findApiByName("auth", "logout").url;
         const token = Cookies.get("auth");
         const formData = new FormData();
         formData.append('token', token);
-        const apiObject = findApiByName("auth", "logout").url;
-        const response = await axios.post(apiObject, formData, {
+        await axios.post(apiObject, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-        });
-        console.log(response);
-        this.deleteCookie("auth");
-        localStorage.removeItem("idUser");
-
-        this.$router.push('/login'); // Chuyển hướng đến trang home
-
+        }).then((res) => {
+          if(res.status === 200) {
+            this.deleteCookie("auth");
+            this.deleteCookie("userID");
+            this.deleteCookie("role");
+            this.$router.push('/login');
+          }
+        })
+        
       } catch (error) {
-        console.error('Get infor failed', error.response.data);
+        console.error('Logout fail', error);
       }
     },
 

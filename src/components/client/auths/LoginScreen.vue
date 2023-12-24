@@ -9,9 +9,9 @@
             <a href="#" class="social"><i class="icon-git fa-brands fa-github"></i></a>
           </div>
           <span>or use your account</span>
-          <input v-model="userName" type="text" placeholder="Username" />
-          <input v-model="password" type="password" placeholder="Password" />
-          <p v-if="isLogin" class="text-red-500 font-semibold py-2 text-sm">Tài khoản hoặc mật khẩu không chính xác</p>
+          <input v-model="user.userName" type="text" placeholder="Username" />
+          <input v-model="user.password" type="password" placeholder="Password" />
+          <p v-if="user.isLogin === false" class="text-red-500 font-semibold py-2 text-sm">Tài khoản hoặc mật khẩu không chính xác</p>
           <a href="#">Forgot your password?</a>
           <button type="submit">Log In</button>
         </form>
@@ -49,10 +49,11 @@ export default {
   },
   data() {
     return {
-      userName: '',
-      password: '',
-      isLogin: false,
-
+      user: {
+        userName: '',
+        password: '',
+        isLogin: true,
+      },
     };
   },
 
@@ -62,35 +63,33 @@ export default {
         // Gửi yêu cầu POST đến API Spring Boot để đăng nhập
         const apiObject = findApiByName("auth", "login").url;
         const response = await axios.post(apiObject, {
-          userName: this.userName,
-          password: this.password,
-        });
-
-        if (response.status == 200 && Cookies.get('auth') === undefined) {
-          Cookies.set('auth', response.data.token, { expires: 1 }); // Expires in 1 days
-        }
-        this.isLogin = true;
-        const formData = new FormData();
-        formData.append('token', response.data.token);
-
-        const apiObject_getID = findApiByName("auth", "getUserID").url;
-
-        const response_token = await axios.post(apiObject_getID, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-
-        localStorage.setItem('idUser', response_token.data.data);
-
-        this.$router.push('/home'); // Chuyển hướng đến trang home
+          userName: this.user.userName,
+          password: this.user.password,
+        }).then((response) => {
+            if (response.status == 200) {
+              Cookies.set('auth', response.data.token, this.changeTime(response.data.expirationTime));            
+              Cookies.set('userID', response.data.userID, this.changeTime(response.data.expirationTime));            
+              Cookies.set('role', response.data.role, this.changeTime(response.data.expirationTime));            
+            }
+          });
+        console.log(response);
+        this.$router.push('/home');
       } catch (error) {
-        // Xử lý lỗi từ API (error.response.data) nếu cần
-
-        console.error('Login failed', error.response.data);
+        this.user.isLogin = false;
+        console.error('Login failed', error);
       }
     },
-
+    
+    deleteCookie(name) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    },
+    changeTime(timeString){
+      // Tạo đối tượng Date từ chuỗi thời gian
+      const dateObject = new Date(timeString);
+      // Chuyển đổi thời gian thành giây
+      const timeInSeconds = dateObject.getTime() / 1000;
+      console.log(timeInSeconds);
+    }
   },
 };
 </script>

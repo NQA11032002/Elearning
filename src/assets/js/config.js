@@ -76,14 +76,6 @@ export const API_URLS = [
         subName: "common",
         url: "http://localhost:8086/api/customer"
       },
-      {
-        subName: "findUser",
-        url: "http://localhost:8086/api/customer/"
-      },
-      {
-        subName: "findByID",
-        url: "http://localhost:8086/api/customer"
-      },
     ] ,
   },
 ]
