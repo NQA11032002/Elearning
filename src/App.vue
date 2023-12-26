@@ -1,7 +1,7 @@
 <template>
   <HeaderScreen></HeaderScreen>
 
-  <div class="py-8 w-full max-sm:py-0 h-screen bg-gray-50">
+  <div class="py-8 w-full max-sm:py-0 bg-gray-50">
     <router-view :user="user"></router-view>
   </div>
 

@@ -104,6 +104,10 @@ export const API_URLS = [
         subName: "findByID",
         url: "http://localhost:8086/api/customer"
       },
+      {
+        subName: "findCustomerByUserID",
+        url: "http://localhost:8086/api/customer/user/"
+      }
     ] ,
   },
   {

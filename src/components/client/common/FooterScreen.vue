@@ -1,6 +1,6 @@
 <template>
-  <footer class="footer relative">
-    <div class="flex w-2/3 left-1/2 -translate-x-1/2 absolute justify-between">
+  <footer class="footer relative bg-gray-800 text-white">
+    <div class="flex w-2/3 left-1/2 -translate-x-1/2 absolute justify-between top-1/2 -translate-y-1/2">
       <ul class="flex flex-col gap-3 w-1/4">
         <li>
           <img class="footer__logo" src="../../../assets/images/client/logo.png" alt="">
@@ -40,11 +40,10 @@
           <h5 class="font-semibold">Liên kết</h5>
         </li>
         <li>
-          <div class="flex">
+          <div class="flex gap-4">
             <img src="../../../assets/images/client/footer/Rectangle 2.png" alt="">
-            <img class="mr-5 ml-5" src="../../../assets/images/client/footer/Rectangle 3.png" alt="">
-            <img src="../../../assets/images/client/footer/Rectangle 4.png" alt="">
-            <img class="mr-5 ml-5" src="../../../assets/images/client/footer/Rectangle 5.png" alt="">
+            <img src="../../../assets/images/client/footer/Rectangle 3.png" alt="">
+            <img src="../../../assets/images/client/footer/Rectangle 5.png" alt="">
           </div>
         </li>
         <li>

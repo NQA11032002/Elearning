@@ -1,5 +1,5 @@
 <template>
-  <div v-if="course != null && !isRegistered"
+  <div v-if="course != null" :class="isPopup ? 'opacity-50' : ''"
     class="text-slate-600 flex lg:w-2/3 my-28 mx-auto gap-6 h-full py-5 max-sm:flex-col bg-white shadow-md rounded-lg px-5 max-sm:w-full max-sm:px-5 md:w-10/12">
 
     <div
@@ -172,9 +172,7 @@
       </div>
     </div>
   </div>
-  <div v-else class="h-full">
-    <PopupScreen v-if="isPopup" :contents="contents"></PopupScreen>
-  </div>
+  <PopupScreen v-if="isPopup" :contents="contents"></PopupScreen>
 </template>
 <script>
 import { useRoute } from "vue-router";
@@ -221,23 +219,17 @@ export default {
           timeInSeconds--;
           this.countdown = this.convertSecondsToTime(timeInSeconds);
 
-          this.isPopup = true;
         } else {
           // Countdown reached zero, you can perform additional actions here
           clearInterval(this.interval);
-          this.isPopup = false;
+          this.isPopup = true;
 
           // Change contents in the child component
-          this.contents.title = "Hết thời hạn thanh toán, vui lòng thử lại.!";
-          this.contents.color = "red-600",
-            this.contents.icon = "fa-solid fa-circle-exclamation";
+          this.changeInfoPopup("Hết thời hạn thanh toán, vui lòng thử lại.!", "red-600", "fa-solid fa-circle-exclamation")
         }
       }, 1000);
     } else {
-      this.contents.title =
-        "Bạn đã đăng ký khóa học này. Vui lòng theo dõi tại trang khóa học của bạn";
-      this.contents.color = "red-600",
-        this.contents.icon = "fa-solid fa-circle-exclamation";
+      this.changeInfoPopup("Bạn đã đăng ký khóa học này. Vui lòng theo dõi tại trang khóa học của bạn", "red-600", "fa-solid fa-circle-exclamation");
     }
   },
   setup() {
@@ -269,6 +261,11 @@ export default {
     };
   },
   methods: {
+    changeInfoPopup(title, color, content) {
+      this.contents.title = title;
+      this.contents.color = color;
+      this.contents.icon = content;
+    },
     convertToVND(price) {
       // Assuming amount is in the foreign currency
       return price.toLocaleString("vi-VN", {
@@ -313,13 +310,11 @@ export default {
                     )
                     .then(async (response) => {
                       if (response.status == 200) {
+                        clearInterval(this.interval);
+
+                        this.changeInfoPopup("Đăng ký khóa học thành công. Vui lòng theo dõi khóa học tại trang khóa học của bạn.!!!", "green-500", "fa-regular fa-circle-check")
                         this.isPopup = true;
                         this.isRegistered = true;
-                        clearInterval(this.interval);
-                        this.contents.title =
-                          "Đăng ký khóa học thành công. Vui lòng theo dõi khóa học tại trang khóa học của bạn.!!!";
-                        this.contents.color = "green-500";
-                        this.contents.icon = "fa-regular fa-circle-check";
                       }
                     });
                 });
