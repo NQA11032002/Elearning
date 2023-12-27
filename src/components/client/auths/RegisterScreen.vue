@@ -73,8 +73,11 @@ export default {
               password: this.user.password,
               fullName: this.user.fullName,
               phone: this.user.phone,
-            });
-              console.log(response);
+            })
+            if (response.data.data === null) {
+              this.isValidate(false, "Tài khoản đã tồn tại vui lòng nhập tài khoản khác");
+              return;
+             }
             }
         } 
         this.validate.isSubmitting = false;

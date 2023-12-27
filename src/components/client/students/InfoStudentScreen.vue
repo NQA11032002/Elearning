@@ -36,7 +36,7 @@
               <i class="fa-solid fa-chevron-right flex items-center"></i>
             </div>
             <div class="flex justify-between w-2/5 p-3 bg-blue-100 mr-4 rounded cursor-pointer max-sm:mr-0 max-sm:w-full">
-              <a href="/registered-course" class="text-blue-900 font-medium flex items-center">Khóa học đã đăng ký</a>
+              <a href="/my-course" class="text-blue-900 font-medium flex items-center">Khóa học đã đăng ký</a>
               <i class="fa-solid fa-chevron-right flex items-center"></i>
             </div>
           </div>

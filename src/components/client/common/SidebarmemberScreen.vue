@@ -18,11 +18,6 @@
           href="/profile">Thông tin người dùng</a>
       </div>
       <div class="flex items-left py-4">
-        <i class="fa-solid fa-book text-xl mr-3 text-blue-900"></i>
-        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium"
-          href="/registered-course">Khóa học đăng ký</a>
-      </div>
-      <div class="flex items-left py-4">
         <i class="fa-solid fa-headphones-simple text-xl mr-3 text-blue-900"></i>
         <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Hỗ
           trợ</a>
