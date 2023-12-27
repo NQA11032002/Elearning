@@ -3,7 +3,7 @@
     <div class="w-full my-5 max-sm:flex-col">
       <div class="flex">
         <div class="w-1/2 flex flex-col">
-          <h1 class="w-full text-center font-semibold text-3xl border-b border-gray-300 p-4">Về chúng tôi</h1>
+          <h1 class="w-full text-center font-semibold text-3xl border-b border-gray-300 p-4 text-blue-900">Về chúng tôi</h1>
             <div class="flex flex-col leading-7 p-4">
               <span>E-learning Academylink là một nền tảng giáo dục trực tuyến nổi bật, 
                 nơi bạn có thể trải nghiệm các khóa học chất lượng cao được thiết kế bởi những chuyên gia hàng đầu trong ngành. 
@@ -36,7 +36,7 @@
           <img class="w-full h-96 object-cover" src="https://img.freepik.com/free-vector/students-using-e-learning-platform-video-laptop-graduation-cap-online-education-platform-e-learning-platform-online-teaching-concept_335657-795.jpg" alt="">
         </div>
         <div class="w-1/2 flex flex-col">
-          <h1 class="w-full text-center font-semibold text-3xl border-b border-gray-300 p-4">Liên hệ</h1>
+          <h1 class="w-full text-center font-semibold text-3xl border-b border-gray-300 p-4 text-blue-900">Liên hệ</h1>
             <div class="flex flex-col leading-7 p-4">
               <span>Chúng tôi luôn sẵn lòng lắng nghe và giải đáp mọi thắc mắc của bạn. Đừng ngần ngại liên hệ với chúng tôi để có thêm thông tin hoặc hỗ trợ. 
                 Dưới đây là thông tin liên hệ của chúng tôi:
@@ -73,7 +73,7 @@
         </div>
 
         <div class="w-1/2 p-4">
-          <iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2063.6927116478373!2d109.21704141060668!3d13.758982400864014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f6cebf252c49f%3A0xa83caa291737172f!2zVHLGsOG7nW5nIMSQ4bqhaSBI4buNYyBRdXkgTmjGoW4!5e0!3m2!1svi!2s!4v1703673734822!5m2!1svi!2s" width="600" height="450" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2063.6927116478373!2d109.21704141060668!3d13.758982400864014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f6cebf252c49f%3A0xa83caa291737172f!2zVHLGsOG7nW5nIMSQ4bqhaSBI4buNYyBRdXkgTmjGoW4!5e0!3m2!1svi!2s!4v1703673734822!5m2!1svi!2s" width="600" height="450" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         
       </div>
