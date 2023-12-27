@@ -27,11 +27,16 @@ import TopicInformation from "./components/client/Profession/TopicInformation.vu
 import CourseVideoScreen from "./components/client/Profession/CourseVideoScreen.vue";
 import CourseManager from "./components/client/Profession/CourseManager.vue";
 
+import error_403 from "./components/client/errors/error_403.vue";
 
 const routes = [
   {
       path: '/',
       component: HomeScreenVue
+  },
+  {
+    path: '/error-403',
+    component: error_403
   },
   {
       path: '/training',
@@ -70,10 +75,6 @@ const routes = [
     component: LessonScreen
   },
   {
-    path: '/expert',
-    component: InfoExpertScreen
-  },
-  {
     path: '/:catchAll(.*)',
     component: HomeScreenVue
   },
@@ -89,9 +90,12 @@ const routes = [
       path: '/changepass',
       component: ChangepassScreen
   },
-
   {
-    path: '/detail-course/:id',
+    path: '/watch-expert/:id',
+    component: InfoExpertScreen
+  },
+  {
+    path: '/expert/course/:id',
     component: DetailCoursePro
   },
   {
@@ -103,11 +107,11 @@ const routes = [
     component: CourseManagement
   },
   {
-    path: '/edit-course/:id',
+    path: '/expert/edit-course/:id',
     component: EditCourse
   },
   {
-    path: '/profile-expert',
+    path: '/expert-profile',
     component: InformationPro
   },
   {
@@ -119,16 +123,15 @@ const routes = [
     component: CourseVideoScreen
   },
   {
-    path: '/expert/management',
+    path: '/expert/courses',
     component: CourseManager
   },
   
 ]
-
-
 const router = createRouter({
   history: createWebHistory(),
   routes: routes
 })
+
 
 export default router

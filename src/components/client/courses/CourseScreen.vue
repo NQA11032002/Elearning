@@ -131,10 +131,10 @@
     <div class="col-right w-4/5">
 
       <div class="courses p-5">
-        <label class="filters flex justify-end font-semibold cursor-pointer">
+        <!-- <label class="filters flex justify-end font-semibold cursor-pointer">
           <i class="fa-solid fa-bars pr-2"></i>
           Bộ lọc
-        </label>
+        </label> -->
 
         <div class="cards flex flex-wrap gap-8 mt-5 ml-1">
           <a :href="'/course/' + course.id"
@@ -178,7 +178,7 @@
 import "../../../assets/styles/course.scss";
 import axios from "axios";
 import { findApiByName } from "../../../assets/js/apiUtil.js";
-import axiosAuth from "../../../assets/js/axios.js";
+import { getUserByID } from "../../../assets/js/custom.js";
 
 export default {
   props: [],
@@ -224,7 +224,9 @@ export default {
         this.courses = res.data;
         //insert fullName into each course
         for (const course of this.courses.data) {
-          course.fullName = await this.getUserByID(course.userID);
+          let customer = await getUserByID(course.userID);
+          course.fullName = customer.fullName
+
         }
       }
     },
@@ -270,27 +272,6 @@ export default {
       this.category = event.target.getAttribute("value");
 
       this.getAllCourses();
-    },
-
-    //get information of customer by userID
-    async getUserByID(userID) {
-      try {
-        // Get API URL
-        const apiObject = findApiByName("customer", "findUser").url;
-
-        // Make API request
-        const res = await axiosAuth.get(apiObject + userID);
-
-        if (res.status === 200) {
-          return res.data.data.fullName;
-        } else {
-          console.error('Error fetching user data. Status:', res.status);
-          return null;
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        return null;
-      }
     },
   },
   watch: {},

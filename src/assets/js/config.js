@@ -33,6 +33,11 @@ export const API_URLS = [
       }
       ,
       {
+        subName: "findCourseByUserID",
+        url: "http://localhost:8087/api/course/user/"
+      }
+      ,
+      {
         subName: "findCourseByTitle",
         url: "http://localhost:8087/api/course/title"
       },
@@ -44,7 +49,7 @@ export const API_URLS = [
         subName: "course-image",
         url: "http://localhost:8087/api/course-image"
       }
-    ] ,
+    ],
   },
   {
     name: 'thematic',
