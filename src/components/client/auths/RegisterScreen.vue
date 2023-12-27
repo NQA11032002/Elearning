@@ -9,13 +9,9 @@
           <input v-model="user.fullName" type="text" placeholder="Full name" />
           <input v-model="user.phone" type="text" placeholder="Phone number" maxlength="12" />
           <input v-model="user.password" type="password" placeholder="Password" />
-          <p v-if="user.password.length < 6 && user.password.length > 1" class="text-red-500 font-semibold py-2 text-sm">
-            Mật khẩu phải ít nhất 6 kí tự</p>
           <input v-model="user.repeatPassword" type="password" placeholder="Repeat your password" />
-          <p v-if="user.password !== user.repeatPassword" class="text-red-500 font-semibold py-2 text-sm">Mật khẩu nhập
-            lại không chính xác!</p>
-
-          <button type="submit">Register</button>
+          <span v-if="validate.error === false" class="text-red-500 font-semibold py-2 text-sm">{{ validate.message }}</span>
+          <button :disabled="isSubmitting" type="submit">Register</button>
         </form>
       </div>
       <div class="overlay-container">
@@ -45,43 +41,55 @@ export default {
         phone: '',
         password: '',
         repeatPassword: '',
-        checkPasswordLength: true
       },
-
+      validate: {
+        error: false,
+        message: '',
+        isSubmitting: false,
+     }
     }
   },
   methods: {
     async register() {
-      // Kiểm tra xem mật khẩu có trùng khớp không
-      if (this.user.password !== this.user.repeatPassword) {
-        alert('Mật khẩu nhập lại không chính xác');
-        return;
-      }
-
-      if (this.user.password.length < 6) {
-        this.user.checkPasswordLength = false;
-        return;
-      }
       try {
-        const apiObject = findApiByName("auth", "register").url;
-
-        const response = await axios.post(apiObject, {
-          userName: this.user.userName,
-          password: this.user.password,
-          fullName: this.user.fullName,
-          phone: this.user.phone,
-        });
-
-        // Xử lý dữ liệu nhận được từ API (response.data) nếu cần
-        console.log('Đăng ký tài khoản thành công', response.data);
-
-        // Hiển thị thông báo và chuyển hướng sau khi đăng ký thành công
-        alert('Đăng ký tài khoản thành công');
-        this.$router.push('/login'); // Chuyển hướng đến trang login
+        this.validate.isSubmitting = true;
+        if(!this.user.userName || !this.user.fullName || !this.user.phone || !this.user.password || !this.user.repeatPassword){
+          this.isValidate(false, "Vui lòng nhập đủ thông tin");
+          return;
+        }
+        else{
+          this.isValidate(true, "");
+          if(this.user.repeatPassword != this.user.password){
+            this.isValidate(false, "Mật khẩu nhập lại không chính xác");
+            return;
+          }else{
+            if(this.user.password.length < 6){
+              this.isValidate(false, "Mật khẩu phải trên 6 kí tự");
+              return;
+            }
+            const apiObject = findApiByName("auth", "register").url;
+            const response = await axios.post(apiObject, {
+              userName: this.user.userName,
+              password: this.user.password,
+              fullName: this.user.fullName,
+              phone: this.user.phone,
+            });
+              console.log(response);
+            }
+        } 
+        this.validate.isSubmitting = false;
+        
+        this.$router.push('/login');
       } catch (error) {
         // Xử lý lỗi từ API (error.response.data) nếu cần
+        this.validate.isSubmitting = false;
         console.error('Registration failed', error.response.data);
       }
+    },
+
+    isValidate(error, message){
+      this.validate.error = error;
+      this.validate.message = message;
     },
   },
 };
