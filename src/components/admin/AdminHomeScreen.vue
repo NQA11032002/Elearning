@@ -4,8 +4,8 @@
             <h2 class="text-2xl">Hi, Welcome back!</h2>
             <h4 class="font-light">Dasboard</h4>
         </div>
-        <div class="pt-[20px] flex ml-[133px] justify-between">
-            <div class="w-[681px] h-[200px] bg-blue-600">
+        <div class="pt-[20px] flex pl-[20px] justify-between">
+            <div class="w-[600px] h-[200px] bg-blue-600">
                 <div class="uppercase text-2xl mt-5 ml-4 text-white">
                     <span>Today Order</span>
                     <div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-[681px] h-[200px] bg-red-600 ml-[50px]">
+            <div class="w-[600px] h-[200px] bg-red-600 ml-[50px]">
                 <div class="uppercase text-2xl mt-5 ml-4 text-white">
                     <span>Today EARNINGS</span>
                     <div>

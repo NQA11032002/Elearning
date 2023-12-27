@@ -26,9 +26,10 @@
                 </th>
             </tr>
             <tr>
-                <td class="tableItems"><img
-                        src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/402115421_1748573295622852_6964444934763396830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Bgk_z7agv_sAX8eGo6D&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfDFpJJ6QbNK5pz4HuXlZYZdQIzj05_khTjUKNRmlfkhtA&oe=657E4547"
-                        class="avatar w-20 rounded-full m-3"></td>
+                <td class="tableItems">
+                    <img
+                        src="https://imagev3.vietnamplus.vn/w1000/Uploaded/2023/xpcwvovt/2023_12_21/ttxvn-elon-musk-4639.jpg.webp"
+                        class="avatar w-30 rounded m-3"></td>
                 <td class="tableItems">
                     <div class="text-center">Nguyễn Đình Khang</div>
                 </td>
@@ -39,7 +40,7 @@
                     <div class="text-center">1</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg"><span class="mx-3">Chi
+                    <div class="text-center"><button class="border border-black rounded-lg bg-green-400"><span class="mx-3">Chi
                                 tiết</span></button></div>
                 </td>
                 <td class="tableItems">
@@ -48,11 +49,12 @@
                 </td>
             </tr>
             <tr>
-                <td class="tableItems"><img
-                        src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/402115421_1748573295622852_6964444934763396830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Bgk_z7agv_sAX8eGo6D&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfDFpJJ6QbNK5pz4HuXlZYZdQIzj05_khTjUKNRmlfkhtA&oe=657E4547"
-                        class="avatar w-20 rounded-full m-3"></td>
                 <td class="tableItems">
-                    <div class="text-center">Nguyễn Minh Châu</div>
+                    <img
+                        src="https://imagev3.vietnamplus.vn/w1000/Uploaded/2023/xpcwvovt/2023_12_21/ttxvn-elon-musk-4639.jpg.webp"
+                        class="avatar w-30 rounded m-3"></td>
+                <td class="tableItems">
+                    <div class="text-center">Nguyễn Đình Khang</div>
                 </td>
                 <td class="tableItems">
                     <div class="text-center">200</div>
@@ -61,20 +63,21 @@
                     <div class="text-center">1</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg"><span class="mx-3">Chi
+                    <div class="text-center"><button class="border border-black rounded-lg bg-green-400"><span class="mx-3">Chi
                                 tiết</span></button></div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg"><span
+                    <div class="text-center"><button class="border border-black rounded-lg bg-red-400"><span
                                 class="mx-3">Khoá</span></button></div>
                 </td>
             </tr>
             <tr>
-                <td class="tableItems"><img
-                        src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/402115421_1748573295622852_6964444934763396830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Bgk_z7agv_sAX8eGo6D&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfDFpJJ6QbNK5pz4HuXlZYZdQIzj05_khTjUKNRmlfkhtA&oe=657E4547"
-                        class="avatar w-20 rounded-full m-3"></td>
                 <td class="tableItems">
-                    <div class="text-center">Nguyễn Nam Hải</div>
+                    <img
+                        src="https://imagev3.vietnamplus.vn/w1000/Uploaded/2023/xpcwvovt/2023_12_21/ttxvn-elon-musk-4639.jpg.webp"
+                        class="avatar w-30 rounded m-3"></td>
+                <td class="tableItems">
+                    <div class="text-center">Nguyễn Đình Khang</div>
                 </td>
                 <td class="tableItems">
                     <div class="text-center">200</div>
@@ -83,20 +86,21 @@
                     <div class="text-center">1</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg"><span class="mx-3">Chi
+                    <div class="text-center"><button class="border border-black rounded-lg bg-green-400"><span class="mx-3">Chi
                                 tiết</span></button></div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg"><span
+                    <div class="text-center"><button class="border border-black rounded-lg bg-red-400"><span
                                 class="mx-3">Khoá</span></button></div>
                 </td>
             </tr>
             <tr>
-                <td class="tableItems"><img
-                        src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/402115421_1748573295622852_6964444934763396830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Bgk_z7agv_sAX8eGo6D&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfDFpJJ6QbNK5pz4HuXlZYZdQIzj05_khTjUKNRmlfkhtA&oe=657E4547"
-                        class="avatar w-20 rounded-full m-3"></td>
                 <td class="tableItems">
-                    <div class="text-center">Hồ Viêt Hải</div>
+                    <img
+                        src="https://imagev3.vietnamplus.vn/w1000/Uploaded/2023/xpcwvovt/2023_12_21/ttxvn-elon-musk-4639.jpg.webp"
+                        class="avatar w-30 rounded m-3"></td>
+                <td class="tableItems">
+                    <div class="text-center">Nguyễn Đình Khang</div>
                 </td>
                 <td class="tableItems">
                     <div class="text-center">200</div>
@@ -105,14 +109,37 @@
                     <div class="text-center">1</div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg"><span class="mx-3">Chi
+                    <div class="text-center"><button class="border border-black rounded-lg bg-green-400"><span class="mx-3">Chi
                                 tiết</span></button></div>
                 </td>
                 <td class="tableItems">
-                    <div class="text-center"><button class="border border-black rounded-lg"><span
+                    <div class="text-center"><button class="border border-black rounded-lg bg-red-400"><span
                                 class="mx-3">Khoá</span></button></div>
                 </td>
-        </tr>
+            </tr>
+            <tr>
+                <td class="tableItems">
+                    <img
+                        src="https://imagev3.vietnamplus.vn/w1000/Uploaded/2023/xpcwvovt/2023_12_21/ttxvn-elon-musk-4639.jpg.webp"
+                        class="avatar w-30 rounded m-3"></td>
+                <td class="tableItems">
+                    <div class="text-center">Nguyễn Đình Khang</div>
+                </td>
+                <td class="tableItems">
+                    <div class="text-center">200</div>
+                </td>
+                <td class="tableItems">
+                    <div class="text-center">1</div>
+                </td>
+                <td class="tableItems">
+                    <div class="text-center"><button class="border border-black rounded-lg bg-green-400"><span class="mx-3">Chi
+                                tiết</span></button></div>
+                </td>
+                <td class="tableItems">
+                    <div class="text-center"><button class="border border-black rounded-lg bg-red-400"><span
+                                class="mx-3">Khoá</span></button></div>
+                </td>
+            </tr>
     </table>
     </div>
 </template>

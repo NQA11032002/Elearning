@@ -1,7 +1,6 @@
 <template>
   <div>
-    <header-screen
-      v-if="page != 'login' && page != 'register' && page !== 'adminHome' && page !== 'ProsserMangerPage' && page !== 'CourseMangerPage' && page !== 'StudentMangerPage' && page !== 'ApprovePage'&& page !== 'LessonsPage'"></header-screen>
+    <header-screen v-if="page != 'login' && page != 'register' && page !== 'adminHome' && page !== 'ProsserMangerPage' && page !== 'CourseMangerPage' && page !== 'StudentMangerPage' && page !== 'ApprovePage'&& page !== 'LessonsPage'"></header-screen>
     <home-screen v-if="page === 'home'"></home-screen>
     <training-screen v-if="page === 'training'"></training-screen>
     <support-screen v-if="page === 'support'"></support-screen>
@@ -14,11 +13,11 @@
     <headerAdmin-screen
       v-if="page === 'adminHome' || page === 'ProsserMangerPage' || page === 'CourseMangerPage' || page === 'StudentMangerPage'||page === 'ApprovePage'|| page === 'LessonsPage'"></headerAdmin-screen>
     <div class="flex">
-      <sidebar-screen v-if="page === 'adminHome' || page === 'ProsserMangerPage' || page === 'CourseMangerPage' || page === 'StudentMangerPage'||page === 'ApprovePage' || page === 'LessonsPage'"></sidebar-screen>
+      <sidebar-screen v-if="page === 'adminHome' || page === 'ProsserMangerPage' || page === 'CourseMangerPage' || page === 'StudentMangerPage'||page === 'ApprovePage' || page === 'LessonsPage'" @navigate="navigateToPage"></sidebar-screen>
       <adminHome-screen
         v-if="page === 'adminHome' && page !== 'ProsserMangerPage' && page !== 'CourseMangerPage' && page !== 'StudentMangerPage'&& page !== 'ApprovePage'"></adminHome-screen>
       <ProfesserManager-screen v-if="page === 'ProsserMangerPage' && page !== 'adminHome'"></ProfesserManager-screen>
-      <CourseManagerScreenVue v-if="page === 'CourseMangerPage' && page !== 'adminHome'"></CourseManagerScreenVue>
+      <CourseManagerScreenVue v-if="page === 'CourseMangerPage' && page !== 'adminHome'" @navigate="navigateToPage"></CourseManagerScreenVue>
       <StudentManagerScreen v-if="page === 'StudentMangerPage' && page !== 'adminHome'"> </StudentManagerScreen>
       <ApproveScreen v-if="page === 'ApprovePage' && page !== 'adminHome'"></ApproveScreen>
       <LessonsScreen v-if="page === 'LessonsPage' && page !== 'adminHome'"></LessonsScreen>
@@ -29,7 +28,6 @@
     <footer-screen
       v-if="page != 'login' && page != 'register'"></footer-screen>
   </div>
-  <!-- <footer-screen></footer-screen> -->
 </template>
 <script>
 import HomeScreen from "./components/client/HomeScreen.vue";
@@ -73,8 +71,14 @@ export default {
   },
   data() {
     return {
-      page: "ApprovePage",
+      page: "adminHome",
     };
+  },
+
+methods: {
+    navigateToPage(pageName) {
+      this.page = pageName;
+    }
   }
 }
 </script>
