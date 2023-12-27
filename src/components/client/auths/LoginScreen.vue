@@ -38,7 +38,6 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
 import { findApiByName } from '../../../assets/js/apiUtil.js';
 
-
 export default {
   setup() {
     const router = useRouter();
@@ -54,25 +53,32 @@ export default {
         password: '',
         isLogin: true,
       },
+      auth: {
+        token: '',
+        userID: '',
+        role: '',
+      }
     };
   },
 
   methods: {
     async login() {
       try {
+        
         // Gửi yêu cầu POST đến API Spring Boot để đăng nhập
         const apiObject = findApiByName("auth", "login").url;
-        const response = await axios.post(apiObject, {
+        await axios.post(apiObject, {
           userName: this.user.userName,
           password: this.user.password,
         }).then((response) => {
             if (response.status == 200) {
+              this.user.isLogin = true;
               Cookies.set('auth', response.data.token, this.changeTime(response.data.expirationTime));            
               Cookies.set('userID', response.data.userID, this.changeTime(response.data.expirationTime));            
               Cookies.set('role', response.data.role, this.changeTime(response.data.expirationTime));            
             }
           });
-        console.log(response);
+
         this.$router.push('/home');
       } catch (error) {
         this.user.isLogin = false;
@@ -87,8 +93,7 @@ export default {
       // Tạo đối tượng Date từ chuỗi thời gian
       const dateObject = new Date(timeString);
       // Chuyển đổi thời gian thành giây
-      const timeInSeconds = dateObject.getTime() / 1000;
-      console.log(timeInSeconds);
+      dateObject.getTime() / 1000;
     }
   },
 };

@@ -1,6 +1,7 @@
 <template>
     <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
         <div class="w-full flex my-5 max-sm:flex-col">
+            <PopupConfirm v-if="user.isChangeInfor" :contents="contents"></PopupConfirm>
             <sidebarmember-screen></sidebarmember-screen>
             <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0 shadow-md">
                 <div class="p-4">
@@ -33,10 +34,11 @@ import SidebarmemberScreen from '../common/SidebarmemberScreen.vue';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { findApiByName } from '../../../assets/js/apiUtil.js';
-
+import PopupConfirm from "../common/PopupConfirm.vue";
 export default {
     components: {
         SidebarmemberScreen,
+        PopupConfirm
     },
     data() {
         return {
@@ -44,12 +46,18 @@ export default {
                 currentPassword: '',
                 password: '',
                 repassword: '',
+                isChangeInfor: false,
             },
             validate: {
                 error: false,
                 message: '',
-            }
-            
+            },
+            contents: {
+                title: "Đổi mật khẩu thất bại",
+                status: false,
+                color: "red-600",
+                icon: "fa-solid fa-circle-exclamation"
+            },
         };
     },
     methods: {
@@ -83,6 +91,11 @@ export default {
                     this.isValidate(false, "Mật khẩu hiện tại không đúng");
                     return;
                     }
+                    this.user.isChangeInfor = true;
+                    this.contents.title = "Đổi mật khẩu thành công";
+                    this.contents.status = true;
+                    this.contents.color = "green-500";
+                    this.contents.icon = "fa-regular fa-circle-check";
                 }
 
             }catch(error){

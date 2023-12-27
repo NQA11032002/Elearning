@@ -27,21 +27,19 @@
       <div v-if="isAuthenticated" class="">
         <div class="flex items-center gap-4 ">
           <div class="">
-            <a href="/my-course"
+            <a v-if="role === 'USER'" href="/my-course"
               class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Học
               tập</a>
-            <a href="/my-course"
+            <a v-if="role === 'EXPERT'" href="/my-course"
               class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Quản
               lý</a>
-
-
           </div>
           <div class="relative">
             <img @click="toggleDropdown" class="w-8 h-8 rounded-full cursor-pointer"
               src="../../../assets/images/client/avatars/avatar.png" alt="">
             <ul v-if="showDropdown" class="absolute right-0 mt-2 bg-white border rounded-md shadow-md w-48 p-4">
-              <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/profile/1">Thông tin tài khoản</a></li>
-              <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/changepass/1">Đổi mật khẩu</a></li>
+              <li class="border-b border-gray-300 mb-2"><a class="p-2" :href="role === 'USER' ? '/profile' : (role === 'EXPERT' ? '/profile-expert' : '#')">Thông tin tài khoản</a></li>
+              <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/changepass">Đổi mật khẩu</a></li>
               <li><a class="p-2" @click="logout" href="#">Đăng xuất</a></li>
             </ul>
           </div>
@@ -73,20 +71,36 @@ export default {
     return {
       isAuthenticated: false,
       showDropdown: false,
+      role: ''
     };
   },
-  mounted() {
-    this.checkAuthentication();
-  },
-  methods: {
-    checkAuthentication() {
-      const token = Cookies.get("auth"); // Thay "auth" bằng tên của cookie lưu token
 
-      if (token) {
+  
+  mounted() {
+
+    this.checkCurrentRoute();
+  },
+  watch: {
+    $route() {
+      // Gọi phương thức kiểm tra khi có sự thay đổi trong route
+      this.checkCurrentRoute();
+      this.role = Cookies.get("role");
+      this.showDropdown = false;
+    },
+  },
+  
+  methods: {
+
+    checkCurrentRoute() {
+      const currentPath = this.$route.path;
+      const token = Cookies.get("auth");
+      console.log(currentPath);
+      // Kiểm tra nếu đường dẫn là '/home'
+      if (currentPath !== '/login' && token) {
         this.isAuthenticated = true;
-      } else {
-        this.isAuthenticated = false;
+        // Thực hiện các hành động bạn muốn khi ở trang Home
       }
+      console.log(this.isAuthenticated);
     },
 
     toggleDropdown() {
@@ -109,10 +123,10 @@ export default {
             this.deleteCookie("auth");
             this.deleteCookie("userID");
             this.deleteCookie("role");
+            this.isAuthenticated = false;
             this.$router.push('/login');
           }
         })
-        
       } catch (error) {
         console.error('Logout fail', error);
       }
@@ -120,7 +134,7 @@ export default {
 
     deleteCookie(name) {
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    }
+    },
   },
 
 
