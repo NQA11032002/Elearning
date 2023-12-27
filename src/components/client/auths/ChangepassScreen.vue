@@ -29,26 +29,8 @@
         </div>
       </div>
     </div>
-    <div
-      class="w-full flex justify-center rounded-xl py-12 px-40 max-sm:px-0 mb border-b border-gray-100 max-sm:flex-col max-sm:py-6">
-      <form @submit.prevent="changePass">
-        <div class="flex flex-col w-80 max-sm:w-full max-sm:px-2 max-sm:flex max-sm:justify-center">
-          <span class="font-semibold">Mật khẩu cũ</span>
-          <input v-model="user.currentPassword" class="outline-none border border-blue-900 mb-4 p-2 rounded-md"
-            type="password" placeholder="Nhập mật khẩu cũ">
-          <span class="font-semibold">Mật khẩu mới</span>
-          <input v-model="user.password" class="outline-none border border-blue-900 mb-4 p-2 rounded-md" type="password"
-            placeholder="Nhập mật khẩu mới">
-          <span class="font-semibold">Nhập lại mật khẩu mới</span>
-          <input v-model="user.repassword" class="outline-none border border-blue-900 mb-2 p-2 rounded-md" type="password"
-            placeholder="Nhập lại mật khẩu mới">
-          <span v-if="validate.error === false" class="text-red-600 mb-4 ">{{ validate.message }}</span>
-          <button type="submit" class="bg-blue-900 text-white p-2 rounded-md">Đổi mật khẩu</button>
-        </div>
-      </form>
-    </div>
   </div>
-</div></template>
+</template>
 
 <script>
 import SidebarmemberScreen from '../common/SidebarmemberScreen.vue';
@@ -127,43 +109,6 @@ export default {
       this.validate.error = error;
       this.validate.message = message;
     }
-        const token = Cookies.get("auth");
-    const body = {
-      password: this.user.password,
-    };
-    const options = {
-      headers: { 'Authorization': `Bearer ${token}` },
-      params: {
-        currentPassword: this.user.currentPassword
-      },
-    };
-    if(this.user.password !== this.user.repassword) {
-  this.isValidate(false, "Mật khẩu nhập lại không chính xác");
-  return;
-} else {
-  const apiObject = findApiByName("user", "updateUser").url + "/" + queryParams;
-  const response = await axios.put(apiObject, body, options);
-  console.log(response.data.status);
-
-  if (this.user.password.length < 6) {
-    this.isValidate(false, "Mật khẩu mới phải trên 6 kí tự");
-    return;
-  }
-
-  if (response.data.status === "BAD_REQUEST") {
-    this.isValidate(false, "Mật khẩu hiện tại không đúng");
-    return;
-  }
-}
-
-      } catch (error) {
-  console.error('Get infor failed', error);
-}
-    },
-isValidate(error, message) {
-  this.validate.error = error;
-  this.validate.message = message;
-}
   },
 };
 </script>

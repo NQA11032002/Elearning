@@ -116,7 +116,7 @@ export default {
         const formData = new FormData();
         formData.append('token', token);
         const apiObject = findApiByName("auth", "logout").url;
-        const response = await axios.post(apiObject, formData, {
+        await axios.post(apiObject, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
