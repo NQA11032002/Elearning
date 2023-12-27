@@ -5,12 +5,12 @@
     <router-view :user="user"></router-view>
   </div>
 
-  <footer-screen></footer-screen>
+  <!-- <footer-screen></footer-screen> -->
 </template>
 
 <script>
 import HeaderScreen from "./components/client/common/HeaderScreen.vue";
-import FooterScreen from "./components/client/common/FooterScreen.vue";
+// import FooterScreen from "./components/client/common/FooterScreen.vue";
 import { findApiByName } from './assets/js/apiUtil.js';
 import axios from 'axios';
 export default {
@@ -18,7 +18,7 @@ export default {
   name: "App",
   components: {
     HeaderScreen,
-    FooterScreen,
+    // FooterScreen,
   },
   data() {
     return {
