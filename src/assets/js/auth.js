@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 export function auth() {
-  return localStorage.getItem('idUser') != null ? localStorage.getItem('idUser') : null;
+  return Cookies.get('userID') != null ? Cookies.get('userID') : null;
 }

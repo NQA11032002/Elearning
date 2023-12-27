@@ -38,9 +38,7 @@
             <img @click="toggleDropdown" class="w-8 h-8 rounded-full cursor-pointer"
               src="../../../assets/images/client/avatars/avatar.png" alt="">
             <ul v-if="showDropdown" class="absolute right-0 mt-2 bg-white border rounded-md shadow-md w-48 p-4">
-              <li class="border-b border-gray-300 mb-2"><a class="p-2"
-                  :href="role === 'USER' ? '/profile' : (role === 'EXPERT' ? '/profile-expert' : '#')">Thông tin tài
-                  khoản</a></li>
+              <li class="border-b border-gray-300 mb-2"><a class="p-2" :href="role === 'USER' ? '/profile' : (role === 'EXPERT' ? '/profile-expert' : '#')">Thông tin tài khoản</a></li>
               <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/changepass">Đổi mật khẩu</a></li>
               <li><a class="p-2" @click="logout" href="#">Đăng xuất</a></li>
             </ul>
@@ -77,7 +75,7 @@ export default {
     };
   },
 
-
+  
   mounted() {
 
     this.checkCurrentRoute();
@@ -90,9 +88,8 @@ export default {
       this.showDropdown = false;
     },
   },
-
+  
   methods: {
-
     checkCurrentRoute() {
       const currentPath = this.$route.path;
       const token = Cookies.get("auth");
@@ -111,26 +108,26 @@ export default {
 
 
     async logout() {
-      try {
+      try { 
+        const apiObject = findApiByName("auth", "logout").url;
         const token = Cookies.get("auth");
         const formData = new FormData();
         formData.append('token', token);
-        const apiObject = findApiByName("auth", "logout").url;
         await axios.post(apiObject, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         }).then((res) => {
-          if (res.status === 200) {
+          if(res.status === 200) {
             this.deleteCookie("auth");
             this.deleteCookie("userID");
             this.deleteCookie("role");
+            this.isAuthenticated = false;
             this.$router.push('/login');
           }
         })
-
       } catch (error) {
-        console.error('Get infor failed', error.response.data);
+        console.error('Logout fail', error);
       }
     },
 

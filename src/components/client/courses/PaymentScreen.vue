@@ -180,6 +180,7 @@ import { ref } from "vue";
 import axios from "axios";
 import PopupScreen from "../common/PopupScreen.vue";
 import { findApiByName } from "../../../assets/js/apiUtil.js";
+import { auth } from "../../../assets/js/auth.js";
 
 export default {
   mounted() {
@@ -190,7 +191,7 @@ export default {
         const res = await axios.get(apiObject, {
           params: {
             courseID: parseInt(this.orderData.courseID),
-            userID: parseInt(localStorage.getItem("idUser")),
+            userID: auth(),
           },
         });
 
@@ -202,14 +203,8 @@ export default {
         else {
           this.isPopup = false;
         }
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
-    isRegistered();
-
-    if (!this.isRegistered) {
+        if (!this.isRegistered) {
       // Convert initial time to seconds
       let timeInSeconds = this.convertTimeToSeconds(this.countdown);
 
@@ -229,8 +224,16 @@ export default {
         }
       }, 1000);
     } else {
+      clearInterval(this.interval);
       this.changeInfoPopup("Bạn đã đăng ký khóa học này. Vui lòng theo dõi tại trang khóa học của bạn", "red-600", "fa-solid fa-circle-exclamation");
     }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    isRegistered();
+
   },
   setup() {
     const course = ref();
@@ -337,7 +340,7 @@ export default {
       interval: null,
       countdown: "05:00",
       orderData: {
-        userID: localStorage.getItem("idUser"),
+        userID: auth(),
         courseID: this.$route.params.id,
         totalPrice: 0,
         codeOrder:
@@ -345,7 +348,7 @@ export default {
           "-" +
           this.$route.params.id +
           "-" +
-          localStorage.getItem("idUser"),
+          auth(),
         status: "Đang xử lý",
       },
       isPopup: false,

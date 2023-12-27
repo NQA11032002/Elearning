@@ -18,11 +18,6 @@
           href="/profile">Thông tin người dùng</a>
       </div>
       <div class="flex items-left py-4">
-        <i class="fa-solid fa-book text-xl mr-3 text-blue-900"></i>
-        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium"
-          href="/registered-course">Khóa học đăng ký</a>
-      </div>
-      <div class="flex items-left py-4">
         <i class="fa-solid fa-headphones-simple text-xl mr-3 text-blue-900"></i>
         <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Hỗ
           trợ</a>
@@ -36,9 +31,8 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import { loadInfor } from "../../../assets/js/custom.js";
 import Cookies from 'js-cookie';
-
 export default {
   data() {
     return {
@@ -51,36 +45,16 @@ export default {
     };
   },
   mounted() {
-    // Gọi hàm loadInfor() khi component được mount
-    this.loadInfor();
-  },
-  methods: {
-    async loadInfor() {
-      try {
-        const queryParams = localStorage.getItem("idUser");
-        if (!queryParams) {
-          console.error('idUser is null or undefined');
-          return;
-        }
-        const apiUrl = `http://localhost:8086/api/customer/${queryParams}`;
-        const token = Cookies.get("auth");
-        const response = await axios.get(apiUrl, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        this.user.fullName = response.data.data.fullName;
-        this.user.role = response.data.data.user.role;
-        this.user.profilePictureURL = response.data.data.profilePictureURL;
+    loadInfor().then((data) => {
+      console.log(data);
+      this.user.fullName = data.fullName;
+      this.user.profilePictureURL = data.profilePictureURL;
+    });
+    if(Cookies.get("role") == "USER"){
+      this.user.role = "Học viên";
 
-        if (this.user.role === "USER") {
-          this.user.role = "Học viên"
-        }
-
-      } catch (error) {
-        console.error('Get infor failed', error.response.data);
-      }
     }
-  }
+
+  },
 };
 </script>
