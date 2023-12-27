@@ -16,7 +16,6 @@ import MyCourseScreen from './components/client/students/MyCourseScreen.vue'
 
 import ForgotPassScreen from "./components/client/auths/ForgotPassScreen.vue";
 import ChangepassScreen from "./components/client/auths/ChangepassScreen.vue";
-import RegisteredCourses from "./components/client/auths/RegisteredCourses.vue";
 
 import GiftCodeScreen from "./components/client/GiftCodeScreen.vue";
 
@@ -27,7 +26,6 @@ import InformationPro from "./components/client/Profession/InformationPro.vue";
 import TopicInformation from "./components/client/Profession/TopicInformation.vue";
 import CourseVideoScreen from "./components/client/Profession/CourseVideoScreen.vue";
 import CourseManager from "./components/client/Profession/CourseManager.vue";
-
 
 
 const routes = [
@@ -91,10 +89,7 @@ const routes = [
       path: '/changepass',
       component: ChangepassScreen
   },
-  {
-    path: '/registered-course',
-    component: RegisteredCourses
-  },
+
   {
     path: '/detail-course/:id',
     component: DetailCoursePro
@@ -127,6 +122,7 @@ const routes = [
     path: '/expert/management',
     component: CourseManager
   },
+  
 ]
 
 
