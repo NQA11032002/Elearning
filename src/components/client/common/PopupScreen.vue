@@ -3,7 +3,7 @@
     class="overflow-y-auto w-100  z-zIndex fixed overflow-x-hidden justify-center items-center w-full h-[calc(100%-1rem)] max-h-full">
     <div :class="'border-b-' + contents.color"
       class="p-4  w-full max-w-md max-h-full fixed top-1/2 left-1/2  border-b-4 z-50 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-gray-300 bg-white rounded-lg">
-      <div class="relative dark:bg-gray-700">
+      <div class="relative">
 
         <div class="p-4 md:p-5 text-center">
           <i class="text-5xl pb-5 " :class="['text-' + contents.color, contents.icon]"></i>

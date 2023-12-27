@@ -38,7 +38,6 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
 import { findApiByName } from '../../../assets/js/apiUtil.js';
 
-
 export default {
   setup() {
     const router = useRouter();
@@ -49,41 +48,38 @@ export default {
   },
   data() {
     return {
-      userName: '',
-      password: '',
-      isLogin: false,
-
+      user: {
+        userName: '',
+        password: '',
+        isLogin: true,
+      },
+      auth: {
+        token: '',
+        userID: '',
+        role: '',
+      }
     };
   },
 
   methods: {
     async login() {
       try {
+
         // Gửi yêu cầu POST đến API Spring Boot để đăng nhập
         const apiObject = findApiByName("auth", "login").url;
-        const response = await axios.post(apiObject, {
-          userName: this.userName,
-          password: this.password,
+        await axios.post(apiObject, {
+          userName: this.user.userName,
+          password: this.user.password,
+        }).then((response) => {
+          if (response.status == 200) {
+            this.user.isLogin = true;
+            Cookies.set('auth', response.data.token, this.changeTime(response.data.expirationTime));
+            Cookies.set('userID', response.data.userID, this.changeTime(response.data.expirationTime));
+            Cookies.set('role', response.data.role, this.changeTime(response.data.expirationTime));
+          }
         });
 
-        if (response.status == 200 && Cookies.get('auth') === undefined) {
-          Cookies.set('auth', response.data.token, { expires: 1 }); // Expires in 1 days
-        }
-        this.isLogin = true;
-        const formData = new FormData();
-        formData.append('token', response.data.token);
-
-        const apiObject_getID = findApiByName("auth", "getUserID").url;
-
-        const response_token = await axios.post(apiObject_getID, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-
-        localStorage.setItem('idUser', response_token.data.data);
-
-        this.$router.push('/home'); // Chuyển hướng đến trang home
+        this.$router.push('/home');
       } catch (error) {
         // Xử lý lỗi từ API (error.response.data) nếu cần
 
@@ -91,6 +87,15 @@ export default {
       }
     },
 
+    deleteCookie(name) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    },
+    changeTime(timeString) {
+      // Tạo đối tượng Date từ chuỗi thời gian
+      const dateObject = new Date(timeString);
+      // Chuyển đổi thời gian thành giây
+      dateObject.getTime() / 1000;
+    }
   },
 };
 </script>

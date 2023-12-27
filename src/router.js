@@ -84,15 +84,15 @@ const routes = [
       component: ForgotPassScreen
   },
   {
-      path: '/profile/:id',
+      path: '/profile',
       component: InformationScreen
   },
   {
-      path: '/changepass/:id',
+      path: '/changepass',
       component: ChangepassScreen
   },
   {
-    path: '/registered-course/:id',
+    path: '/registered-course',
     component: RegisteredCourses
   },
   {
@@ -100,7 +100,7 @@ const routes = [
     component: DetailCoursePro
   },
   {
-    path: '/gift-code/:id',
+    path: '/gift-code',
     component: GiftCodeScreen
   },
   {
@@ -112,7 +112,7 @@ const routes = [
     component: EditCourse
   },
   {
-    path: '/expert/:id',
+    path: '/profile-expert',
     component: InformationPro
   },
   {
@@ -124,7 +124,7 @@ const routes = [
     component: CourseVideoScreen
   },
   {
-    path: '/expert/courses',
+    path: '/expert/management',
     component: CourseManager
   },
 ]

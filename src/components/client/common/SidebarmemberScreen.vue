@@ -13,14 +13,14 @@
     </div>
     <div class="flex flex-col items-left ml-6">
       <div class="flex items-left py-4">
-        <i class="fa-solid fa-book text-xl mr-3 text-blue-900"></i>
+        <i class="fa-solid fa-person text-xl mr-3 text-blue-900"></i>
         <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium"
-          href="/profile/1">Thông tin người dùng</a>
+          href="/profile">Thông tin người dùng</a>
       </div>
       <div class="flex items-left py-4">
         <i class="fa-solid fa-book text-xl mr-3 text-blue-900"></i>
         <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium"
-          href="/registered-course/1">Khóa học đăng ký</a>
+          href="/registered-course">Khóa học đăng ký</a>
       </div>
       <div class="flex items-left py-4">
         <i class="fa-solid fa-headphones-simple text-xl mr-3 text-blue-900"></i>
@@ -29,18 +29,8 @@
       </div>
       <div class="flex items-left py-4">
         <i class="fa-solid fa-gift text-xl mr-3 text-blue-900"></i>
-        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Kích hoạt
+        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/gift-code">Kích hoạt
           mã</a>
-      </div>
-      <div class="flex items-left py-4">
-        <i class="fa-solid fa-gift text-xl mr-3 text-blue-900"></i>
-        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Quản
-          lý</a>
-      </div>
-      <div class="flex items-left py-4">
-        <i class="fa-solid fa-arrow-right-from-bracket text-xl mr-3 text-blue-900"></i>
-        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Đăng
-          xuất</a>
       </div>
     </div>
   </div>
