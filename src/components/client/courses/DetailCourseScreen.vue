@@ -160,7 +160,7 @@ export default {
         const res = await axios.get(apiObject, {
           params: {
             courseID: parseInt(this.$route.params.id),
-            userID: parseInt(localStorage.getItem("idUser")),
+            userID: auth(),
           },
         });
 
@@ -219,7 +219,7 @@ export default {
     async getUserByID() {
       try {
         // Get API URL
-        const apiObject = findApiByName("customer", "findUser").url;
+        const apiObject = findApiByName("customer", "findCustomerByUserID").url;
 
         // Make API request
         const res = await axiosAuth.get(apiObject + auth());
@@ -281,7 +281,7 @@ export default {
         courseID: this.$route.params.id,
         comment: '',
         rate: 1,
-        userID: localStorage.getItem('idUser') != null ? localStorage.getItem('idUser') : null,
+        userID: auth(),
       },
       showMoreEvaluate: false,
       currentPage: 1,
