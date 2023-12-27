@@ -90,7 +90,6 @@ export default {
   },
   
   methods: {
-
     checkCurrentRoute() {
       const currentPath = this.$route.path;
       const token = Cookies.get("auth");

@@ -60,6 +60,7 @@ export default {
         else{
           this.isValidate(true, "");
           if(this.user.repeatPassword != this.user.password){
+            this.isValidate(false, "Mật khẩu nhập lại không chính xác");
             return;
           }else{
             if(this.user.password.length < 6){
