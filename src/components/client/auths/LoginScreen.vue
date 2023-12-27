@@ -85,10 +85,7 @@ export default {
         console.error('Login failed', error);
       }
     },
-    
-    deleteCookie(name) {
-      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    },
+   
     changeTime(timeString){
       // Tạo đối tượng Date từ chuỗi thời gian
       const dateObject = new Date(timeString);

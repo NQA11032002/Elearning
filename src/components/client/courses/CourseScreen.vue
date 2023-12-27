@@ -1,15 +1,13 @@
 <template>
-  <div class="grid container mt-14 mb-14 shadow-md">
-    <div class="sidebar">
-      <div class="sidebar__container">
-        <h1 class="title mb-3 text-center font-semibold">KHÓA HỌC</h1>
-      </div>
-
-      <div class="filters p-5">
+  <div v-if="courses.data != null" class="flex gap-9 container mt-14 mb-14 max-w-screen-2xl mx-auto">
+    <div class="sidebar w-1/5 bg-white  rounded-lg shadow-md">
+      <div class="filters p-5 h-5/6">
         <div class="filter__container">
+          <h1 class="title text-center font-semibold text-xl">KHÓA HỌC</h1>
+
           <div class="filter filter__search">
             <p>
-              Tìm thấy : <b> {{ courses.length }} khóa học</b>
+              Tìm thấy : <b> {{ courses.data.length }} khóa học</b>
               {{ keyword != "" ? "theo" : "" }} <b>{{ keyword }}</b>
             </p>
             <input type="text" class="search__name" @change="searchCourse" v-model="keyword"
@@ -130,12 +128,7 @@
       </div>
     </div>
 
-    <div class="col-right">
-      <div class="histories flex mb-3">
-        <!--  <p>Tìm kiếm gần đây: <b class="pl-1 histories__result">keyword</b></p>
-        <p class="mr-5 ml-5"><b class=" mr-1">Từ khóa</b> được tìm kiếm nhiều nhất: <b class="pl-1 histories__result">keyword</b></p>
-        <p>Khóa học <b class="mr-1 ml-1">nổi bật</b> trong tháng: <b class="pl-1 histories__result">Keyword</b></p> -->
-      </div>
+    <div class="col-right w-4/5">
 
       <div class="courses p-5">
         <label class="filters flex justify-end font-semibold cursor-pointer">
@@ -143,10 +136,11 @@
           Bộ lọc
         </label>
 
-        <div class="cards grid mt-5">
-          <a :href="'/course/' + course.id" class="course flex flex-col w-1/1 gap-4" v-for="course in courses"
-            :key="course.id">
-            <img class="image object-cover flex-shrink-0 h-40 w-full" :src="course.courseImages.length > 0
+        <div class="cards flex flex-wrap gap-8 mt-5 ml-1">
+          <a :href="'/course/' + course.id"
+            class="course border rounded-md hover:shadow-lg transition-all  flex flex-col w-1/1 gap-4"
+            v-for="course in courses.data" :key="course.id">
+            <img class="image object-cover flex-shrink-0 h-40 w-course" :src="course.courseImages.length > 0
               ? course.courseImages[0].urlImage
               : ''
               " alt="" />
@@ -159,18 +153,12 @@
               <div class="card__info flex justify-between flex-1">
                 <div class="card__info--left flex">
                   <img class="avatar flex-shrink-0" src="../../../assets/images/client/avatars/1.png" alt="" />
-                  <p class="name flex-1 ml-2">Võ Duy Thanh</p>
+                  <p class=" text-sm font-medium flex-1 ml-2">{{ course.fullName }}</p>
                 </div>
 
-                <p class="card__info--right cursor-default text-center font-semibold" :class="compareDates(course.createdAt) == 'course__new'
-                  ? 'course__new'
-                  : null
-                  ">
+                <p class="card__info--right flex-shrink-0 text-sm text-content cursor-default text-center ">
                   {{
-                    compareDates(course.createdAt) == "course__new"
-                    ? "New"
-                    : null
-                  }}
+                    course.createdAt }}
                 </p>
               </div>
             </div>
@@ -188,115 +176,123 @@
 
 <script>
 import "../../../assets/styles/course.scss";
-import { ref } from "vue";
-import { parseISO } from "date-fns";
 import axios from "axios";
 import { findApiByName } from "../../../assets/js/apiUtil.js";
+import axiosAuth from "../../../assets/js/axios.js";
 
 export default {
   props: [],
+  mounted() {
+    this.getAllCourses();
+
+  },
   setup() {
-    const courses = ref([]);
-    const page = ref(0);
-    const records = 6;
-    const currentDate = new Date();
-    const monthCurrent = currentDate.getMonth() + 1;
-    const yearCurrent = currentDate.getFullYear();
-    const keyword = ref();
-    const priceFrom = ref();
-    const priceTo = ref();
-    const education = ref();
-    const category = ref();
 
-    const getAllCourses = async () => {
-      try {
-        //get url API
-        const apiObject = findApiByName("course", "common").url;
 
-        const res = await axios.get(apiObject, {
-          params: {
-            page: page.value,
-            records: records,
-            search: keyword.value,
-            priceFrom: priceFrom.value,
-            priceTo: priceTo.value,
-            education: education.value,
-            category: category.value,
-          },
-        });
-        courses.value = res.data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const compareDates = (date) => {
-      const parsedDate = parseISO(date);
-      const monthDate = parsedDate.getMonth() + 1;
-      const yearDate = parsedDate.getFullYear();
-
-      if (monthDate == monthCurrent && yearDate == yearCurrent) {
-        return "course__new";
-      }
-    };
-
-    const prePage = () => {
-      if (page.value > 0) {
-        page.value--;
-        getAllCourses();
-      }
-    };
-
-    const nextPage = () => {
-      if (page.value < courses.value.totalPage - 1) {
-        page.value++;
-
-        getAllCourses();
-      }
-    };
-
-    //search course by title
-    const searchCourse = () => {
-      getAllCourses();
-    };
-
-    const selectedPriceRange = (event) => {
-      priceFrom.value = event.target.getAttribute("data-price_from");
-      priceTo.value = event.target.getAttribute("value");
-
-      getAllCourses();
-    };
-
-    const selectedEducateRange = (event) => {
-      education.value = event.target.getAttribute("value");
-      getAllCourses();
-    };
-
-    const selectedCategoryRange = (event) => {
-      category.value = event.target.getAttribute("value");
-
-      getAllCourses();
-    };
-    getAllCourses();
-
-    return {
-      page,
-      keyword,
-      courses,
-      selectedPriceRange,
-      selectedEducateRange,
-      selectedCategoryRange,
-      prePage,
-      nextPage,
-      searchCourse,
-      compareDates,
-    };
   },
 
   data() {
-    return {};
+    return {
+      courses: [],
+      page: 0,
+      records: 6,
+      keyword: null,
+      priceFrom: null,
+      priceTo: null,
+      education: null,
+      category: null
+    };
   },
-  methods: {},
+  methods: {
+    //get all courses
+    async getAllCourses() {
+      //get url API
+      const apiObject = findApiByName("course", "common").url;
+      const res = await axios.get(apiObject, {
+        params: {
+          page: this.page,
+          records: this.records,
+          search: this.keyword,
+          priceFrom: this.priceFrom,
+          priceTo: this.priceTo,
+          education: this.education,
+          category: this.category,
+        },
+      });
+
+      if (res.status == 200) {
+        this.courses = res.data;
+        //insert fullName into each course
+        for (const course of this.courses.data) {
+          course.fullName = await this.getUserByID(course.userID);
+        }
+      }
+    },
+
+    //redirect to previous page
+    prePage() {
+      if (this.page > 0) {
+        this.page--;
+        this.getAllCourses();
+      }
+    },
+
+    //redirect to next page
+    nextPage() {
+      if (this.page < this.courses.totalPage - 1) {
+        this.page++;
+
+        this.getAllCourses();
+      }
+    },
+
+    //search course by title
+    searchCourse() {
+      this.getAllCourses();
+    },
+
+    //select price course
+    selectedPriceRange(event) {
+      this.priceFrom = event.target.getAttribute("data-price_from");
+      this.priceTo = event.target.getAttribute("value");
+
+      this.getAllCourses();
+    },
+
+    //select education course
+    selectedEducateRange(event) {
+      this.education = event.target.getAttribute("value");
+      this.getAllCourses();
+    },
+
+    //select category course
+    selectedCategoryRange(event) {
+      this.category = event.target.getAttribute("value");
+
+      this.getAllCourses();
+    },
+
+    //get information of customer by userID
+    async getUserByID(userID) {
+      try {
+        // Get API URL
+        const apiObject = findApiByName("customer", "findUser").url;
+
+        // Make API request
+        const res = await axiosAuth.get(apiObject + userID);
+
+        if (res.status === 200) {
+          return res.data.data.fullName;
+        } else {
+          console.error('Error fetching user data. Status:', res.status);
+          return null;
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        return null;
+      }
+    },
+  },
   watch: {},
   name: "App",
   components: {},
