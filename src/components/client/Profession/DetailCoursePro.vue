@@ -2,7 +2,7 @@
     <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
         <div class="w-full flex my-5 max-sm:flex-col">
             <sidebarteacher-screen></sidebarteacher-screen>
-            <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0 shadow-md">
+            <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0 shadow-md">
                 <div class="p-4">
                     <p class="text-2xl font-semibold w-full text-center text-blue-900">Quản lý khóa học</p>
                 </div>
@@ -18,11 +18,11 @@
                                 <span class="font-medium">Bài giảng: </span>
                             </div>
                             <div class="flex max-sm:w-full gap-5">
-                                <span class="text-red-500 font-semibold ">{{ course.price }} VND</span>
+                                <span class="text-red-500 font-semibold ">{{ formatPrice(course.price) }} VND</span>
                                 <span class="text-gray-400 font-semibold line-through">1.599.000 VND</span>
                             </div>
                             <div class="">
-                                <a :href="'/edit-course/' + courseId" class="bg-blue-900 text-white p-2 px-4 rounded-md">
+                                <a :href="'/expert/edit-course/' + courseId" class="bg-blue-900 text-white p-2 px-4 rounded-md">
                                     Sửa khóa học
                                 </a>
                             </div>
@@ -71,11 +71,11 @@
                                         <div class="flex gap-2">
                                             <button class="text-blue-900 px-4 rounded-md transition-all">
                                                 <i class="fa-regular fa-pen-to-square pr-1"></i>
-                                                <span class="max-sm:hidden"> Chỉnh sửa</span>
+                                                <a class="max-sm:hidden" @click="redirectToEditCourseLesson(videoItem.id)">Chỉnh sửa</a>
                                             </button>
                                             <button class="text-blue-900">
                                                 <i class="fa-regular fa-eye pr-1"></i>
-                                                <span class="max-sm:hidden">Xem ngay</span>
+                                                <a :href="'/lesson/' + courseId" class="max-sm:hidden">Xem ngay</a>
                                             </button>
                                         </div>
                                     </div>
@@ -107,6 +107,9 @@ export default {
       SidebarteacherScreen,
     },
     methods: {
+        formatPrice(price) {
+            return price.toLocaleString("vi-VN");
+        },
         async getSingleCourse(){
             const apiObject = findApiByName("course", "findCourseByID").url;
             const res = await axios.get(apiObject + this.courseId);
@@ -159,6 +162,12 @@ export default {
         this.$router.push(`/expert/course-lesson/${topicID}`);
     },
 
+    redirectToEditCourseLesson(topicID) {
+        // Chuyển hướng đến trang course-lesson với topicID cụ thể
+        this.$router.push(`/expert/edit-video/${topicID}`);
+    },
+
+
 
     },
     data() {
@@ -169,7 +178,7 @@ export default {
           educationID: 0,
           title: null,
           description: null,
-          price: null,
+          price: "",
           count: null,
           status: false,
           

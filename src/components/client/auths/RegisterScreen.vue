@@ -68,21 +68,24 @@ export default {
               return;
             }
             const apiObject = findApiByName("auth", "register").url;
-            const response = await axios.post(apiObject, {
+            await axios.post(apiObject, {
               userName: this.user.userName,
               password: this.user.password,
               fullName: this.user.fullName,
               phone: this.user.phone,
+            }).then((res) => {
+              if(res.data.status == "INTERNAL_SERVER_ERROR")
+              {
+                this.isValidate(false, "Username đã tồn tại");
+              }else
+              {
+                this.$router.push('/login');
+              }
             })
-            if (response.data.data === null) {
-              this.isValidate(false, "Tài khoản đã tồn tại vui lòng nhập tài khoản khác");
-              return;
-             }
             }
         } 
         this.validate.isSubmitting = false;
         
-        this.$router.push('/login');
       } catch (error) {
         // Xử lý lỗi từ API (error.response.data) nếu cần
         this.validate.isSubmitting = false;

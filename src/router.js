@@ -26,6 +26,7 @@ import InformationPro from "./components/client/Profession/InformationPro.vue";
 import TopicInformation from "./components/client/Profession/TopicInformation.vue";
 import CourseVideoScreen from "./components/client/Profession/CourseVideoScreen.vue";
 import CourseManager from "./components/client/Profession/CourseManager.vue";
+import EditVideoCourse from "./components/client/Profession/EditVideoCourse.vue";
 
 import error_403 from "./components/client/errors/error_403.vue";
 
@@ -125,6 +126,10 @@ const routes = [
   {
     path: '/expert/courses',
     component: CourseManager
+  },
+  {
+    path: '/expert/edit-video/:id',
+    component: EditVideoCourse
   },
   
 ]

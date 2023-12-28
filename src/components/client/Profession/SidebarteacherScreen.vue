@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/5 h-full  bg-white rounded-xl max-sm:w-full shadow-md transition duration-300">
+    <div class="w-1/4 h-full  bg-white rounded-lg max-sm:w-full shadow-md transition duration-300">
         <div class="grid grid-cols-gridTable justify-center w-full py-4 border-b border-gray-100">
             <div class="row-start-1 row-end-3">
                 <img class="w-11 h-11 rounded-full object-cover" src="../../../assets/images/client/avatars/1.png" alt="">
@@ -22,11 +22,11 @@
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-people-roof text-xl mr-3 text-gray-500"></i>
-                <a class="text-blue-900 cursor-not-allowed items-center justify-center flex text-center font-medium" href="">Quản lý học viên</a>
+                <a class="text-blue-900 cursor-not-allowed items-center justify-center flex text-center font-medium">Quản lý học viên</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-chart-line text-xl mr-3 text-gray-500"></i>
-                <a class="text-blue-900 cursor-not-allowed  items-center justify-center flex text-center font-medium" href="">Thống kê</a>
+                <a class="text-blue-900 cursor-not-allowed  items-center justify-center flex text-center font-medium">Thống kê</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-comments text-xl mr-3 text-blue-900"></i>

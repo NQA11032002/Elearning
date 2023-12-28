@@ -3,7 +3,8 @@ import { auth } from "./auth";
 import { findApiByName } from "./apiUtil";
 
 export async function loadInfor() {
-  return getUserByID(auth())
+
+  return getUserByID(auth());
 }
 
 export async function updateInfor(fullName, email,  phone) {

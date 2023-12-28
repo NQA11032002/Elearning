@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1/5 h-full  bg-white rounded-xl max-sm:w-full shadow-md">
+  <div class="w-2/5 h-full  bg-white rounded-xl max-sm:w-full shadow-md">
     <div class="grid grid-cols-gridTable justify-center w-full py-4 border-b border-gray-100">
       <div class="row-start-1 row-end-3">
         <img class="w-11 h-11 rounded-full object-cover" src="../../../assets/images/client/avatars/1.png" alt="">
@@ -46,12 +46,12 @@ export default {
   },
   mounted() {
     loadInfor().then((data) => {
+      console.log(data);
       this.user.fullName = data.fullName;
       this.user.profilePictureURL = data.profilePictureURL;
     });
     if(Cookies.get("role") == "USER"){
       this.user.role = "Học viên";
-
     }
 
   },

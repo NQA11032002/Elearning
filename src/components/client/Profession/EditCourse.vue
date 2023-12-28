@@ -3,7 +3,7 @@
       <PopupConfirm v-if="isCourse" :contents="contents"></PopupConfirm>
       <div class="w-full flex my-5 max-sm:flex-col">
         <sidebarteacher-screen></sidebarteacher-screen>
-        <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
+        <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
           <div class="shadow-md p-5">
             <form class="flex flex-wrap justify-center max-sm:w-full max-sm:p-2 gap-3">
               <p class="text-xl font-semibold">Chỉnh sửa khóa học khóa học</p>
@@ -54,9 +54,9 @@
                 <button @click.prevent="saveCourse" class="bg-blue-900 text-white py-2 px-2 rounded text-sm max-sm:mr-0">
                   Lưu khóa học
                 </button>
-                <button class="bg-green-900 text-white py-2 px-2 rounded text-sm max-sm:mr-0 ml-4">
+                <!-- <button class="bg-green-900 text-white py-2 px-2 rounded text-sm max-sm:mr-0 ml-4">
                     Chỉnh sửa chuyên đề
-                  </button>
+                  </button> -->
               </div>
             </form>
           </div>
@@ -75,6 +75,7 @@
       this.getAllCategories();
       this.getAllEducations();
       this.courseId = this.$route.params.id;
+      this.contents.navigate = "/expert/course/"+this.courseId;
       this.getCourseByID();
       console.log(this.courseId);
     },
@@ -143,7 +144,6 @@
             this.course.price = res.data.data.price;
             this.course.count = res.data.data.count;
             this.course.description = res.data.data.description;
-            
         }
       }
     },
@@ -176,7 +176,8 @@
           title: "Thay đổi khóa học thành công",
           status: true,
           color: "green-600",
-          icon: "fa-regular fa-circle-check"
+          icon: "fa-regular fa-circle-check",
+          navigate: ""
         },
         courseId: null,
       }
