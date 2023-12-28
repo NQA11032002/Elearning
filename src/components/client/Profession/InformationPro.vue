@@ -70,7 +70,8 @@ export default {
         title: "Thay đổi thông tin thất bại",
         status: false,
         color: "red-600",
-        icon: "fa-solid fa-circle-exclamation"
+        icon: "fa-solid fa-circle-exclamation",
+        navigate: null
       },
 
     };
@@ -93,6 +94,7 @@ export default {
           this.contents.status = true;
           this.contents.color = "green-500";
           this.contents.icon = "fa-regular fa-circle-check";
+          this.contents.navigate = "#"
         } else {
           this.user.isChangeInfor = false;
         }

@@ -46,12 +46,12 @@ export default {
   },
   mounted() {
     loadInfor().then((data) => {
+      console.log(data);
       this.user.fullName = data.fullName;
       this.user.profilePictureURL = data.profilePictureURL;
     });
     if(Cookies.get("role") == "USER"){
       this.user.role = "Học viên";
-
     }
 
   },
