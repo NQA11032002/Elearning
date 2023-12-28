@@ -13,7 +13,6 @@
 <script>
 import HeaderScreen from "./components/client/common/HeaderScreen.vue";
 import FooterScreen from "./components/client/common/FooterScreen.vue";
-import { findApiByName } from './assets/js/apiUtil.js';
 import { getRole } from "./assets/js/auth.js";
 
 export default {
