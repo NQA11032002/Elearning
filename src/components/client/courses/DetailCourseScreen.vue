@@ -3,15 +3,18 @@
     <div class="w-full">
       <div class="rounded-lg flex flex-col gap-3">
         <div class="w-detail">
-          <h1 class="text-gray-700 font-semibold text-xl">{{ course.title }}</h1>
+          <h1 class="text-title font-semibold text-xl">{{ course.title }}</h1>
 
           <div class="flex justify-between gap-3 mt-2">
             <p class="text-gray-400">
-              <i class="fa-regular fa-clock"></i>{{ course.createdAt }}
+              <i class="fa-regular fa-clock pr-2"></i>{{ course.createdAt }}
             </p>
-            <p class="text-gray-400">
-              Tác giả: <label for="" class="font-semibold text-black">EvonDev</label>
-            </p>
+
+            <a :href="'/watch-expert/' + userID" class=" ">
+              Tác giả: <label for="" class="font-semibold text-title hover:opacity-70 cursor-pointer underline"> {{
+                course.fullName
+              }}</label>
+            </a>
           </div>
         </div>
 
@@ -39,7 +42,7 @@
 
             <div action="" class="flex flex-col gap-5 mt-5">
               <div class="flex flex-col gap-3 text-sm">
-                <p>Xin chào: <span class="font-semibold">{{ course.fullName }}</span></p>
+                <p>Xin chào: <span class="font-semibold">{{ customer }}</span></p>
                 <p>Cảm ơn bạn đã quan tâm khóa học này!</p>
                 <p>Cam kết đảm bảo chất lượng đầu ra khi bạn hoàn thành khóa học.</p>
                 <p v-if="!isRegistered">Nhấn vào nút <span class="font-semibold">"ĐĂNG KÝ"</span> để đăng ký khóa học</p>
@@ -61,12 +64,8 @@
     </div>
 
     <div class="flex gap-10 w-full bg-white rounded-lg p-5 shadow-md">
-      <div class="w-2/3">
+      <div class="w-full">
         <p class="text-sm leading-7 text-slate-600">{{ course.description }}</p>
-      </div>
-      <div class="1/3 mx-auto">
-        <img class="rounded-full w-full h-36 object-cover"
-          src="https://static.kt.city/e0ebee87-aefb-40bf-96a3-9a53986dfc17.jpg" alt="" />
       </div>
     </div>
 
@@ -144,8 +143,8 @@
 <script>
 import axios from "axios";
 import { findApiByName } from "../../../assets/js/apiUtil.js";
-import axiosAuth from "../../../assets/js/axios.js";
 import { auth } from "../../../assets/js/auth.js";
+import { getUserByID, loadInfor } from "../../../assets/js/custom.js";
 
 
 export default {
@@ -170,6 +169,12 @@ export default {
     };
 
     isRegistered();
+
+    loadInfor().then((res) => {
+      this.userID = res.userID;
+      this.customer = res.fullName;
+      // this.customer.userID = res.id;
+    });
   },
   setup() {
 
@@ -188,9 +193,9 @@ export default {
           this.course.urlImage = this.course.courseImages[0].urlImage;
         }
 
-        this.course.fullName = await this.getUserByID(this.course.userID);
+        const customer = await getUserByID(this.course.userID);
+        this.course.fullName = customer.fullName;
 
-        console.log(this, this.course)
       } catch (error) {
         console.log(error);
       }
@@ -211,27 +216,6 @@ export default {
 
       } catch (error) {
         console.log(error);
-      }
-    },
-
-    //get information of customer by userID
-    async getUserByID() {
-      try {
-        // Get API URL
-        const apiObject = findApiByName("customer", "findCustomerByUserID").url;
-
-        // Make API request
-        const res = await axiosAuth.get(apiObject + auth());
-
-        if (res.status === 200) {
-          return res.data.data.fullName;
-        } else {
-          console.error('Error fetching user data. Status:', res.status);
-          return null;
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        return null;
       }
     },
 
@@ -282,6 +266,8 @@ export default {
         rate: 1,
         userID: auth(),
       },
+      customer: null,
+      userID: null,
       showMoreEvaluate: false,
       currentPage: 1,
       itemsPerPage: 5

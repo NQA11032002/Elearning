@@ -1,3 +1,5 @@
+
+
 <template>
   <HeaderScreen></HeaderScreen>
 
@@ -11,8 +13,20 @@
 <script>
 import HeaderScreen from "./components/client/common/HeaderScreen.vue";
 import FooterScreen from "./components/client/common/FooterScreen.vue";
+import { getRole } from "./assets/js/auth.js";
+
 export default {
-  setup() { },
+  setup() {
+
+    const role = getRole();
+    const expertAccessible = window.location.pathname.split('/')[1];
+    if (expertAccessible.toLowerCase().includes("expert") && !role.toLowerCase().includes("expert")) {
+      console.log(expertAccessible);
+
+      // Use Vue Router's programmatic navigation
+      window.location.href = '/error-403';
+    }
+  },
   name: "App",
   components: {
     HeaderScreen,

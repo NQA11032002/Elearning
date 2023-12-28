@@ -56,7 +56,7 @@ export default {
                 title: "Đổi mật khẩu thất bại",
                 status: false,
                 color: "red-600",
-                icon: "fa-solid fa-circle-exclamation"
+                icon: "fa-solid fa-circle-exclamation",
             },
         };
     },

@@ -22,11 +22,11 @@
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-people-roof text-xl mr-3 text-gray-500"></i>
-                <a class="text-blue-900 cursor-not-allowed items-center justify-center flex text-center font-medium" href="">Quản lý học viên</a>
+                <a class="text-blue-900 cursor-not-allowed items-center justify-center flex text-center font-medium">Quản lý học viên</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-chart-line text-xl mr-3 text-gray-500"></i>
-                <a class="text-blue-900 cursor-not-allowed  items-center justify-center flex text-center font-medium" href="">Thống kê</a>
+                <a class="text-blue-900 cursor-not-allowed  items-center justify-center flex text-center font-medium">Thống kê</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-comments text-xl mr-3 text-blue-900"></i>

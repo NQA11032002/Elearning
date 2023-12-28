@@ -22,7 +22,7 @@
                                 <span class="text-gray-400 font-semibold line-through">1.599.000 VND</span>
                             </div>
                             <div class="">
-                                <a :href="'/edit-course/' + courseId" class="bg-blue-900 text-white p-2 px-4 rounded-md">
+                                <a :href="'/expert/edit-course/' + courseId" class="bg-blue-900 text-white p-2 px-4 rounded-md">
                                     Sửa khóa học
                                 </a>
                             </div>
