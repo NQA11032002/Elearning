@@ -40,6 +40,7 @@ import PopupConfirm from "../common/PopupConfirm.vue";
 export default {
     mounted() {
       this.courseId = this.$route.params.id;
+      
       this.getSingleCourse();
     },
     components: {
@@ -76,12 +77,7 @@ export default {
         user: {
             isChangeInfor: false,
         },
-        contents: {
-          title: "Thêm chuyên đề thành công",
-          status: true,
-          color: "green-600",
-          icon: "fa-regular fa-circle-check"
-        },
+
       };
     }
 };
