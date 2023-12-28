@@ -19,13 +19,14 @@ export default {
   setup() {
 
     const role = getRole();
-    const expertAccessible = window.location.pathname.split('/')[1];
-    if (expertAccessible.toLowerCase().includes("expert") && !role.toLowerCase().includes("expert")) {
-      console.log(expertAccessible);
 
-      // Use Vue Router's programmatic navigation
-      window.location.href = '/error-403';
-    }
+      const expertAccessible = window.location.pathname.split('/')[1];
+      if (expertAccessible.toLowerCase().includes("expert") && !role.toLowerCase().includes("expert")) {
+
+        // Use Vue Router's programmatic navigation
+        window.location.href = '/error-403';
+      }
+
   },
   name: "App",
   components: {
