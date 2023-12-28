@@ -75,6 +75,7 @@ import SidebarteacherScreen from "./SidebarteacherScreen.vue";
 import axios from "axios";
 import { findApiByName } from "../../../assets/js/apiUtil.js";
 import PopupScreen from "../common/PopupScreen.vue";
+import Cookies from 'js-cookie';
 
 export default {
   mounted() {
@@ -179,6 +180,7 @@ export default {
         name: ""
       },
       course: {
+        userID: Cookies.get('userID'),
         categoryID: 0,
         educationID: 0,
         title: null,

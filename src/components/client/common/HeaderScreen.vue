@@ -94,7 +94,6 @@ export default {
         this.isAuthenticated = true;
         // Thực hiện các hành động bạn muốn khi ở trang Home
       }
-      console.log(this.isAuthenticated);
     },
 
     toggleDropdown() {

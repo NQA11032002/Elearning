@@ -142,7 +142,6 @@
 
 <script>
 import axios from "axios";
-import { useRoute } from 'vue-router';
 import { findApiByName } from "../../../assets/js/apiUtil.js";
 import { auth } from "../../../assets/js/auth.js";
 import { getUserByID, loadInfor } from "../../../assets/js/custom.js";
@@ -182,11 +181,11 @@ export default {
   },
   methods: {
     async getCourse() {
-      const route = useRoute();
-      const courseId = route.params.id;
+      // const route = useRoute();
+      // const courseId = route.params.id;
 
       try {
-        const res = await axios.get("http://localhost:8087/api/course/" + courseId);
+        const res = await axios.get("http://localhost:8087/api/course/" + this.formData.courseID);
 
         this.course = res.data.data;
 

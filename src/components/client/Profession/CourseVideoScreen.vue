@@ -15,10 +15,9 @@
                         <span class="py-2 font-semibold">Mã chuyên đề:</span>
                         <input class="outline-none border px-2 border-blue-900 w-full h-8 rounded max-sm:w-full" type="text" placeholder="Mã khóa học:">
          -->
-            <span class="py-2 font-semibold">Tên bài giảng: (Số lượng bài giảng được phép <span
-                class="text-red-600">2</span> )</span>
+            <span class="py-2 font-semibold">Tên bài giảng</span>
             <input v-model="lesson.name" class="outline-none border px-2 border-blue-900 w-full h-8 rounded max-sm:w-full"
-              type="text" placeholder="Tên chuyên đề:">
+              type="text" placeholder="Tên bài giảng">
 
 
             <span class="py-2 font-semibold">Chọn video giảng:</span>
@@ -103,6 +102,7 @@ export default {
         console.error('Error uploading file:', error);
       }
     },
+    
 
     handleFileChange(event) {
       const inputFile = event.target;
