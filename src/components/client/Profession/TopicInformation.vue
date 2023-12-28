@@ -40,6 +40,7 @@ import PopupConfirm from "../common/PopupConfirm.vue";
 export default {
     mounted() {
       this.courseId = this.$route.params.id;
+      
       this.getSingleCourse();
     },
     components: {

@@ -3,6 +3,7 @@
     <PopupConfirm v-if="isUpload" :contents="contents"></PopupConfirm>
 
     <div class="w-full flex my-5 max-sm:flex-col">
+      <PopupConfirm v-if="isCourse" :contents="contents"></PopupConfirm>
       <sidebarteacher-screen></sidebarteacher-screen>
       <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:ml-0 shadow-md ">
         <div class="p-4">
@@ -44,7 +45,6 @@ import SidebarteacherScreen from './SidebarteacherScreen.vue';
 import axios from "axios";
 import { useRoute } from 'vue-router';
 import PopupConfirm from "../common/PopupConfirm.vue";
-
 
 export default {
   setup() {
