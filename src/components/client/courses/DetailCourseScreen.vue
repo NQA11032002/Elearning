@@ -39,7 +39,7 @@
 
             <div action="" class="flex flex-col gap-5 mt-5">
               <div class="flex flex-col gap-3 text-sm">
-                <p>Xin chào: <span class="font-semibold">Nguyễn Quốc Anh</span></p>
+                <p>Xin chào: <span class="font-semibold">{{ course.fullName }}</span></p>
                 <p>Cảm ơn bạn đã quan tâm khóa học này!</p>
                 <p>Cam kết đảm bảo chất lượng đầu ra khi bạn hoàn thành khóa học.</p>
                 <p v-if="!isRegistered">Nhấn vào nút <span class="font-semibold">"ĐĂNG KÝ"</span> để đăng ký khóa học</p>
@@ -120,7 +120,7 @@
             </div>
 
             <div class="flex flex-col gap-1">
-              <p class="font-semibold text-sm">Nguyễn quốc anh</p>
+              <p class="font-semibold text-sm">{{ course.fullName }}</p>
               <p class="text-sm text-gray-400 text-sm">
                 <i class="fa-regular fa-clock pr-2"></i>{{ evaluation.createdAt }}
               </p>
@@ -143,13 +143,15 @@
 
 <script>
 import axios from "axios";
-import { ref } from "vue";
-import { useRoute } from 'vue-router';
 import { findApiByName } from "../../../assets/js/apiUtil.js";
+import axiosAuth from "../../../assets/js/axios.js";
+import { auth } from "../../../assets/js/auth.js";
 
 
 export default {
   mounted() {
+    this.getCourse();
+
     const isRegistered = async () => {
       try {
         //get url API
@@ -157,7 +159,7 @@ export default {
         const res = await axios.get(apiObject, {
           params: {
             courseID: parseInt(this.$route.params.id),
-            userID: parseInt(localStorage.getItem("idUser")),
+            userID: auth(),
           },
         });
 
@@ -170,33 +172,30 @@ export default {
     isRegistered();
   },
   setup() {
-    const course = ref();
-    const route = useRoute();
-    const courseId = route.params.id;
 
-    const getCourse = async () => {
+  },
+  methods: {
+    async getCourse() {
+      // const route = useRoute();
+      // const courseId = route.params.id;
+
       try {
-        const res = await axios.get("http://localhost:8087/api/course/" + courseId);
+        const res = await axios.get("http://localhost:8087/api/course/" + this.formData.courseID);
 
-        course.value = res.data.data;
+        this.course = res.data.data;
 
-        if (course.value.courseImages.length > 0) {
-          course.value.urlImage = course.value.courseImages[0].urlImage;
+        if (this.course.courseImages.length > 0) {
+          this.course.urlImage = this.course.courseImages[0].urlImage;
         }
 
+        this.course.fullName = await this.getUserByID(this.course.userID);
+
+        console.log(this, this.course)
       } catch (error) {
         console.log(error);
       }
-    }
+    },
 
-    getCourse();
-
-    return {
-      getCourse,
-      course
-    }
-  },
-  methods: {
     formatPrice(price) {
       return price.toLocaleString("vi-VN");
     },
@@ -215,6 +214,26 @@ export default {
       }
     },
 
+    //get information of customer by userID
+    async getUserByID() {
+      try {
+        // Get API URL
+        const apiObject = findApiByName("customer", "findCustomerByUserID").url;
+
+        // Make API request
+        const res = await axiosAuth.get(apiObject + auth());
+
+        if (res.status === 200) {
+          return res.data.data.fullName;
+        } else {
+          console.error('Error fetching user data. Status:', res.status);
+          return null;
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        return null;
+      }
+    },
 
     //submit form evaluation
     submitFormEvaluation() {
@@ -256,11 +275,12 @@ export default {
   data() {
     return {
       isRegistered: true,
+      course: null,
       formData: {
         courseID: this.$route.params.id,
         comment: '',
         rate: 1,
-        userID: localStorage.getItem('idUser') != null ? localStorage.getItem('idUser') : null,
+        userID: auth(),
       },
       showMoreEvaluate: false,
       currentPage: 1,

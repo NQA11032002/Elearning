@@ -8,7 +8,7 @@
         <p class="text-sm text-gray-500 pt-3">Bạn chưa hoàn thành khóa học nào.</p>
       </div>
 
-      <div class="flex flex-wrap pt-5 gap-6 w-full">
+      <div class="flex flex-wrap pt-5 gap-6 w-full justify-center">
         <a :href="'/lesson/' + course.id" v-for=" course in courses" :key="course.id"
           class="flex bg-white shadow-md w-1/5 flex-col gap-3 lg:w-course overflow-hidden hover:opacity-80 hover:shadow-lg rounded-lg transition-all">
           <div>
@@ -22,7 +22,7 @@
           </div>
         </a>
 
-        <a href=""
+        <a href="/course"
           class="flex w-1/5 flex-col gap-6 overflow-hidden max-sm:w-full  max-sm:py-4 justify-center items-center rounded-lg transition-all hover:outline-slate-700 outline-2 outline-gray-300 outline-dashed">
           <i class="fa-solid fa-circle-plus text-2xl text-gray-400 "></i>
           <button class="border-slate-700 rounded-lg border py-2 w-32 text-sm text-gray-400">Thêm khóa học</button>
@@ -59,6 +59,7 @@ export default {
             }
           }
         }
+        console.log(this.courses);
       } catch (error) {
         console.log(error);
       }

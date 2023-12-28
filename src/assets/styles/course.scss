@@ -1,9 +1,6 @@
 .container
 {
-  max-width: 70%;
-  margin: auto;
-  grid-template-columns: 25% 75%;
-  column-gap: 30px;
+
   .sidebar
   {
     .sidebar__container
@@ -17,10 +14,6 @@
     .filters
     {
 
-      height: 100%;
-      background-color: var(--color-white);
-      border-radius: 10px;
-      box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
       .filter__container
       {
         position: sticky;
@@ -105,22 +98,14 @@
       }
       .cards
       {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        column-gap: 20px;
-        row-gap: 20px;
+
 
         .course
         {
           border-radius: 10px;
           overflow: hidden;
           height: 320px;
-          .image
-          {
-            max-height: 200px;
-            height: 100%;
-          }
-          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
+    
           .card
           {
             height: 100%;
@@ -156,13 +141,9 @@
               }
               .card__info--right
               {
-                width: 130px;
                 height: 25px;
                 padding: 2px 0;
-                width: 60px;
                 border-radius: 10px;
-                color: var(--color-white);
-                font-size: 13px;
                 font-weight: 500;
               }
 

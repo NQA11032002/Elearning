@@ -43,8 +43,29 @@ export const API_URLS = [
       {
         subName: "course-image",
         url: "http://localhost:8087/api/course-image"
+      },
+      {
+        subName: "findCourseByUserID",
+        url: "http://localhost:8087/api/course/user"
+      },
+      {
+        subName: "updateCourse",
+        url: "http://localhost:8087/api/course"
       }
     ] ,
+  },
+  {
+    name: 'thematic',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/thematic"
+      },
+      {
+        subName: "findThematicByID",
+        url: "http://localhost:8087/api/thematic/"
+      }
+    ]
   },
   {
     name: 'order',
@@ -83,6 +104,45 @@ export const API_URLS = [
         subName: "common",
         url: "http://localhost:8086/api/customer"
       },
+      {
+        subName: "findUser",
+        url: "http://localhost:8086/api/customer/"
+      },
+      {
+        subName: "findByID",
+        url: "http://localhost:8086/api/customer"
+      },
+      {
+        subName: "findCustomerByUserID",
+        url: "http://localhost:8086/api/customer/user/"
+      }
     ] ,
+  },
+  {
+    name: 'categories',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/categories"
+      }
+    ] ,
+  },
+  {
+    name: 'educations',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/educations"
+      }
+    ] ,
+  },
+  {
+    name: 'video',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/course-video"
+      }
+    ],
   },
 ]

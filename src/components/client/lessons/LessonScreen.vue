@@ -7,14 +7,13 @@
     <div class="flex gap-4 mx-auto mt-5 h-screen max-sm:flex-col max-sm:mt-0">
       <div class="flex flex-col md:h-2/4 lg:w-3/4 pl-5 max-sm:w-full max-sm:pl-0">
         <div class=" bg-gray-300  flex-shrink-0">
-          <iframe class="w-full lg:h-lesson md:h-96 max-sm:h-64" src="https://www.youtube.com/embed/GcZSJqHpUpI"
-            allowfullscreen></iframe>
+          <iframe class="w-full lg:h-lesson md:h-96 max-sm:h-64" :src=currentVideo.urlVideo allowfullscreen></iframe>
         </div>
 
         <div class="flex  flex-col gap-5 flex-shrink-0 flex-1 mt-5 max-sm:px-5">
           <div>
-            <h1 class="text-xl font-semibold">My some() method</h1>
-            <p class="text-sm text-gray-400 pt-3">Cập nhật tháng 2 năm 2022</p>
+            <h1 class="text-xl font-semibold">{{ currentVideo.name }}</h1>
+            <p class="text-sm text-gray-400 pt-3">Cập nhật: {{ currentVideo.createdAt }}</p>
           </div>
 
           <div class="text-sm text-gray-500 flex flex-col gap-3">
@@ -27,7 +26,7 @@
       </div>
 
       <div class="lg:w-1/4 md:w-2/4 pr-5 h-screen max-sm:w-full max-sm:pr-0">
-        <SidebarLesson></SidebarLesson>
+        <SidebarLesson :thematicCourses="thematicCourses" @lessonSelected="handleLessonSelected"></SidebarLesson>
       </div>
     </div>
 
@@ -41,8 +40,43 @@
 import HeaderLesson from "./HeaderLesson.vue";
 import SidebarLesson from "./SidebarLesson.vue";
 import FooterLesson from "./FooterLesson.vue";
+import axios from "axios";
+import { useRoute } from 'vue-router';
+import { findApiByName } from "../../../assets/js/apiUtil.js";
 
 export default {
+  mounted() {
+    const apiObject = findApiByName("course", "findCourseByID").url;
+    const route = useRoute();
+    const courseId = route.params.id;
+
+    const getCourse = async () => {
+      try {
+        const res = await axios.get(apiObject + courseId);
+
+        if (res.status == 200) {
+          this.thematicCourses = res.data.data.thematicCourses;
+        }
+        console.log(this.thematicCourses)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getCourse();
+  },
+  data() {
+    return {
+      thematicCourses: [],
+      currentVideo: ""
+    }
+  },
+  methods: {
+    handleLessonSelected(clickedVideo) {
+      console.log(clickedVideo)
+      this.currentVideo = clickedVideo;
+    }
+  },
   components: {
     HeaderLesson,
     SidebarLesson,

@@ -19,7 +19,7 @@
       </div>
       <div class="flex items-left py-4">
         <i class="fa-solid fa-headphones-simple text-xl mr-3 text-blue-900"></i>
-        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Hỗ
+        <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/support">Hỗ
           trợ</a>
       </div>
       <div class="flex items-left py-4">
@@ -46,7 +46,6 @@ export default {
   },
   mounted() {
     loadInfor().then((data) => {
-      console.log(data);
       this.user.fullName = data.fullName;
       this.user.profilePictureURL = data.profilePictureURL;
     });

@@ -5,20 +5,18 @@
     <router-view :user="user"></router-view>
   </div>
 
-  <!-- <footer-screen></footer-screen> -->
+  <footer-screen></footer-screen>
 </template>
 
 <script>
 import HeaderScreen from "./components/client/common/HeaderScreen.vue";
-// import FooterScreen from "./components/client/common/FooterScreen.vue";
-import { findApiByName } from './assets/js/apiUtil.js';
-import axios from 'axios';
+import FooterScreen from "./components/client/common/FooterScreen.vue";
 export default {
   setup() { },
   name: "App",
   components: {
     HeaderScreen,
-    // FooterScreen,
+    FooterScreen,
   },
   data() {
     return {
@@ -28,27 +26,5 @@ export default {
       }
     }
   },
-  async loadInfor() {
-    try {
-      const queryParams = localStorage.getItem("idUser");
-      if (!queryParams) {
-        console.error('idUser is null or undefined');
-        return;
-      }
-      const apiObject = findApiByName("customer", "findByID").url + "/" + queryParams;
-      const token = localStorage.getItem("auth");
-      const response = await axios.get(apiObject, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      this.user.fullName = response.data.data.fullName;
-
-      console.log(response.data.data);
-    } catch (error) {
-      console.error('Get infor failed', error.response.data);
-    }
-  }
 }
 </script>
