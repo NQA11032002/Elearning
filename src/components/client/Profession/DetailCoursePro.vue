@@ -51,7 +51,9 @@
                                         <h3 class="font-semibold text-blue-900">{{ topicItem.element.name }}</h3>
                                         <div class="">
                                             <span class="text-blue-900 mr-2">Bài giảng:</span>
-                                            <i class="fa-solid fa-circle-plus text-blue-900 text-base cursor-pointer"></i>
+                                            <a @click="redirectToCourseLesson(topicItem.element.id)">
+                                                <i class="fa-solid fa-circle-plus text-blue-900 text-base cursor-pointer"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="h-full cursor-pointer flex justify-center">
@@ -136,12 +138,9 @@ export default {
 
     async getVideoByIdTopic() {
     const apiObject = findApiByName("video", "common").url;
-    console.log(apiObject);
-    console.log(this.topic);
 
     for (const topicItem of this.topic) {
         const idTopic = topicItem.element.id;
-        console.log("Id of Topic:", idTopic);
 
         try {
             const response = await axios.get(`${apiObject}/${idTopic}`);
@@ -150,14 +149,15 @@ export default {
             // Gán danh sách video cho từng chủ đề
             topicItem.videos = videosForTopic.data;
 
-            console.log(`Videos for Topic ${idTopic}:`, videosForTopic);
         } catch (error) {
             console.error(`Error fetching videos for Topic ${idTopic}:`, error);
+            }
         }
-    }
-
-
-}
+    },
+    redirectToCourseLesson(topicID) {
+        // Chuyển hướng đến trang course-lesson với topicID cụ thể
+        this.$router.push(`/expert/course-lesson/${topicID}`);
+    },
 
 
     },
@@ -176,7 +176,7 @@ export default {
         },
         topic: [],
         videos: [],
-
+        topicID: 0,
         countTopic: 0,
         imageCourse: [],
         isCourse: false,

@@ -19,11 +19,12 @@
                             <h2 class="p-2 font-semibold text-lg">{{ course.element.title }}</h2>
                             <span class="px-2 text-gray-300 flex text-left overflow-ellipsis whitespace-nowrap">{{ course.element.description }}</span>
                         </div>
-                        <div class="py-2 text-right w-1/3 flex flex-col max-sm:w-full max-sm:justify-center">
+                        <div class="py-2 text-right w-2/5 flex flex-col max-sm:w-full max-sm:justify-center">
                             <span class="text-red-500 mr-4 font-semibold max-sm:flex max-sm:justify-center">{{ course.element.price }} VND</span>
                             <div class="flex items-end h-full justify-end mr-4 max-sm:mr-0">
-                                <a :href="'/edit-course/' + course.element.id" class="bg-blue-900 text-white p-2 mr-4 rounded w-2/5 max-sm:w-1/2 text-center"><button >Chỉnh sửa</button></a>
-                                <a :href="'/detail-course/' + course.element.id" class="bg-green-900 text-white p-2 rounded w-2/5 max-sm:w-1/2 text-center"><button >Chi tiết</button></a>
+                                <a :href="'/edit-course/' + course.element.id" class="bg-blue-900 text-white p-2 rounded w-2/6 max-sm:w-1/2 text-center"><button >Chỉnh sửa</button></a>
+                                <a :href="'/detail-course/' + course.element.id" class="bg-green-900 mx-2 text-white p-2 rounded w-2/6 max-sm:w-1/2 text-center"><button >Chi tiết</button></a>
+                                <a href="" class="bg-red-900 text-white p-2 rounded w-2/6 max-sm:w-1/2 text-center"><button >Xóa</button></a>
                             </div>
                         </div>
                     </div>
@@ -67,7 +68,8 @@ export default {
                 console.log(this.courses);
             }
             }
-        }
+        },
     },
+    
 };
 </script>

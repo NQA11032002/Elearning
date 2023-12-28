@@ -1,6 +1,7 @@
 <template>
     <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
         <div class="w-full flex my-5 max-sm:flex-col">
+            <PopupConfirm v-if="user.isChangeInfor" :contents="contents"></PopupConfirm>
             <sidebarteacher-screen></sidebarteacher-screen>
             <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
                 <div class="p-4">
@@ -34,6 +35,7 @@
 import SidebarteacherScreen from './SidebarteacherScreen.vue';
 import axios from '../../../assets/js/axios.js';
 import { findApiByName } from "../../../assets/js/apiUtil.js";
+import PopupConfirm from "../common/PopupConfirm.vue";
 
 export default {
     mounted() {
@@ -42,6 +44,7 @@ export default {
     },
     components: {
       SidebarteacherScreen,
+      PopupConfirm
     },
     methods: {
         async getSingleCourse(){
@@ -50,7 +53,6 @@ export default {
             if(res.data.status === "OK"){
                 this.course.id = res.data.data.id;
             }
-            console.log(res.data);
         },
         async insertTopicCourse(){
             const apiObject = findApiByName("thematic", "common").url;
@@ -58,7 +60,10 @@ export default {
                 courseID: this.course.id,
                 name: this.course.name
             });
-            console.log(res);
+            if(res.data.data != null){
+                this.user.isChangeInfor = true;
+            }
+            console.log(res.data.data);
         }
     },
     data() {
@@ -67,6 +72,15 @@ export default {
             id: 0,
             name: "",
             numberTopic: "",
+        },
+        user: {
+            isChangeInfor: false,
+        },
+        contents: {
+          title: "Thêm chuyên đề thành công",
+          status: true,
+          color: "green-600",
+          icon: "fa-regular fa-circle-check"
         },
       };
     }

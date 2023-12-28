@@ -1,6 +1,6 @@
 <template>
     <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
-      <PopupScreen v-if="isCourse" :contents="contents"></PopupScreen>
+      <PopupConfirm v-if="isCourse" :contents="contents"></PopupConfirm>
       <div class="w-full flex my-5 max-sm:flex-col">
         <sidebarteacher-screen></sidebarteacher-screen>
         <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
@@ -68,7 +68,7 @@
   import SidebarteacherScreen from "./SidebarteacherScreen.vue";
   import axios from "axios";
   import { findApiByName } from "../../../assets/js/apiUtil.js";
-  import PopupScreen from "../common/PopupScreen.vue";
+  import PopupConfirm from "../common/PopupConfirm.vue";
   
   export default {
     mounted() {
@@ -80,7 +80,7 @@
     },
     components: {
       SidebarteacherScreen,
-      PopupScreen
+      PopupConfirm
     },
     methods: {
       async getAllCategories() {
@@ -115,7 +115,7 @@
             count: this.course.count,
             description: this.course.description,
         });
-        if(res.data.data.status === "OK")
+        this.isCourse = true;
         console.log(res);
 
         } catch (error) {
@@ -173,10 +173,10 @@
         selectedFile: null,
         isCourse: false,
         contents: {
-          title: "Đang đăng tải khóa học",
+          title: "Thay đổi khóa học thành công",
           status: true,
-          color: "red-600",
-          icon: "fa-solid fa-circle-exclamation"
+          color: "green-600",
+          icon: "fa-regular fa-circle-check"
         },
         courseId: null,
       }
