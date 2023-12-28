@@ -5,7 +5,7 @@
       <PopupConfirm v-if="user.isChangeInfor" :contents="contents"></PopupConfirm>
       <sidebarteacher-screen></sidebarteacher-screen>
 
-      <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0 shadow-md">
+      <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0 shadow-md">
         <div class="p-4">
           <p class="text-xl font-semibold">Thông cá nhân</p>
           <span class="text-gray-500 text-sm">Cập nhật thông tin đầy đủ để bảo mật</span>

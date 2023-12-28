@@ -11,8 +11,10 @@
                 <h3 class="mb-5  font-normal text-md text-gray-500 dark:text-gray-400">
                 {{ contents.title }}
                 </h3>
-                <button type="submit"
-                class="text-gray-500 cursor-pointer bg-white hover:bg-gray-100 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Đồng ý</button>
+                <a href="#"
+                class="text-gray-500 cursor-pointer bg-white hover:bg-gray-100 mr-3 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Tiếp tục</a>
+                <a :href="contents.navigate"
+                class="text-white cursor-pointer bg-slate-700 px-5 py-2.5 focus:outline-none rounded-lg border  focus:z-10  hover:opacity-70 ">Quản lý</a>
             </div>
             </div>
         </div>

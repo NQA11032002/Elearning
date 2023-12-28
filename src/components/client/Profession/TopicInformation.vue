@@ -3,7 +3,7 @@
         <div class="w-full flex my-5 max-sm:flex-col">
             <PopupConfirm v-if="user.isChangeInfor" :contents="contents"></PopupConfirm>
             <sidebarteacher-screen></sidebarteacher-screen>
-            <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
+            <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
                 <div class="p-4">
                     <p class="text-3xl font-semibold flex justify-center text-blue-900">Thông tin chuyên đề</p>
                 </div>

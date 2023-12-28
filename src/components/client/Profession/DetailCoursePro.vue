@@ -2,7 +2,7 @@
     <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
         <div class="w-full flex my-5 max-sm:flex-col">
             <sidebarteacher-screen></sidebarteacher-screen>
-            <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0 shadow-md">
+            <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0 shadow-md">
                 <div class="p-4">
                     <p class="text-2xl font-semibold w-full text-center text-blue-900">Quản lý khóa học</p>
                 </div>
