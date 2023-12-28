@@ -1,12 +1,3 @@
-<script>
-import SidebarteacherScreen from './SidebarteacherScreen.vue';
-
-export default {
-    components: {
-        SidebarteacherScreen,
-    },
-};
-</script>
 <template>
     <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14"> 
         <div class="w-full flex my-5 max-sm:flex-col">
@@ -15,73 +6,27 @@ export default {
                 <div class="p-4">
                     <p class="text-xl font-semibold">Quản lý khóa học</p>
                 </div>
-                <div class="w-full max-sm:px-4">
-                    <div class="w-full text-right">
-                        <a href="/expert/course" class="bg-blue-900 text-white p-2 mr-4 mb-4 rounded text-sm max-sm:mr-0">Thêm khóa học</a>
+                <div  class="w-full max-sm:px-4">
+                    <div class="w-full text-right mb-4">
+                        <a href="/expert/course" class="bg-blue-900 text-white p-2 mr-4  rounded text-sm max-sm:mr-0">Thêm khóa học</a>
                     </div>
-                    <div class="flex shadow-md w-full mb-4 max-sm:flex-col max-sm:px-2 cursor-pointer">
+                    <div v-for=" course in courses" :key="course.id" class="flex shadow-md w-full mb-4 max-sm:flex-col max-sm:px-2 cursor-pointer">
                         <div class="">
-                            <img class="object-cover w-60 h-48 max-sm:w-full" src="../../../assets/images/client/courses/1.png" alt="">
+                            <img class="object-cover w-60 h-48 max-sm:w-full" :src="course.element.courseImages.length > 0 ?
+                            course.element.courseImages[0].urlImage : ''" alt="">
                         </div>
-                        <div class="w-2/3 max-sm:w-full">
-                            <h2 class="p-2 font-semibold text-lg">Khóa học react cho người mới bắt đầu</h2>
-                            <div class="flex px-2 mb-2">
-                                <img class="object-cover h-8 w-8" src="../../../assets/images/client/avatars/1.png" alt="">
-                                <span class="ml-2 flex items-center">Hồ Quang Đạt</span>
-                            </div>
-                            <span class="px-2 text-gray-300 flex text-center">Khóa học phân tích và thiết kế web theo react</span>
+                        <div class="w-2/3 max-sm:w-full overflow-hidden">
+                            <h2 class="p-2 font-semibold text-lg">{{ course.element.title }}</h2>
+                            <span class="px-2 text-gray-300 flex text-left overflow-ellipsis whitespace-nowrap">{{ course.element.description }}</span>
                         </div>
                         <div class="py-2 text-right w-1/3 flex flex-col max-sm:w-full max-sm:justify-center">
-                            <span class="text-red-500 mr-4 font-semibold max-sm:flex max-sm:justify-center">Giá: 499.000</span>
+                            <span class="text-red-500 mr-4 font-semibold max-sm:flex max-sm:justify-center">{{ course.element.price }} VND</span>
                             <div class="flex items-end h-full justify-end mr-4 max-sm:mr-0">
-                                <button class="bg-blue-900 text-white p-2 mr-4 rounded w-2/5 max-sm:w-1/2">Chỉnh sửa</button>
-                                <button class="bg-green-900 text-white p-2 rounded w-2/5 max-sm:w-1/2">Chi tiết</button>
+                                <a :href="'/edit-course/' + course.element.id" class="bg-blue-900 text-white p-2 mr-4 rounded w-2/5 max-sm:w-1/2 text-center"><button >Chỉnh sửa</button></a>
+                                <a :href="'/detail-course/' + course.element.id" class="bg-green-900 text-white p-2 rounded w-2/5 max-sm:w-1/2 text-center"><button >Chi tiết</button></a>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="flex shadow-md w-full mb-4 max-sm:flex-col max-sm:px-2 cursor-pointer">
-                        <div class="">
-                            <img class="object-cover w-60 h-48 max-sm:w-full" src="../../../assets/images/client/courses/1.png" alt="">
-                        </div>
-                        <div class="w-2/3 max-sm:w-full">
-                            <h2 class="p-2 font-semibold text-lg">Khóa học react cho người mới bắt đầu</h2>
-                            <div class="flex px-2 mb-2">
-                                <img class="object-cover h-8 w-8" src="../../../assets/images/client/avatars/1.png" alt="">
-                                <span class="ml-2 flex items-center">Hồ Quang Đạt</span>
-                            </div>
-                            <span class="px-2 text-gray-300 flex text-center">Khóa học phân tích và thiết kế web theo react</span>
-                        </div>
-                        <div class="py-2 text-right w-1/3 flex flex-col max-sm:w-full max-sm:justify-center">
-                            <span class="text-red-500 mr-4 font-semibold max-sm:flex max-sm:justify-center">Giá: 499.000</span>
-                            <div class="flex items-end h-full justify-end mr-4 max-sm:mr-0">
-                                <button class="bg-blue-900 text-white p-2 mr-4 rounded w-2/5 max-sm:w-1/2">Chỉnh sửa</button>
-                                <button class="bg-green-900 text-white p-2 rounded w-2/5 max-sm:w-1/2">Chi tiết</button>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="flex shadow-md w-full mb-4 max-sm:flex-col max-sm:px-2 cursor-pointer">
-                        <div class="">
-                            <img class="object-cover w-60 h-48 max-sm:w-full" src="../../../assets/images/client/courses/1.png" alt="">
-                        </div>
-                        <div class="w-2/3 max-sm:w-full">
-                            <h2 class="p-2 font-semibold text-lg">Khóa học react cho người mới bắt đầu</h2>
-                            <div class="flex px-2 mb-2">
-                                <img class="object-cover h-8 w-8" src="../../../assets/images/client/avatars/1.png" alt="">
-                                <span class="ml-2 flex items-center">Hồ Quang Đạt</span>
-                            </div>
-                            <span class="px-2 text-gray-300 flex text-center">Khóa học phân tích và thiết kế web theo react</span>
-                        </div>
-                        <div class="py-2 text-right w-1/3 flex flex-col max-sm:w-full max-sm:justify-center">
-                            <span class="text-red-500 mr-4 font-semibold max-sm:flex max-sm:justify-center">Giá: 499.000</span>
-                            <div class="flex items-end h-full justify-end mr-4 max-sm:mr-0">
-                                <button class="bg-blue-900 text-white p-2 mr-4 rounded w-2/5 max-sm:w-1/2">Chỉnh sửa</button>
-                                <button class="bg-green-900 text-white p-2 rounded w-2/5 max-sm:w-1/2">Chi tiết</button>
-                            </div>
-                        </div>
-                    </div>
-    
                 </div>
             </div>
             
@@ -89,3 +34,40 @@ export default {
     </div>
     
 </template>
+<script>
+import SidebarteacherScreen from './SidebarteacherScreen.vue';
+import axios from '../../../assets/js/axios.js';
+import { findApiByName } from "../../../assets/js/apiUtil.js";
+import { auth } from '@/assets/js/auth';
+
+export default {
+    components: {
+        SidebarteacherScreen,
+    },
+    mounted() {
+        this.getCourseByUserID();
+    },
+    data() {
+    return {
+        courses: []
+    }
+},
+    methods: {
+        async getCourseByUserID(){
+            const apiObject = findApiByName("course", "findCourseByUserID").url;
+            const res = await axios.get(apiObject + "/" +auth());
+            this.countCourse = res.data.data;
+
+            if (res.status == 200) {
+                if (res.data.data.length > 0) {
+
+                for (const element of res.data.data) {
+                    this.courses.push({ element });
+                }
+                console.log(this.courses);
+            }
+            }
+        }
+    },
+};
+</script>

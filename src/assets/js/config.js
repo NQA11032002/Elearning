@@ -43,6 +43,14 @@ export const API_URLS = [
       {
         subName: "course-image",
         url: "http://localhost:8087/api/course-image"
+      },
+      {
+        subName: "findCourseByUserID",
+        url: "http://localhost:8087/api/course/user"
+      },
+      {
+        subName: "updateCourse",
+        url: "http://localhost:8087/api/course"
       }
     ] ,
   },
@@ -127,5 +135,14 @@ export const API_URLS = [
         url: "http://localhost:8087/api/educations"
       }
     ] ,
+  },
+  {
+    name: 'video',
+    urls: [
+      {
+        subName: "common",
+        url: "http://localhost:8087/api/course-video"
+      }
+    ],
   },
 ]

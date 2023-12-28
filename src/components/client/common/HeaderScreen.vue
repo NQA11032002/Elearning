@@ -30,7 +30,7 @@
             <a v-if="role === 'USER'" href="/my-course"
               class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Học
               tập</a>
-            <a v-if="role === 'EXPERT'" href="/my-course"
+            <a v-if="role === 'EXPERT'" href="/expert/courses"
               class="font-medium border border-blue-900 text-blue-900  py-1 px-4 rounded-md transition-all hover:bg-blue-900 hover:text-white">Quản
               lý</a>
           </div>
@@ -93,13 +93,11 @@ export default {
     checkCurrentRoute() {
       const currentPath = this.$route.path;
       const token = Cookies.get("auth");
-      console.log(currentPath);
       // Kiểm tra nếu đường dẫn là '/home'
       if (currentPath !== '/login' && token) {
         this.isAuthenticated = true;
         // Thực hiện các hành động bạn muốn khi ở trang Home
       }
-      console.log(this.isAuthenticated);
     },
 
     toggleDropdown() {

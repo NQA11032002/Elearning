@@ -1,57 +1,186 @@
 <template>
-    <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14"> 
-        <div class="w-full flex my-5 max-sm:flex-col">
-            <sidebarteacher-screen></sidebarteacher-screen>
-            <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
-                <div class="p-4">
-                    <p class="text-xl font-semibold">Thông tin khóa học</p>
-                </div>
-                <div class="flex justify-between max-sm:flex-col shadow-md">
-                    <div class="w-1/3 text-center p-2 max-sm:w-full">
-                        <div class="flex justify-center w-full mb-4 mt-10">
-                            <img class="object-cover w-40 h-40 rounded-full" src="../../../assets/images/client/avatars/1.png" alt="">
-                            <input type="file" hidden id="selectfile">
-                        </div>
-                        <label class="text-center cursor-pointer bg-blue-900 text-white rounded p-2" for="selectfile">Chọn ảnh</label>  
-        
-                    </div>
-                    <div class="w-2/3 flex flex-col justify-center max-sm:w-full max-sm:p-2 ">
-                        <span class="py-2">Tiêu đề:</span>
-                        <input class="outline-none border px-2 border-blue-900 w-2/3 h-8 rounded max-sm:w-full" type="text" placeholder="Tiêu đề:">
-        
-                        <span class="py-2">Người giảng:</span>
-                        <input class="outline-none border px-2 border-blue-900 w-2/3 h-8 rounded max-sm:w-full" type="text" placeholder="Người giảng:">
-        
-                        <span class="py-2">Giá khóa học:</span>
-                        <input class="outline-none border px-2 border-blue-900 w-2/3 h-8 rounded max-sm:w-full" type="number" placeholder="Giá khóa học">
-        
-                        <span class="py-2">Mô tả khóa học:</span>
-                        <textarea class="resize-none outline-none border px-2 border-blue-900 max-sm:w-full w-2/3 rounded" name="" id="" cols="30" rows="10" placeholder="Mô tả khóa học:"></textarea>
-        
-                        <span class="py-2">Số lượng chuyên đề:</span>
-                        <input class="outline-none border px-2 border-blue-900 w-2/3 h-8 rounded max-sm:w-full" type="number" placeholder="Số lượng chuyên đề:">
-    
-                        <div class="flex justify-end w-2/3 my-4 max-sm:w-full">
-                            <button class="bg-gray-400  text-white p-2 w-1/5 mr-4 rounded text-sm max-sm:mr-2">Hủy</button>
-                            <button class="bg-blue-900 text-white p-2 w-2/5 rounded text-sm max-sm:mr-0">Lưu khóa học</button>
-                        </div>
-    
-                        
-                    </div>
-                </div>
+    <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
+      <PopupScreen v-if="isCourse" :contents="contents"></PopupScreen>
+      <div class="w-full flex my-5 max-sm:flex-col">
+        <sidebarteacher-screen></sidebarteacher-screen>
+        <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
+          <div class="shadow-md p-5">
+            <form class="flex flex-wrap justify-center max-sm:w-full max-sm:p-2 gap-3">
+              <p class="text-xl font-semibold">Chỉnh sửa khóa học khóa học</p>
+  
+              <div class="w-full">
+                <input
+                  class="text-sm outline-none border px-2 border-gray-300 focus:border-blue-900 w-full py-2 rounded max-sm:w-full"
+                  type="text" v-model="course.title" placeholder="Tiêu đề:" />
+              </div>
+  
+              <select id="countries" v-model="course.categoryID"
+                class="border w-full outline-none border-gray-300 focus:border-blue-900 text-sm rounded block px-2 py-2">
+                <option value=0 disabled selected>Chọn loại khóa học</option>
+                <option :value="category.id" v-for="category in categories" :key="category.id">{{ category.name }}
+                </option>
+              </select>
+  
+              <select id="countries" v-model="course.educationID"
+                class="border w-full outline-none border-gray-300 focus:border-blue-900 text-sm rounded block px-2 py-2">
+                <option value=0 disabled selected>Chọn cấp bậc khóa học</option>
+                <option :value="education.id" v-for="education in educations" :key="education.id">{{ education.name }}
+                </option>
+              </select>
+  
+              <div class="w-full">
+                <input v-model="course.count"
+                  class="text-sm outline-none border px-2 border-gray-300 focus:border-blue-900 w-full py-2 rounded max-sm:w-full"
+                  type="number" placeholder="Số lượng chuyên đề:" />
+              </div>
+  
+              <div class="w-full">
+                <input v-model="course.price"
+                  class="text-sm outline-none border px-2 border-gray-300 focus:border-blue-900 w-full py-2 rounded max-sm:w-full"
+                  type="number" placeholder="Giá khóa học" />
+              </div>
+  
+              <div class="w-full">
+                <textarea v-model="course.description"
+                  class="py-2 text-sm resize-none outline-none border px-2 border-gray-300 focus:border-blue-900 max-sm:w-full w-full rounded"
+                  name="" id="" rows="6" placeholder="Mô tả khóa học:"></textarea>
+              </div>
+  
+              <div class="flex justify-end w-full max-sm:w-full">
+                <button class="bg-gray-400 text-white py-2 px-4 mr-4 rounded text-sm max-sm:mr-2">
+                  <a href="/expert/courses">Hủy</a>
+                </button>
                 
-            </div>
-            
+                <button @click.prevent="saveCourse" class="bg-blue-900 text-white py-2 px-2 rounded text-sm max-sm:mr-0">
+                  Lưu khóa học
+                </button>
+                <button class="bg-green-900 text-white py-2 px-2 rounded text-sm max-sm:mr-0 ml-4">
+                    Chỉnh sửa chuyên đề
+                  </button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-    
-</template>
-<script>
-import SidebarteacherScreen from './SidebarteacherScreen.vue';
-
-export default {
-    components: {
-        SidebarteacherScreen,
+  </template>
+  <script>
+  import SidebarteacherScreen from "./SidebarteacherScreen.vue";
+  import axios from "axios";
+  import { findApiByName } from "../../../assets/js/apiUtil.js";
+  import PopupScreen from "../common/PopupScreen.vue";
+  
+  export default {
+    mounted() {
+      this.getAllCategories();
+      this.getAllEducations();
+      this.courseId = this.$route.params.id;
+      this.getCourseByID();
+      console.log(this.courseId);
     },
-};
-</script>
+    components: {
+      SidebarteacherScreen,
+      PopupScreen
+    },
+    methods: {
+      async getAllCategories() {
+        const apiObject = findApiByName("categories", "common").url;
+  
+        await axios.get(apiObject).then((res) => {
+          if (res.status == 200) {
+            this.categories = res.data.data;
+          }
+        });
+      },
+      async getAllEducations() {
+        const apiObject = findApiByName("educations", "common").url;
+  
+        await axios.get(apiObject).then((res) => {
+          if (res.status == 200) {
+            this.educations = res.data.data;
+          }
+        });
+      },
+  
+      async saveCourse() {
+        let apiObject = findApiByName("course", "updateCourse").url;
+  
+        try {
+        const res = await axios.put(apiObject, {
+            id: this.courseId,
+            title: this.course.title,
+            categoryID: this.course.categoryID,
+            educationID: this.course.educationID,
+            price: this.course.price,
+            count: this.course.count,
+            description: this.course.description,
+        });
+        if(res.data.data.status === "OK")
+        console.log(res);
+
+        } catch (error) {
+          console.error('Error uploading file:', error);
+        }
+  
+      },
+  
+      handleFileChange(event) {
+        const inputFile = event.target;
+        if (inputFile.files.length > 0) {
+          // Lấy tên của tệp đầu tiên nếu có
+          this.selectedFile = event.target.files[0];
+        } else {
+          this.selectedFile = "Chưa chọn tệp";
+        }
+      },
+      async getCourseByID(){
+        const apiObject = findApiByName("course", "findCourseByID").url;
+        const res = await axios.get(apiObject + this.courseId);
+        if(res.data.status === "OK"){
+            this.course.title = res.data.data.title;
+            this.course.categoryID = res.data.data.categoryID;
+            this.course.educationID = res.data.data.educationID;
+            this.course.price = res.data.data.price;
+            this.course.count = res.data.data.count;
+            this.course.description = res.data.data.description;
+            
+        }
+      }
+    },
+    data() {
+      return {
+        categories: {
+          id: 0,
+          name: ""
+        },
+        educations: {
+          id: 0,
+          name: ""
+        },
+        course: {
+          categoryID: 0,
+          educationID: 0,
+          title: null,
+          description: null,
+          price: null,
+          count: null,
+          status: false,
+        },
+        imageCourse: {
+          courseID: null,
+          urlImage: null
+        },
+        selectedFile: null,
+        isCourse: false,
+        contents: {
+          title: "Đang đăng tải khóa học",
+          status: true,
+          color: "red-600",
+          icon: "fa-solid fa-circle-exclamation"
+        },
+        courseId: null,
+      }
+    }
+  };
+  </script>
+  

@@ -59,6 +59,7 @@ export default {
             }
           }
         }
+        console.log(this.courses);
       } catch (error) {
         console.log(error);
       }

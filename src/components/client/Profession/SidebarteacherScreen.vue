@@ -18,19 +18,19 @@
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-bars-progress text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/expert/management">Quản lý khóa học</a>
+                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/expert/courses">Quản lý khóa học</a>
             </div>
             <div class="flex items-left py-4">
-                <i class="fa-solid fa-people-roof text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Quản lý học viên</a>
+                <i class="fa-solid fa-people-roof text-xl mr-3 text-gray-500"></i>
+                <a class="text-blue-900 cursor-not-allowed items-center justify-center flex text-center font-medium" href="">Quản lý học viên</a>
             </div>
             <div class="flex items-left py-4">
-                <i class="fa-solid fa-chart-line text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Thống kê</a>
+                <i class="fa-solid fa-chart-line text-xl mr-3 text-gray-500"></i>
+                <a class="text-blue-900 cursor-not-allowed  items-center justify-center flex text-center font-medium" href="">Thống kê</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-comments text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="">Liên hệ hỗ trợ</a>
+                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/support">Liên hệ hỗ trợ</a>
             </div>
         </div>
     </div>
@@ -51,7 +51,6 @@ export default {
   },
   mounted() {
     loadInfor().then((data) => {
-      console.log(data);
       this.user.fullName = data.fullName;
       this.user.profilePictureURL = data.profilePictureURL;
     });

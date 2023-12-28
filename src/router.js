@@ -119,7 +119,7 @@ const routes = [
     component: CourseVideoScreen
   },
   {
-    path: '/expert/management',
+    path: '/expert/courses',
     component: CourseManager
   },
   
