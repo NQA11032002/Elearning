@@ -1,6 +1,7 @@
 <template>
   <div class="w-2/3 m-auto max-sm:w-full max-sm:px-5 sm:px-3 lg:px-0 mt-14">
     <div class="w-full flex my-5 max-sm:flex-col">
+      <PopupConfirm v-if="isCourse" :contents="contents"></PopupConfirm>
       <sidebarteacher-screen></sidebarteacher-screen>
       <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:ml-0 shadow-md ">
         <div class="p-4">
@@ -47,7 +48,7 @@
 import SidebarteacherScreen from './SidebarteacherScreen.vue';
 import axios from "axios";
 import { useRoute } from 'vue-router';
-
+import PopupConfirm from "../common/PopupConfirm.vue";
 
 export default {
   setup() {
@@ -60,6 +61,7 @@ export default {
   },
   components: {
     SidebarteacherScreen,
+    PopupConfirm
   },
   data() {
     return {
@@ -69,7 +71,15 @@ export default {
         thematicID: this.$route.params.id,
         urlVideo: "",
         duration: ""
-      }
+      },
+      isCourse: false,
+      contents: {
+          title: "Thêm video thành công",
+          status: true,
+          color: "green-600",
+          icon: "fa-regular fa-circle-check",
+          navigate: "#"
+        },
     };
   },
   methods: {
