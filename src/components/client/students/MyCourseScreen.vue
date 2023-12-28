@@ -23,7 +23,7 @@
         </a>
 
         <a href="/course"
-          class="flex w-1/5 flex-col gap-6 overflow-hidden max-sm:w-full  max-sm:py-4 justify-center items-center rounded-lg transition-all hover:outline-slate-700 outline-2 outline-gray-300 outline-dashed">
+          class="flex w-1/5 py-5 flex-col gap-6 overflow-hidden max-sm:w-full  max-sm:py-4 justify-center items-center rounded-lg transition-all hover:outline-slate-700 outline-2 outline-gray-300 outline-dashed">
           <i class="fa-solid fa-circle-plus text-2xl text-gray-400 "></i>
           <button class="border-slate-700 rounded-lg border py-2 w-32 text-sm text-gray-400">Thêm khóa học</button>
         </a>

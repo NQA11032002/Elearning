@@ -73,12 +73,19 @@ export default {
               password: this.user.password,
               fullName: this.user.fullName,
               phone: this.user.phone,
+            }).then((res) => {
+              if(res.data.status == "INTERNAL_SERVER_ERROR")
+              {
+                this.isValidate(false, "Username đã tồn tại");
+              }else
+              {
+                this.$router.push('/login');
+              }
             })
             }
         } 
         this.validate.isSubmitting = false;
         
-        this.$router.push('/login');
       } catch (error) {
         // Xử lý lỗi từ API (error.response.data) nếu cần
         this.validate.isSubmitting = false;

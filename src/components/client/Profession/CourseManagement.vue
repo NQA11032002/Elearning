@@ -3,7 +3,7 @@
     <PopupScreen v-if="isCourse" :contents="contents"></PopupScreen>
     <div class="w-full flex my-5 max-sm:flex-col">
       <sidebarteacher-screen></sidebarteacher-screen>
-      <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
+      <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
         <div class="shadow-md p-5">
           <form class="flex flex-wrap justify-center max-sm:w-full max-sm:p-2 gap-3">
             <p class="text-xl font-semibold">Thông tin khóa học</p>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="flex justify-end w-full max-sm:w-full">
-              <button class="bg-gray-400 text-white py-2 px-4 mr-4 rounded text-sm max-sm:mr-2">
+              <button class="bg-slate-700 text-white py-2 px-4 mr-4 rounded text-sm max-sm:mr-2">
                 Hủy
               </button>
               <button @click.prevent="saveCourse" class="bg-blue-900 text-white py-2 px-2 rounded text-sm max-sm:mr-0">
@@ -74,15 +74,13 @@
 import SidebarteacherScreen from "./SidebarteacherScreen.vue";
 import axios from "axios";
 import { findApiByName } from "../../../assets/js/apiUtil.js";
-import PopupScreen from "../common/PopupScreen.vue";
+import PopupScreen from "../common/PopupConfirm.vue";
 import Cookies from 'js-cookie';
 
 export default {
   mounted() {
     this.getAllCategories();
     this.getAllEducations();
-
-    console.log(this.categories)
   },
   components: {
     SidebarteacherScreen,
@@ -121,6 +119,7 @@ export default {
             "Đang đăng tải khóa học. Vui lòng đợi quá trình hoàn tất";
           this.contents.color = "red-600";
           this.contents.icon = "fa-solid fa-circle-exclamation";
+          this.contents.navigate = "#";
 
           //send API upload file
           await axios.post(apiObject, formData, {
@@ -144,6 +143,7 @@ export default {
                         "Đăng tải khóa học thành công. Nội dung khóa học sẽ được hiển thị sau khi kiểm duyệt thành công. Vui lòng theo dõi tình trạng khóa học tại trang quản lý của bạn.!!!";
                       this.contents.color = "green-500";
                       this.contents.icon = "fa-regular fa-circle-check";
+                      this.contents.navigate = "/expert/courses";
                     } else {
                       this.isCourse = false
                     }
@@ -199,7 +199,8 @@ export default {
         title: "Đang đăng tải khóa học",
         status: true,
         color: "red-600",
-        icon: "fa-solid fa-circle-exclamation"
+        icon: "fa-solid fa-circle-exclamation",
+        navigate: null
       },
     }
   }
