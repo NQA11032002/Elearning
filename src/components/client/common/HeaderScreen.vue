@@ -33,7 +33,7 @@
               src="../../../assets/images/client/avatars/avatar.png" alt="">
             <ul v-if="showDropdown" class="absolute right-0 mt-2 bg-white border rounded-md shadow-md w-48 p-4">
               <li class="border-b border-gray-300 mb-2"><a class="p-2"
-                  :href="role === 'USER' ? '/profile' : (role === 'EXPERT' ? '/profile-expert' : '#')">Thông tin tài
+                  :href="role === 'USER' ? '/profile' : (role === 'EXPERT' ? '/expert-profile' : '#')">Thông tin tài
                   khoản</a></li>
               <li class="border-b border-gray-300 mb-2"><a class="p-2" href="/changepass">Đổi mật khẩu</a></li>
               <li><a class="p-2" @click="logout" href="#">Đăng xuất</a></li>

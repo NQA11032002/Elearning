@@ -68,16 +68,12 @@ export default {
               return;
             }
             const apiObject = findApiByName("auth", "register").url;
-            const response = await axios.post(apiObject, {
+            await axios.post(apiObject, {
               userName: this.user.userName,
               password: this.user.password,
               fullName: this.user.fullName,
               phone: this.user.phone,
             })
-            if (response.data.data === null) {
-              this.isValidate(false, "Tài khoản đã tồn tại vui lòng nhập tài khoản khác");
-              return;
-             }
             }
         } 
         this.validate.isSubmitting = false;

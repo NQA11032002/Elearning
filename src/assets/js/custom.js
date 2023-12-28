@@ -3,7 +3,8 @@ import { auth } from "./auth";
 import { findApiByName } from "./apiUtil";
 
 export async function loadInfor() {
-  return getUserByID(auth())
+  console.log(auth());
+  return getUserByID(auth());
 }
 
 export async function updateInfor(fullName, email,  phone) {
@@ -33,6 +34,7 @@ export async function getUserByID(userID) {
 
     // Make API request
     const res = await axios.get(apiObject + userID);
+    console.log(res)
 
     if (res.status === 200) {
       return res.data.data;
