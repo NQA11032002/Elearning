@@ -74,7 +74,7 @@
           Các chuyên gia hàng đầu tại AcademyLink
         </h1>
         <div class="expert_sidebar m-auto flex justify-center">
-          <i class="fa-solid fa-chevron-left"></i>
+          <!-- <i class="fa-solid fa-chevron-left"></i> -->
           <div class="cards flex">
             <div class="card h-60 w-56 text-center">
               <img class="m-auto" src="../../../assets/images/client/avatars/1.png" alt="" />
@@ -100,7 +100,7 @@
               <h5 class="font-semibold flex-shrink-0">Võ Duy Trực</h5>
             </div>
           </div>
-          <i class="fa-solid fa-chevron-right"></i>
+          <!-- <i class="fa-solid fa-chevron-right"></i> -->
         </div>
       </div>
 
@@ -111,7 +111,7 @@
         </div>
 
         <div class="courses flex">
-          <i class="fa-solid fa-chevron-left"></i>
+          <!-- <i class="fa-solid fa-chevron-left"></i> -->
           <div class="cards mt-6 mb-10 flex">
             <div class="card">
               <img src="../../../assets/images/client/courses/1.png" alt="" />
@@ -172,10 +172,10 @@
               </div>
             </div>
           </div>
-          <i class="fa-solid fa-chevron-right"></i>
+          <!-- <i class="fa-solid fa-chevron-right"></i> -->
         </div>
 
-        <div class="title__container flex">
+        <!-- <div class="title__container flex">
           <img src="../../../assets/images/client/card/icon_creative.png" alt="" />
           <h1 class="title font-semibold">Khóa học khác</h1>
         </div>
@@ -203,7 +203,7 @@
             </div>
           </div>
           <i class="fa-solid fa-chevron-right"></i>
-        </div>
+        </div> -->
       </div>
 
       <div class="about relative">
