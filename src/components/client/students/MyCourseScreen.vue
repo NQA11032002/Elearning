@@ -47,7 +47,8 @@ export default {
         const apiObject = findApiByName("order", "findCourse").url;
 
         //get all course ordered
-        const res = await axios.get(apiObject + auth());
+        const authResult = await auth();
+        const res = await axios.get(apiObject + authResult);
 
         if (res.status == 200) {
           if (res.data.data.length > 0) {

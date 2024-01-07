@@ -111,7 +111,7 @@
 
         <div class="flex flex-col gap-5 mt-5">
           <div class="flex gap-3 border-b-slate-200 border-b w-full pb-3 last:border-b-0"
-            v-for="(evaluation) in displayedEvaluations" :key="evaluation.id">
+            v-for="evaluation in displayedEvaluations" :key="evaluation.id">
             <div>
               <img class="w-10 h-10 rounded-full object-cover"
                 src="https://musicart.xboxlive.com/7/4d4d6500-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080"
@@ -119,7 +119,7 @@
             </div>
 
             <div class="flex flex-col gap-1">
-              <p class="font-semibold text-sm">{{ course.fullName }}</p>
+              <p class="font-semibold text-sm">{{ evaluation.fullName }}</p>
               <p class="text-sm text-gray-400 text-sm">
                 <i class="fa-regular fa-clock pr-2"></i>{{ evaluation.createdAt }}
               </p>
@@ -150,18 +150,17 @@ import { getUserByID, loadInfor } from "../../../assets/js/custom.js";
 export default {
   mounted() {
     this.getCourse();
-
     const isRegistered = async () => {
       try {
-        //get url API
+
+        const authResult = await auth();
         const apiObject = findApiByName("order", "course").url;
         const res = await axios.get(apiObject, {
           params: {
             courseID: parseInt(this.$route.params.id),
-            userID: auth(),
+            userID: authResult,
           },
         });
-
         this.isRegistered = res.data;
       } catch (error) {
         console.log(error);
@@ -186,15 +185,21 @@ export default {
 
       try {
         const res = await axios.get("http://localhost:8087/api/course/" + this.formData.courseID);
-
+        const authResult = await auth();
+        this.formData.userID = authResult;
         this.course = res.data.data;
+
 
         if (this.course.courseImages.length > 0) {
           this.course.urlImage = this.course.courseImages[0].urlImage;
         }
 
-        const customer = await getUserByID(this.course.userID);
-        this.course.fullName = customer.fullName;
+        if (this.course.courseEvaluations.length > 0) {
+          await Promise.all(this.course.courseEvaluations.map(async (evaluation) => {
+            const customer = await getUserByID(evaluation.userID);
+            evaluation.fullName = customer.fullName;
+          }));
+        }
 
       } catch (error) {
         console.log(error);
@@ -209,7 +214,7 @@ export default {
     async insertEvaluation() {
       try {
         const res = await axios.post("http://localhost:8087/api/evaluation", this.formData);
-
+        console.log(this, this.formData);
         if (res.status == 200) {
           this.getCourse();
         }
@@ -264,7 +269,7 @@ export default {
         courseID: this.$route.params.id,
         comment: '',
         rate: 1,
-        userID: auth(),
+        userID: null,
       },
       customer: null,
       userID: null,

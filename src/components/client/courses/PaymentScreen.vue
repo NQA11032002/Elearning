@@ -187,11 +187,17 @@ export default {
     const isRegistered = async () => {
       try {
         //get url API
+        const authResult = await auth();
+
+        this.orderData.userID = authResult;
+        this.orderData.codeOrder = Math.random().toString(36).substring(2, 10) + "-" + this.$route.params.id + "-" + authResult
+
         const apiObject = findApiByName("order", "course").url;
+
         const res = await axios.get(apiObject, {
           params: {
             courseID: parseInt(this.orderData.courseID),
-            userID: auth(),
+            userID: authResult,
           },
         });
 
@@ -205,28 +211,28 @@ export default {
         }
 
         if (!this.isRegistered) {
-      // Convert initial time to seconds
-      let timeInSeconds = this.convertTimeToSeconds(this.countdown);
+          // Convert initial time to seconds
+          let timeInSeconds = this.convertTimeToSeconds(this.countdown);
 
-      // Update the countdown every second
-      this.interval = setInterval(() => {
-        if (timeInSeconds > 0) {
-          timeInSeconds--;
-          this.countdown = this.convertSecondsToTime(timeInSeconds);
+          // Update the countdown every second
+          this.interval = setInterval(() => {
+            if (timeInSeconds > 0) {
+              timeInSeconds--;
+              this.countdown = this.convertSecondsToTime(timeInSeconds);
 
+            } else {
+              // Countdown reached zero, you can perform additional actions here
+              clearInterval(this.interval);
+              this.isPopup = true;
+
+              // Change contents in the child component
+              this.changeInfoPopup("Hết thời hạn thanh toán, vui lòng thử lại.!", "red-600", "fa-solid fa-circle-exclamation")
+            }
+          }, 1000);
         } else {
-          // Countdown reached zero, you can perform additional actions here
           clearInterval(this.interval);
-          this.isPopup = true;
-
-          // Change contents in the child component
-          this.changeInfoPopup("Hết thời hạn thanh toán, vui lòng thử lại.!", "red-600", "fa-solid fa-circle-exclamation")
+          this.changeInfoPopup("Bạn đã đăng ký khóa học này. Vui lòng theo dõi tại trang khóa học của bạn", "red-600", "fa-solid fa-circle-exclamation");
         }
-      }, 1000);
-    } else {
-      clearInterval(this.interval);
-      this.changeInfoPopup("Bạn đã đăng ký khóa học này. Vui lòng theo dõi tại trang khóa học của bạn", "red-600", "fa-solid fa-circle-exclamation");
-    }
       } catch (error) {
         console.log(error);
       }
@@ -340,15 +346,10 @@ export default {
       interval: null,
       countdown: "05:00",
       orderData: {
-        userID: auth(),
+        userID: null,
         courseID: this.$route.params.id,
         totalPrice: 0,
-        codeOrder:
-          Math.random().toString(36).substring(2, 10) +
-          "-" +
-          this.$route.params.id +
-          "-" +
-          auth(),
+        codeOrder: null,
         status: "Đang xử lý",
       },
       isPopup: false,

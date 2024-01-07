@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     selectLesson(video) {
+      console.log(video)
       this.$emit('lessonSelected', video);
     }
   }

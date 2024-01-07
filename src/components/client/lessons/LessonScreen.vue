@@ -43,21 +43,38 @@ import FooterLesson from "./FooterLesson.vue";
 import axios from "axios";
 import { useRoute } from 'vue-router';
 import { findApiByName } from "../../../assets/js/apiUtil.js";
+import { auth } from "../../../assets/js/auth.js";
 
 export default {
   mounted() {
-    const apiObject = findApiByName("course", "findCourseByID").url;
+    let apiObject = findApiByName("order", "course").url;
     const route = useRoute();
     const courseId = route.params.id;
 
     const getCourse = async () => {
       try {
-        const res = await axios.get(apiObject + courseId);
+        const authResult = await auth();
 
-        if (res.status == 200) {
-          this.thematicCourses = res.data.data.thematicCourses;
-        }
-        console.log(this.thematicCourses)
+        await axios.get(apiObject, {
+          params: {
+            courseID: parseInt(courseId),
+            userID: authResult
+          }
+        }).then(data => {
+          if (data.data) {
+            apiObject = findApiByName("course", "findCourseByID").url;
+
+            axios.get(apiObject + courseId).then(res => {
+              if (res.status == 200) {
+                this.thematicCourses = res.data.data.thematicCourses;
+              }
+            });
+          } else {
+            window.location.href = '/error-403';
+          }
+        });
+
+
       } catch (error) {
         console.log(error);
       }
