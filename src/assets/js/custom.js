@@ -7,10 +7,11 @@ export async function loadInfor() {
   return getUserByID(auth());
 }
 
-export async function updateInfor(fullName, email,  phone) {
+export async function updateInfor(userID, fullName, email,  phone) {
   try {
     const apiObject = findApiByName("customer", "common").url;
     const response = await axios.put(apiObject+"/"+ auth(),{
+      userID: userID,
       fullName: fullName,
       email: email,
       phone: phone

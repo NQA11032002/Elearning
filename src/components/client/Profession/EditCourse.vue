@@ -3,7 +3,7 @@
       <PopupConfirm v-if="isCourse" :contents="contents"></PopupConfirm>
       <div class="w-full flex my-5 max-sm:flex-col">
         <sidebarteacher-screen></sidebarteacher-screen>
-        <div class="ml-6 w-3/4 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
+        <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:w-full max-sm:ml-0">
           <div class="shadow-md p-5">
             <form class="flex flex-wrap justify-center max-sm:w-full max-sm:p-2 gap-3">
               <p class="text-xl font-semibold">Chỉnh sửa khóa học khóa học</p>
@@ -75,7 +75,7 @@
       this.getAllCategories();
       this.getAllEducations();
       this.courseId = this.$route.params.id;
-      this.contents.navigate = "/expert/course/"+this.courseId;
+      this.contents.navigate = 
       this.getCourseByID();
       console.log(this.courseId);
     },
@@ -177,7 +177,7 @@
           status: true,
           color: "green-600",
           icon: "fa-regular fa-circle-check",
-          navigate: ""
+          navigate: "/expert/course/"+this.courseId
         },
         courseId: null,
       }

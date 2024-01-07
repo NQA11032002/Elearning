@@ -14,7 +14,7 @@
         <div class="flex flex-col items-left ml-6">
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-person text-xl mr-3 text-blue-900"></i>
-                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/profile-expert">Thông tin người dùng</a>
+                <a class="text-blue-900 cursor-pointer items-center justify-center flex text-center font-medium" href="/expert-profile">Thông tin người dùng</a>
             </div>
             <div class="flex items-left py-4">
                 <i class="fa-solid fa-bars-progress text-xl mr-3 text-blue-900"></i>

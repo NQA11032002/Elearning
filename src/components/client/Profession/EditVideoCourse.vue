@@ -5,7 +5,7 @@
         <sidebarteacher-screen></sidebarteacher-screen>
         <div class="ml-6 w-4/5 max-sm:mt-4 bg-white max-sm:ml-0 shadow-md ">
           <div class="p-4">
-            <p class="text-3xl font-semibold flex justify-center text-blue-900">Thông tin chuyên đề</p>
+            <p class="text-3xl font-semibold flex justify-center text-blue-900">Thông tin bài giảng</p>
           </div>
           <div class="flex justify-between max-sm:flex-col">
             <form @submit.prevent="uploadLesson" class="w-full flex flex-col justify-center max-sm:w-full max-sm:p-2"
