@@ -72,6 +72,23 @@
           </div>
         </div>
 
+        <h1 class="text-xl font-semibold text-slate-700 max-sm:text-lg">
+          Hình thức thanh toán
+        </h1>
+
+        <div class="rounded-lg flex flex-col gap-3">
+            <div class="flex items-center">         
+              <input type="radio" checked @change="selectedTypePayment($event)" name="payment" value="vnpay" id="payment-vnpay">
+              <label class="pl-2" for="payment-vnpay">Thanh toán bằng <span class="font-semibold">Smart Banking VNPAY</span></label>
+              <img class="w-10 h-10 object-cover" src="../../../assets/images/client/logo/vnpay.jpg" alt="">
+            </div>
+
+            <div class="flex items-center">         
+              <input type="radio" @change="selectedTypePayment($event)" name="payment" id="payment-qr" value="qr">
+              <label class="pl-2" for="payment-qr">Thanh toán <span class="font-semibold">Quét Mã QR</span></label>
+            </div>
+        </div>
+
         <div>
           <button @click="submitFormOrderCourse"
             class="bg-neutral-800 font-medium text-center hover:opacity-80 text-white text-sm w-full py-3 rounded-lg">
@@ -231,7 +248,7 @@ export default {
           }, 1000);
         } else {
           clearInterval(this.interval);
-          this.changeInfoPopup("Bạn đã đăng ký khóa học này. Vui lòng theo dõi tại trang khóa học của bạn", "red-600", "fa-solid fa-circle-exclamation");
+          this.changeInfoPopup("Khóa học đã được đăng ký. Vui lòng theo dõi tại trang khóa học của bạn", "green-500", "fa-regular fa-circle-check");
         }
       } catch (error) {
         console.log(error);
@@ -270,6 +287,9 @@ export default {
     };
   },
   methods: {
+    selectedTypePayment(event){
+      this.typePayment = event.target.getAttribute("value"); 
+    },
     changeInfoPopup(title, color, content) {
       this.contents.title = title;
       this.contents.color = color;
@@ -299,37 +319,61 @@ export default {
       try {
         this.orderData.totalPrice =
           this.course.price - this.course.price * (this.course.reduce / 100);
+          const apiObject = findApiByName("order", "pay").url;
+          const authResult = await auth();
+        console.log(this.orderData.courseID)
+          if(this.typePayment == "vnpay")
+          {
+            await axios.get(apiObject, {
+              params: {
+                price: this.orderData.totalPrice,
+                userID: authResult,
+                courseID: this.orderData.courseID,
+                code: this.orderData.codeOrder
+              }}).then(data => {
+                if(data.status == 200)
+                {
+                  this.isPopup = true;
 
-        const res = await axios
-          .post("http://localhost:8085/api/order", this.orderData)
-          .then(async (data) => {
-            if (data.status == 200) {
-              this.paymentData.orderID = data.data.data.id;
+                  // Change contents in the child component
+                  this.changeInfoPopup("Đang thực hiện thanh toán!", "red-600", "fa-solid fa-circle-exclamation")
+                  clearInterval(this.interval);
+                  window.open(data.data, "_blank");
+                }
+              })
+          }else
+          {
+          const res = await axios
+            .post("http://localhost:8085/api/order", this.orderData)
+            .then(async (data) => {
+              if (data.status == 200) {
+                this.paymentData.orderID = data.data.data.id;
 
-              this.paymentData.paymentMethod = "Smart Banking Online";
+                this.paymentData.paymentMethod = "Smart Banking Online";
 
-              await axios
-                .post("http://localhost:8085/api/payment", this.paymentData)
-                .then(async () => {
-                  this.orderData.status = "Đăng ký thành công";
-                  await axios
-                    .put(
-                      "http://localhost:8085/api/order/" + data.data.data.id,
-                      this.orderData
-                    )
-                    .then(async (response) => {
-                      if (response.status == 200) {
-                        clearInterval(this.interval);
+                await axios
+                  .post("http://localhost:8085/api/payment", this.paymentData)
+                  .then(async () => {
+                    this.orderData.status = "Đăng ký thành công";
+                    await axios
+                      .put(
+                        "http://localhost:8085/api/order/" + data.data.data.id,
+                        this.orderData
+                      )
+                      .then(async (response) => {
+                        if (response.status == 200) {
+                          clearInterval(this.interval);
 
-                        this.changeInfoPopup("Đăng ký khóa học thành công. Vui lòng theo dõi khóa học tại trang khóa học của bạn.!!!", "green-500", "fa-regular fa-circle-check")
-                        this.isPopup = true;
-                        this.isRegistered = true;
-                      }
-                    });
-                });
-            }
-          });
-        return res;
+                          this.changeInfoPopup("Đăng ký khóa học thành công. Vui lòng theo dõi khóa học tại trang khóa học của bạn.!!!", "green-500", "fa-regular fa-circle-check")
+                          this.isPopup = true;
+                          this.isRegistered = true;
+                        }
+                      });
+                  });
+              }
+            });
+          return res;
+          }
       } catch (error) {
         console.log(error);
       }
@@ -352,6 +396,7 @@ export default {
         codeOrder: null,
         status: "Đang xử lý",
       },
+      typePayment: "vnpay",
       isPopup: false,
       contents: {
         title: "Bạn đã đăng ký khóa học này. Vui lòng theo dõi tại trang khóa học của bạn",

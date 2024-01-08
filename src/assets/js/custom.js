@@ -42,6 +42,8 @@ export async function getUserByID(userID) {
     }
   } catch (error) {
     console.error('Error fetching user data:', error);
+    window.location.href = '/error-500';
+
     return null;
   }
 }
@@ -62,6 +64,7 @@ export async function getAllCourserByUserID(userID) {
     }
   } catch (error) {
     console.error('Error fetching user data:', error);
+    window.location.href = '/error-500';
     return null;
   }
 }

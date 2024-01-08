@@ -29,6 +29,7 @@ import CourseManager from "./components/client/Profession/CourseManager.vue";
 import EditVideoCourse from "./components/client/Profession/EditVideoCourse.vue";
 
 import error_403 from "./components/client/errors/error_403.vue";
+import error_500 from "./components/client/errors/error_500.vue";
 
 const routes = [
   {
@@ -38,6 +39,10 @@ const routes = [
   {
     path: '/error-403',
     component: error_403
+  },
+  {
+    path: '/error-500',
+    component: error_500
   },
   {
       path: '/training',

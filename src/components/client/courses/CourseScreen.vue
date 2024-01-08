@@ -179,16 +179,17 @@ import "../../../assets/styles/course.scss";
 import axios from "axios";
 import { findApiByName } from "../../../assets/js/apiUtil.js";
 import { getUserByID } from "../../../assets/js/custom.js";
+import { exceptionHandling } from "../../../assets/js/auth.js";
 
 export default {
   props: [],
   mounted() {
+    
     this.getAllCourses();
 
   },
   setup() {
-
-
+    exceptionHandling();
   },
 
   data() {

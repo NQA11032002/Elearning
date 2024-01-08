@@ -87,6 +87,10 @@ export const API_URLS = [
         subName: "findCourse",
         url: "http://localhost:8085/api/order/find-course/"
       },
+      {
+        subName: "pay",
+        url: "http://localhost:8085/api/v1/pay"
+      },
     ]
   },
   {

@@ -26,3 +26,10 @@ export function getRole() {
   return Cookies.get('role') != null ? Cookies.get('role') : null;
 }
 
+export function exceptionHandling(){
+  const url = window.location.pathname.split('/')[1];
+  if(!Cookies.get('auth') && Cookies.get('auth') == undefined && url != "error-403")
+  {
+    window.location.href = '/error-403';
+  }
+}
